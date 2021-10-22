@@ -1,13 +1,10 @@
 package standardJComponents;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import standardJComponents.helper.CelestialDirection;
-import standardJComponents.helper.PopUpOnHoverController;
-import standardJComponents.implementations.MyLabel;
-import standardJComponents.implementations.MyPopUpComponent;
 import standardJComponents.settings.Colors;
 
 /**
@@ -41,15 +38,19 @@ public class MyFrame extends JFrame {
 	setVisible(true);
     }
 
-    public static void main(String[] args) {
-	final MyFrame frame = new MyFrame("test");
-	final MyLabel lb = new MyLabel("HoverMe!");
-	lb.setPreferredSize(new Dimension(100, 100));
-	final MyLabel lbHover = new MyLabel("Hover successful!");
-	final MyPopUpComponent hover = new MyPopUpComponent(lbHover);
-	lb.addMouseListener(new PopUpOnHoverController(hover, CelestialDirection.EAST));
-	frame.add(lb);
-	frame.start();
+    /**
+     * This code is necessary to load an image in a .jar-File.
+     * 
+     * @param imageFileName
+     * @return The desired Image
+     */
+    public static <T> Image getImageWithInJar(final String imageFileName, final Class<T> relative) {
+	try {
+	    return ImageIO.read(relative.getClassLoader().getResourceAsStream(imageFileName));
+	} catch (IOException e) {
+	    e.printStackTrace();
+	    return null;
+	}
     }
 
 }
