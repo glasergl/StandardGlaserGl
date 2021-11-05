@@ -1,7 +1,9 @@
 package standardJComponents.implementations;
 
+import java.awt.Cursor;
+
 import javax.swing.JCheckBox;
-import standardJComponents.helper.CursorClickController;
+import standardJComponents.helper.CursorHoverController;
 import standardJComponents.settings.Colors;
 import standardJComponents.settings.Fonts;
 
@@ -19,9 +21,8 @@ public class MyCheckBox extends JCheckBox {
     private void setStandardProperties() {
 	setFont(Fonts.standard);
 	setForeground(Colors.ofText());
-	setBackground(MyTextField.background);
 	setFocusPainted(false);
-	addMouseListener(new CursorClickController());
+	addMouseListener(new CursorHoverController(new Cursor(Cursor.HAND_CURSOR)));
     }
 
 }

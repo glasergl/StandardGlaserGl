@@ -1,9 +1,11 @@
 package standardJComponents.implementations;
 
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.Icon;
 import javax.swing.JButton;
-import standardJComponents.helper.CursorClickController;
+import standardJComponents.helper.CursorHoverController;
 import standardJComponents.settings.Fonts;
 
 public class MyButton extends JButton {
@@ -27,7 +29,7 @@ public class MyButton extends JButton {
     }
 
     protected void setStandardProperties() {
-	addMouseListener(new CursorClickController());
+	addMouseListener(new CursorHoverController(new Cursor(Cursor.HAND_CURSOR)));
 	setForeground(new Color(30, 30, 30));
 	setFocusPainted(false);
 	setFont(Fonts.standard);

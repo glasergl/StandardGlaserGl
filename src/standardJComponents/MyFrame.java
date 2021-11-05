@@ -29,7 +29,7 @@ public class MyFrame extends JFrame {
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setResizable(false);
 	setLayout(new BorderLayout());
-	setBackground(Colors.getBackground(1));
+	getContentPane().setBackground(Colors.getBackground(1));
     }
 
     public void start() {

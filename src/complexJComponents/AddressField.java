@@ -5,17 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import standardJComponents.implementations.MyTextField;
 
 public class AddressField extends JPanel {
-
-    private final MyTextField prename = new MyTextField();
-    private final MyTextField surname = new MyTextField();
-    private final MyTextField street = new MyTextField();
-    private final MyTextField housenumber = new MyTextField();
-    private final MyTextField zipcode = new MyTextField();
-    private final MyTextField city = new MyTextField();
-    private final MyTextField country = new MyTextField();
 
     public AddressField() {
 	super();

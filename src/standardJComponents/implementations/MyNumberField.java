@@ -3,37 +3,18 @@ package standardJComponents.implementations;
 import java.awt.Color;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.PlainDocument;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class MyNumberField extends MyTextField {
-
-    public MyNumberField(final String hint, final int initialValue) {
-	super(hint, String.valueOf(initialValue));
-    }
-
-    public MyNumberField(final int initialValue) {
-	this("", initialValue);
-    }
+public class MyNumberField extends MyHintTextField {
 
     public MyNumberField(final String hint) {
-	this(hint, -1);
-	setText("");
-    }
-
-    public MyNumberField() {
-	this("");
+	super(hint);
+	textField.getDocument().addDocumentListener(new NumberValidator(textField.getBorder()));
     }
 
     public int getNumber() {
 	return Integer.valueOf(getText());
-    }
-
-    @Override
-    protected Document createDefaultModel() {
-	return new NumberDocument(MyTextField.border);
     }
 
     /**
@@ -43,35 +24,34 @@ public class MyNumberField extends MyTextField {
      * @author Gabriel Glaser
      * @version 27.09.2021
      */
-    private class NumberDocument extends PlainDocument {
+    private class NumberValidator implements DocumentListener {
 	private final Border old;
 
-	public NumberDocument(final Border old) {
+	public NumberValidator(final Border old) {
 	    this.old = old;
 	}
 
 	@Override
-	public void remove(int a, int b) throws BadLocationException {
-	    super.remove(a, b);
+	public void insertUpdate(DocumentEvent e) {
 	    update();
 	}
 
 	@Override
-	public void insertString(int a, String b, AttributeSet c) throws BadLocationException {
-	    super.insertString(a, b, c);
+	public void removeUpdate(DocumentEvent e) {
+	    update();
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
 	    update();
 	}
 
 	private void update() {
-	    try {
-		String currentContent = getText(0, getLength());
-		if (!currentContent.equals(hint) && !currentContent.equals("") && !currentContent.matches("[0-9]*")) {
-		    setBorder(new LineBorder(Color.RED, 2));
-		} else {
-		    setBorder(old);
-		}
-	    } catch (BadLocationException e) {
-		e.printStackTrace();
+	    final String currentContent = textField.getText();
+	    if (!currentContent.matches("[0-9]*")) {
+		setBorder(new LineBorder(Color.RED, 2));
+	    } else {
+		setBorder(old);
 	    }
 	}
 
