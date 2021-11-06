@@ -3,12 +3,15 @@ package standardJComponents.implementations;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import standardJComponents.helper.UnderlineBorder;
 import standardJComponents.settings.Colors;
 import standardJComponents.settings.Fonts;
 
@@ -33,12 +36,13 @@ public class MyHintTextField extends JPanel {
 
     private void setup() {
 	hintDisplay.setForeground(Colors.ofHintText());
+	hintDisplay.setBorder(new EmptyBorder(2, 2, 2, 2));
 
 	textField.setForeground(Colors.ofText());
-	textField.setBorder(new EmptyBorder(2, 2, 2, 2));
-	hintDisplay.setBorder(new EmptyBorder(2, 2, 2, 2));
-	textField.getDocument().addDocumentListener(new HintController());
+	textField.setBorder(new UnderlineBorder(2, Colors.ofText()));
+	textField.addFocusListener(new SmallChangedStandardFocusListener());
 	textField.setOpaque(false);
+	textField.getDocument().addDocumentListener(new HintController());
 
 	setLayout(null);
 	setFont(Fonts.standard);
@@ -92,6 +96,11 @@ public class MyHintTextField extends JPanel {
 	return textField.getPreferredSize();
     }
 
+    @Override
+    public void addFocusListener(final FocusListener toAdd) {
+	textField.addFocusListener(toAdd);
+    }
+
     private class HintController implements DocumentListener {
 
 	@Override
@@ -115,6 +124,20 @@ public class MyHintTextField extends JPanel {
 	    } else {
 		hintDisplay.setText("");
 	    }
+	}
+
+    }
+
+    private class SmallChangedStandardFocusListener implements FocusListener {
+
+	@Override
+	public void focusGained(FocusEvent e) {
+	    setBackground(Colors.getBackground(4));
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+	    setBackground(Colors.getBackground(3));
 	}
 
     }
