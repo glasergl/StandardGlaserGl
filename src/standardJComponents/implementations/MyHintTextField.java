@@ -47,6 +47,14 @@ public class MyHintTextField extends JPanel {
 	add(hintDisplay);
     }
 
+    public void setColumns(final int columns) {
+	textField.setColumns(columns);
+    }
+
+    public void setText(final String newContent) {
+	textField.setText(newContent);
+    }
+
     public String getText() {
 	return textField.getText();
     }
