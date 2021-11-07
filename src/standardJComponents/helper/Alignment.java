@@ -1,5 +1,5 @@
 package standardJComponents.helper;
 
 public enum Alignment {
-    HORIZONTAL, VERTICAL;
+	HORIZONTAL, VERTICAL;
 }

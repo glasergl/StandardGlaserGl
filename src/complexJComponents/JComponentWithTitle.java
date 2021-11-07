@@ -8,34 +8,34 @@ import standardJComponents.implementations.MyLabel;
 
 public class JComponentWithTitle extends JPanel {
 
-    private final JComponent toDisplay;
-    private final MyLabel withTitle;
-    private final boolean isVertical;
+	private final JComponent toDisplay;
+	private final MyLabel withTitle;
+	private final boolean isVertical;
 
-    public JComponentWithTitle(final JComponent toDisplay, final String title, final boolean shouldBeVertical) {
-	super();
-	this.toDisplay = toDisplay;
-	this.withTitle = new MyLabel(title);
-	this.isVertical = shouldBeVertical;
-	if (shouldBeVertical) {
-	    setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-	} else {
-	    setLayout(new FlowLayout(FlowLayout.LEFT));
+	public JComponentWithTitle(final JComponent toDisplay, final String title, final boolean shouldBeVertical) {
+		super();
+		this.toDisplay = toDisplay;
+		this.withTitle = new MyLabel(title);
+		this.isVertical = shouldBeVertical;
+		if (shouldBeVertical) {
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		} else {
+			setLayout(new FlowLayout(FlowLayout.LEFT));
+		}
+		add(withTitle);
+		add(toDisplay);
 	}
-	add(withTitle);
-	add(toDisplay);
-    }
 
-    public JComponent getDisplayed() {
-	return toDisplay;
-    }
+	public JComponent getDisplayed() {
+		return toDisplay;
+	}
 
-    public String getTitle() {
-	return withTitle.getText();
-    }
+	public String getTitle() {
+		return withTitle.getText();
+	}
 
-    public boolean isVertical() {
-	return isVertical;
-    }
+	public boolean isVertical() {
+		return isVertical;
+	}
 
 }

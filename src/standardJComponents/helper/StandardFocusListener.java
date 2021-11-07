@@ -14,25 +14,25 @@ import java.awt.event.FocusListener;
  */
 public class StandardFocusListener implements FocusListener {
 
-    private final Color whileFocused;
-    private final Color whileNotFocused;
+	private final Color whileFocused;
+	private final Color whileNotFocused;
 
-    public StandardFocusListener(final Color whileFocused, final Color whileNotFocused) {
-	super();
-	this.whileFocused = whileFocused;
-	this.whileNotFocused = whileNotFocused;
-    }
+	public StandardFocusListener(final Color whileFocused, final Color whileNotFocused) {
+		super();
+		this.whileFocused = whileFocused;
+		this.whileNotFocused = whileNotFocused;
+	}
 
-    @Override
-    public void focusGained(final FocusEvent event) {
-	final Component whoGainedFocus = event.getComponent();
-	whoGainedFocus.setBackground(whileFocused);
-    }
+	@Override
+	public void focusGained(final FocusEvent event) {
+		final Component whoGainedFocus = event.getComponent();
+		whoGainedFocus.setBackground(whileFocused);
+	}
 
-    @Override
-    public void focusLost(final FocusEvent event) {
-	final Component whoLostFocus = event.getComponent();
-	whoLostFocus.setBackground(whileNotFocused);
-    }
+	@Override
+	public void focusLost(final FocusEvent event) {
+		final Component whoLostFocus = event.getComponent();
+		whoLostFocus.setBackground(whileNotFocused);
+	}
 
 }
