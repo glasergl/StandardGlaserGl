@@ -1,12 +1,10 @@
 package standard.implementations;
 
-import java.awt.Color;
 import java.awt.Cursor;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
-
 import standard.helper.CursorChangerOnHover;
+import standard.settings.Colors;
 import standard.settings.Fonts;
 
 public class MyButton extends JButton {
@@ -22,16 +20,15 @@ public class MyButton extends JButton {
 
 	public MyButton(final Icon icon) {
 		this("", icon);
-		setIcon(icon);
 	}
 
 	public MyButton() {
-		this("", null);
+		this("");
 	}
 
 	protected void setStandardProperties() {
 		addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
-		setForeground(new Color(30, 30, 30));
+		setForeground(Colors.ofText());
 		setFocusPainted(false);
 		setFont(Fonts.standard);
 	}

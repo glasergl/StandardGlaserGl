@@ -4,6 +4,12 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JWindow;
 
+/**
+ * This class allows to display a component anywhere on the screen.
+ * 
+ * @author Gabriel Glaser
+ * @version 7.11.2021
+ */
 public class MyPopUpComponent extends JWindow {
 
 	public MyPopUpComponent(final JComponent toShowAsPopUp) {

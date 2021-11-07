@@ -4,13 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.Icon;
 import javax.swing.JLabel;
-
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
 public class MyLabel extends JLabel {
-
-	public static Color standardBackground = Colors.getBackground(2);
 
 	public MyLabel(final String text, final Color background, final Color colorOfText, final Font fontOfText) {
 		super(text);
@@ -30,7 +27,7 @@ public class MyLabel extends JLabel {
 	}
 
 	public MyLabel(final String text) {
-		this(text, standardBackground);
+		this(text, Colors.getBackground(2));
 	}
 
 	public MyLabel() {

@@ -41,7 +41,7 @@ public class MyHintTextField extends JPanel {
 
 		textField.setForeground(Colors.ofText());
 		textField.setBorder(new UnderlineBorder(2, Colors.ofText()));
-		textField.addFocusListener(new SmallChangedStandardFocusListener());
+		textField.addFocusListener(new SmallChangedBackgroundChangerOnFocus());
 		textField.setOpaque(false);
 		textField.getDocument().addDocumentListener(new HintController());
 
@@ -129,7 +129,7 @@ public class MyHintTextField extends JPanel {
 
 	}
 
-	private class SmallChangedStandardFocusListener implements FocusListener {
+	private class SmallChangedBackgroundChangerOnFocus implements FocusListener {
 
 		@Override
 		public void focusGained(FocusEvent e) {

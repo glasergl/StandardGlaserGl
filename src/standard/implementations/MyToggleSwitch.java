@@ -13,9 +13,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputListener;
-
 import standard.helper.enums.Direction;
 
+/**
+ * Visual Toggle Switch.
+ * 
+ * @author Gabriel Glaser
+ * @version 7.11.2021
+ */
 public class MyToggleSwitch extends JComponent {
 
 	public static Color standardToggledBackground = Color.BLACK;
