@@ -1,4 +1,4 @@
-package standardJComponents.settings;
+package standard.settings;
 
 import java.awt.Font;
 import javax.swing.plaf.FontUIResource;

@@ -1,4 +1,4 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,9 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import standardJComponents.helper.UnderlineBorder;
-import standardJComponents.settings.Colors;
-import standardJComponents.settings.Fonts;
+
+import standard.helper.UnderlineBorder;
+import standard.settings.Colors;
+import standard.settings.Fonts;
 
 public class MyHintTextField extends JPanel {
 

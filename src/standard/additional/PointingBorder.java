@@ -1,4 +1,4 @@
-package standardJComponents.additional;
+package standard.additional;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,8 +8,15 @@ import java.awt.Insets;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
 import javax.swing.border.AbstractBorder;
-import standardJComponents.helper.CelestialDirection;
 
+import standard.helper.enums.CelestialDirection;
+
+/**
+ * Border which draws a triangle pointing the defined celestial direction.
+ * 
+ * @author Gabriel Glaser
+ * @version 7.11.2021
+ */
 public class PointingBorder extends AbstractBorder {
 
 	private static final CelestialDirection STANDARD_DIRECTION = CelestialDirection.NORTH;
@@ -38,6 +45,10 @@ public class PointingBorder extends AbstractBorder {
 
 	public PointingBorder(final Color ofPointer, final Color ofLineBorder) {
 		this(STANDARD_DIRECTION, ofPointer, ofLineBorder);
+	}
+
+	public PointingBorder(final Color color) {
+		this(color, color);
 	}
 
 	@Override

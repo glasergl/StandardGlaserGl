@@ -1,4 +1,4 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Color;
 import javax.swing.JComponent;

@@ -1,12 +1,13 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
-import standardJComponents.helper.CursorHoverController;
-import standardJComponents.settings.Fonts;
+
+import standard.helper.CursorHoverController;
+import standard.settings.Fonts;
 
 public class MyButton extends JButton {
 

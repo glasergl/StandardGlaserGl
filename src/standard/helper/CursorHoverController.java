@@ -1,4 +1,4 @@
-package standardJComponents.helper;
+package standard.helper;
 
 import java.awt.Component;
 import java.awt.Cursor;

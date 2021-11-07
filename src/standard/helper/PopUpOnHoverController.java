@@ -1,10 +1,12 @@
-package standardJComponents.helper;
+package standard.helper;
 
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import standardJComponents.implementations.MyPopUpComponent;
+
+import standard.helper.enums.CelestialDirection;
+import standard.implementations.MyPopUpComponent;
 
 public class PopUpOnHoverController implements MouseListener {
 

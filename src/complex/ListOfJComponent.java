@@ -1,4 +1,4 @@
-package complexJComponents;
+package complex;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import standardJComponents.helper.Alignment;
+import standard.helper.enums.Alignment;
 
 /**
  * @author Gabriel Glaser

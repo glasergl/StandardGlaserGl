@@ -1,10 +1,11 @@
-package complexJComponents;
+package complex;
 
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import standardJComponents.implementations.MyLabel;
+
+import standard.implementations.MyLabel;
 
 public class JComponentWithTitle extends JPanel {
 

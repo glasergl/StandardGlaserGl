@@ -1,4 +1,4 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputListener;
 
-import standardJComponents.helper.Direction;
+import standard.helper.enums.Direction;
 
 public class MyToggleSwitch extends JComponent {
 

@@ -1,11 +1,12 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.Icon;
 import javax.swing.JLabel;
-import standardJComponents.settings.Colors;
-import standardJComponents.settings.Fonts;
+
+import standard.settings.Colors;
+import standard.settings.Fonts;
 
 public class MyLabel extends JLabel {
 

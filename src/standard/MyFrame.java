@@ -1,11 +1,12 @@
-package standardJComponents;
+package standard;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import standardJComponents.settings.Colors;
+
+import standard.settings.Colors;
 
 /**
  * Top-Level container with standard properties to prevent boiler-plate code.

@@ -1,4 +1,4 @@
-package standardJComponents.helper;
+package standard.helper;
 
 import java.awt.Color;
 import java.awt.Component;

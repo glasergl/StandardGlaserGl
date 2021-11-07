@@ -1,9 +1,10 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import javax.swing.JTextArea;
-import standardJComponents.helper.StandardFocusListener;
-import standardJComponents.settings.Colors;
-import standardJComponents.settings.Fonts;
+
+import standard.helper.StandardFocusListener;
+import standard.settings.Colors;
+import standard.settings.Fonts;
 
 public class MyTextArea extends JTextArea {
 

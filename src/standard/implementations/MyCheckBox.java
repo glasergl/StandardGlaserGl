@@ -1,11 +1,12 @@
-package standardJComponents.implementations;
+package standard.implementations;
 
 import java.awt.Cursor;
 
 import javax.swing.JCheckBox;
-import standardJComponents.helper.CursorHoverController;
-import standardJComponents.settings.Colors;
-import standardJComponents.settings.Fonts;
+
+import standard.helper.CursorHoverController;
+import standard.settings.Colors;
+import standard.settings.Fonts;
 
 public class MyCheckBox extends JCheckBox {
 
