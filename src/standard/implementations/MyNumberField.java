@@ -58,9 +58,12 @@ public class MyNumberField extends MyHintTextField {
 			final String currentContent = textField.getText();
 			if (!currentContent.matches("[0-9]*")) {
 				old = Optional.of(getBorder());
+
 				setBorder(new LineBorder(Color.RED, 2));
 			} else {
-				setBorder(old.get());
+				if (old.isPresent()) {
+					setBorder(old.get());
+				}
 			}
 		}
 

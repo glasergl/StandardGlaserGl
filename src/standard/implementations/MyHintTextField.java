@@ -8,6 +8,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -100,6 +101,24 @@ public class MyHintTextField extends JPanel {
 	@Override
 	public void addFocusListener(final FocusListener toAdd) {
 		textField.addFocusListener(toAdd);
+	}
+
+	@Override
+	public void setBorder(final Border newBorder) {
+		if (textField != null) {
+			textField.setBorder(newBorder);
+		} else {
+			super.setBorder(newBorder);
+		}
+	}
+
+	@Override
+	public Border getBorder() {
+		if (textField != null) {
+			return textField.getBorder();
+		} else {
+			return super.getBorder();
+		}
 	}
 
 	private class HintController implements DocumentListener {
