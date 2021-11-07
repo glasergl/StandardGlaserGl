@@ -6,12 +6,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Optional;
 
-public class StandardHoverListener implements MouseListener {
+public class BackgroundChangerOnHover implements MouseListener {
 
 	private final Color whileMouseEntered;
 	private Optional<Color> whileMouseExited = Optional.empty();
 
-	public StandardHoverListener(final Color whileMouseEntered) {
+	public BackgroundChangerOnHover(final Color whileMouseEntered) {
 		super();
 		this.whileMouseEntered = whileMouseEntered;
 	}

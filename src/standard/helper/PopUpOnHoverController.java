@@ -8,6 +8,13 @@ import java.awt.event.MouseListener;
 import standard.helper.enums.CelestialDirection;
 import standard.implementations.MyPopUpComponent;
 
+/**
+ * MouseListener which sets the PopUp visible when the mouse hovers over the
+ * component this MouseListener is added to.
+ * 
+ * @author Gabriel Glaser
+ * @version 7.11.2021
+ */
 public class PopUpOnHoverController implements MouseListener {
 
 	private static final CelestialDirection STANDARD_DIRECTION = CelestialDirection.SOUTH;

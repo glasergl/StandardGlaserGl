@@ -12,12 +12,12 @@ import java.awt.event.FocusListener;
  * @author Gabriel Glaser
  * @version 27.09.2021
  */
-public class StandardFocusListener implements FocusListener {
+public class BackgroundChangerOnFocus implements FocusListener {
 
 	private final Color whileFocused;
 	private final Color whileNotFocused;
 
-	public StandardFocusListener(final Color whileFocused, final Color whileNotFocused) {
+	public BackgroundChangerOnFocus(final Color whileFocused, final Color whileNotFocused) {
 		super();
 		this.whileFocused = whileFocused;
 		this.whileNotFocused = whileNotFocused;

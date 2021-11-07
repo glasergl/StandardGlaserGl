@@ -4,7 +4,7 @@ import java.awt.Cursor;
 
 import javax.swing.JCheckBox;
 
-import standard.helper.CursorHoverController;
+import standard.helper.CursorChangerOnHover;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
@@ -23,7 +23,7 @@ public class MyCheckBox extends JCheckBox {
 		setFont(Fonts.standard);
 		setForeground(Colors.ofText());
 		setFocusPainted(false);
-		addMouseListener(new CursorHoverController(new Cursor(Cursor.HAND_CURSOR)));
+		addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	}
 
 }

@@ -1,4 +1,4 @@
-package standard.additional;
+package complex;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +12,7 @@ import javax.swing.border.AbstractBorder;
 import standard.helper.enums.CelestialDirection;
 
 /**
- * Border which draws a triangle pointing the defined celestial direction.
+ * Border which draws a triangle pointing at the defined celestial direction.
  * 
  * @author Gabriel Glaser
  * @version 7.11.2021

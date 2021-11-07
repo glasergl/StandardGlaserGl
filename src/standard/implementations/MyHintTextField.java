@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import standard.helper.UnderlineBorder;
+import complex.UnderlineBorder;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
