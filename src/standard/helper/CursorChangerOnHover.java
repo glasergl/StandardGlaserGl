@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Optional;
 
 /**
  * Class which changes the mouse-cursor while the mouse is hovering on the
@@ -15,28 +16,24 @@ import java.awt.event.MouseListener;
 public class CursorChangerOnHover implements MouseListener {
 
 	private final Cursor whileMouseEntered;
-	private final Cursor whileMouseExited;
-
-	public CursorChangerOnHover(final Cursor whileMouseEntered, final Cursor whileMouseExited) {
-		super();
-		this.whileMouseEntered = whileMouseEntered;
-		this.whileMouseExited = whileMouseExited;
-	}
+	private Optional<Cursor> whileMouseExited = Optional.empty();
 
 	public CursorChangerOnHover(final Cursor whileMouseEntered) {
-		this(whileMouseEntered, new Cursor(Cursor.DEFAULT_CURSOR));
+		super();
+		this.whileMouseEntered = whileMouseEntered;
 	}
 
 	@Override
 	public void mouseEntered(final MouseEvent event) {
 		final Component whereTheMouseIsOn = event.getComponent();
+		whileMouseExited = Optional.of(whereTheMouseIsOn.getCursor());
 		whereTheMouseIsOn.setCursor(whileMouseEntered);
 	}
 
 	@Override
 	public void mouseExited(final MouseEvent event) {
 		final Component whichTheMouseLeft = event.getComponent();
-		whichTheMouseLeft.setCursor(whileMouseExited);
+		whichTheMouseLeft.setCursor(whileMouseExited.get());
 	}
 
 	@Override

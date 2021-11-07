@@ -26,12 +26,7 @@ public class BackgroundChangerOnHover implements MouseListener {
 	@Override
 	public void mouseExited(final MouseEvent event) {
 		final Component whoLostHover = event.getComponent();
-		if (whileMouseExited.isPresent()) {
-			whoLostHover.setBackground(whileMouseExited.get());
-		} else {
-			throw new RuntimeException("Couldnt set old background color after hover");
-		}
-
+		whoLostHover.setBackground(whileMouseExited.get());
 	}
 
 	@Override
