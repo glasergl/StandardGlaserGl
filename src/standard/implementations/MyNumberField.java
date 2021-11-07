@@ -1,7 +1,6 @@
 package standard.implementations;
 
 import java.awt.Color;
-import java.util.Optional;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
@@ -31,13 +30,13 @@ public class MyNumberField extends MyHintTextField {
 
 	/**
 	 * DocumentListener which paints a red border around the Document when it
-	 * doesn't represent a number, an empty String or a hint.
+	 * doesn't represent a number or is empty.
 	 *
 	 * @author Gabriel Glaser
 	 * @version 7.11.2021
 	 */
 	private class NumberValidator implements DocumentListener {
-		private Optional<Border> old = Optional.empty();
+		private final Border old = getBorder();
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
@@ -57,13 +56,9 @@ public class MyNumberField extends MyHintTextField {
 		private void update() {
 			final String currentContent = textField.getText();
 			if (!currentContent.matches("[0-9]*")) {
-				old = Optional.of(getBorder());
-
 				setBorder(new LineBorder(Color.RED, 2));
 			} else {
-				if (old.isPresent()) {
-					setBorder(old.get());
-				}
+				setBorder(old);
 			}
 		}
 
