@@ -3,4 +3,4 @@ bin/
 target/
 *.classpath
 *.project
-src/standardJComponents/TestFrame.java
+src/standard/TestFrame.java
