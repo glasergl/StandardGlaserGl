@@ -3,7 +3,6 @@ package standard.implementations;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,7 +11,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
 import complex.UnderlineBorder;
 import standard.settings.Colors;
 import standard.settings.Fonts;
@@ -42,7 +40,6 @@ public class MyHintTextField extends JPanel {
 
 	textField.setForeground(Colors.ofText());
 	textField.setBorder(new UnderlineBorder(2, Colors.ofText()));
-	textField.addFocusListener(new SmallChangedBackgroundChangerOnFocus());
 	textField.setOpaque(false);
 	textField.getDocument().addDocumentListener(new HintController());
 
@@ -144,20 +141,6 @@ public class MyHintTextField extends JPanel {
 	    } else {
 		hintDisplay.setText("");
 	    }
-	}
-
-    }
-
-    private class SmallChangedBackgroundChangerOnFocus implements FocusListener {
-
-	@Override
-	public void focusGained(FocusEvent e) {
-	    setBackground(Colors.getBackground(4));
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-	    setBackground(Colors.getBackground(3));
 	}
 
     }
