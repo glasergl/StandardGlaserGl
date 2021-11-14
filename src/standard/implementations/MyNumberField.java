@@ -15,52 +15,52 @@ import javax.swing.event.DocumentListener;
  */
 public class MyNumberField extends MyHintTextField {
 
-	public MyNumberField(final String hint) {
-		super(hint);
-		textField.getDocument().addDocumentListener(new NumberValidator());
+    public MyNumberField(final String hint) {
+	super(hint);
+	textField.getDocument().addDocumentListener(new NumberValidator());
+    }
+
+    public MyNumberField() {
+	this("");
+    }
+
+    public int getNumber() {
+	return Integer.valueOf(getText());
+    }
+
+    /**
+     * DocumentListener which paints a red border around the Document when it
+     * doesn't represent a number or is empty.
+     *
+     * @author Gabriel Glaser
+     * @version 7.11.2021
+     */
+    private class NumberValidator implements DocumentListener {
+	private final Border old = getBorder();
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+	    update();
 	}
 
-	public MyNumberField() {
-		this("");
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+	    update();
 	}
 
-	public int getNumber() {
-		return Integer.valueOf(getText());
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+	    update();
 	}
 
-	/**
-	 * DocumentListener which paints a red border around the Document when it
-	 * doesn't represent a number or is empty.
-	 *
-	 * @author Gabriel Glaser
-	 * @version 7.11.2021
-	 */
-	private class NumberValidator implements DocumentListener {
-		private final Border old = getBorder();
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			update();
-		}
-
-		private void update() {
-			final String currentContent = textField.getText();
-			if (!currentContent.matches("[0-9]*")) {
-				setBorder(new LineBorder(Color.RED, 2));
-			} else {
-				setBorder(old);
-			}
-		}
-
+	private void update() {
+	    final String currentContent = textField.getText();
+	    if (!currentContent.matches("[0-9]*")) {
+		setBorder(new LineBorder(Color.RED, 2));
+	    } else {
+		setBorder(old);
+	    }
 	}
+
+    }
 }
