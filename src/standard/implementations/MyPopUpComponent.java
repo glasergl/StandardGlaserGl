@@ -13,13 +13,18 @@ import javax.swing.border.Border;
  */
 public class MyPopUpComponent extends JWindow {
 
-    private final JComponent toShowAsPopUp;
+    private JComponent toShowAsPopUp;
 
     public MyPopUpComponent(final JComponent toShowAsPopUp) {
 	super();
 	this.toShowAsPopUp = toShowAsPopUp;
 	setBackground(new Color(0, true));
 	add(toShowAsPopUp);
+    }
+    
+    public MyPopUpComponent() {
+	super();
+	setBackground(new Color(0, true));
     }
 
     @Override
@@ -28,6 +33,11 @@ public class MyPopUpComponent extends JWindow {
 	if (isVisible()) {
 	    pack();
 	}
+    }
+
+    public void setPopUpComponent(final JComponent toShowAsPopUp) {
+	this.toShowAsPopUp = toShowAsPopUp;
+	add(toShowAsPopUp);
     }
 
     public void setBorder(final Border toSetAroundThePopUpComponent) {
