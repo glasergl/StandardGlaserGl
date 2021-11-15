@@ -14,12 +14,13 @@ import standard.helper.CursorChangerOnHover;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
-public final class MySimpleButton extends JLabel {
+public class MySimpleButton extends JLabel {
 
     private final List<ActionListener> actionListeners = new ArrayList<>();
 
     public MySimpleButton(final String initialText) {
 	super(initialText);
+	setOpaque(true);
 	setBackground(Colors.getBackground(3));
 	setFont(Fonts.standard);
 	setHorizontalAlignment(SwingConstants.CENTER);
