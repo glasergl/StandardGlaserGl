@@ -22,6 +22,7 @@ public class MySimpleButton extends JLabel {
 	super(initialText);
 	setOpaque(true);
 	setBackground(Colors.getBackground(3));
+	setForeground(Colors.ofText());
 	setFont(Fonts.standard);
 	setHorizontalAlignment(SwingConstants.CENTER);
 	addMouseListener(new SimpleButtonController());
