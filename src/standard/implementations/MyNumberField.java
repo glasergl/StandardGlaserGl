@@ -15,9 +15,15 @@ import javax.swing.event.DocumentListener;
  */
 public class MyNumberField extends MyHintTextField {
 
-    public MyNumberField(final String hint) {
+    public MyNumberField(final String hint, final int initialValue) {
 	super(hint);
 	textField.getDocument().addDocumentListener(new NumberValidator());
+	setText(String.valueOf(initialValue));
+    }
+
+    public MyNumberField(final String hint) {
+	this(hint, -1);
+	setText("");
     }
 
     public MyNumberField() {
@@ -26,6 +32,10 @@ public class MyNumberField extends MyHintTextField {
 
     public int getNumber() {
 	return Integer.valueOf(getText());
+    }
+
+    public void setNumber(int day) {
+	setText(String.valueOf(day));
     }
 
     /**

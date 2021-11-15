@@ -3,6 +3,7 @@ package standard.implementations;
 import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JWindow;
+import javax.swing.border.Border;
 
 /**
  * This class allows to display a component anywhere on the screen.
@@ -12,8 +13,11 @@ import javax.swing.JWindow;
  */
 public class MyPopUpComponent extends JWindow {
 
+    private final JComponent toShowAsPopUp;
+
     public MyPopUpComponent(final JComponent toShowAsPopUp) {
 	super();
+	this.toShowAsPopUp = toShowAsPopUp;
 	setBackground(new Color(0, true));
 	add(toShowAsPopUp);
     }
@@ -24,6 +28,10 @@ public class MyPopUpComponent extends JWindow {
 	if (isVisible()) {
 	    pack();
 	}
+    }
+
+    public void setBorder(final Border toSetAroundThePopUpComponent) {
+	toShowAsPopUp.setBorder(toSetAroundThePopUpComponent);
     }
 
 }
