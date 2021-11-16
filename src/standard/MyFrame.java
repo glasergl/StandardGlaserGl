@@ -2,17 +2,14 @@ package standard;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-
 import standard.settings.Colors;
 
 /**
  * Top-Level container with standard properties to prevent boiler-plate code.
  *
  * @author Gabriel Glaser
- * @version 27.09.2021
+ * @version 16.11.2021
  */
 public class MyFrame extends JFrame {
 
@@ -26,6 +23,10 @@ public class MyFrame extends JFrame {
 	this(title, null);
     }
 
+    public MyFrame() {
+	this("");
+    }
+
     private void setup() {
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setResizable(false);
@@ -33,25 +34,14 @@ public class MyFrame extends JFrame {
 	getContentPane().setBackground(Colors.getBackground(1));
     }
 
+    /**
+     * Sets the size and position of all components, centers the whole frame and
+     * makes it visible.
+     */
     public void start() {
 	pack();
 	setLocationRelativeTo(null);
 	setVisible(true);
-    }
-
-    /**
-     * This code is necessary to load an image in a .jar-File.
-     * 
-     * @param imageFileName
-     * @return The desired Image
-     */
-    public static <T> Image getImageWithInJar(final String imageFileName, final Class<T> relative) {
-	try {
-	    return ImageIO.read(relative.getClassLoader().getResourceAsStream(imageFileName));
-	} catch (IOException e) {
-	    e.printStackTrace();
-	    return null;
-	}
     }
 
 }
