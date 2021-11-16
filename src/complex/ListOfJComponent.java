@@ -1,91 +1,55 @@
 package complex;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import standard.helper.enums.Alignment;
 
 /**
+ * Class which represents a List of JComponents, which are placed from left to
+ * right or from top to bottom.
+ * 
  * @author Gabriel Glaser
- * @version 10.9.2021
+ * @version 16.11.2021
  */
 public final class ListOfJComponent extends JPanel {
 
-    private static final int STANDARD_DISTANCE = 1;
+    private static final int STANDARD_DISTANCE_BETWEEN_JCOMPONENTS = 1;
 
-    private final Alignment ofTheList;
+    private final Alignment ofJComponentsToEachOther;
     private final List<? extends JComponent> toDepict;
-    private final int distance;
+    private final int distanceBetweenJComponents;
 
-    public ListOfJComponent(final Alignment ofTheList, final List<? extends JComponent> toDepict, final int distance) {
-	this.ofTheList = ofTheList;
+    public ListOfJComponent(final Alignment ofJComponentsToEachOther, final List<? extends JComponent> toDepict,
+	    final int distanceBetweenJComponents) {
+	this.ofJComponentsToEachOther = ofJComponentsToEachOther;
 	this.toDepict = toDepict;
-	this.distance = distance;
+	this.distanceBetweenJComponents = distanceBetweenJComponents;
 	setCorrectLayout();
-	addComponentsAndDistances();
+	addComponentsAndCreateDistances();
     }
 
     public ListOfJComponent(final Alignment ofTheList, final List<? extends JComponent> toDepict) {
-	this(ofTheList, toDepict, STANDARD_DISTANCE);
-    }
-
-    public ListOfJComponent(final Alignment ofTheList, final JComponent... toDepict) {
-	this(ofTheList, STANDARD_DISTANCE, toDepict);
+	this(ofTheList, toDepict, STANDARD_DISTANCE_BETWEEN_JCOMPONENTS);
     }
 
     public ListOfJComponent(final Alignment ofTheList, final int distance, final JComponent... toDepict) {
-	this(ofTheList, Arrays.asList(toDepict), distance);
+	this(ofTheList, List.of(toDepict), distance);
     }
 
-    @Override
-    public void setBackground(final Color newBackground) {
-	super.setBackground(newBackground);
-	if (toDepict != null) {
-	    for (final JComponent jComponent : toDepict) {
-		jComponent.setBackground(newBackground);
-	    }
-	}
-    }
-
-    @Override
-    public void setOpaque(final boolean shouldBeOpaque) {
-	super.setOpaque(shouldBeOpaque);
-	if (toDepict != null) {
-	    for (final JComponent jComponent : toDepict) {
-		jComponent.setOpaque(shouldBeOpaque);
-	    }
-	}
-    }
-
-    @Override
-    public void setFont(final Font newFont) {
-	super.setFont(newFont);
-	if (toDepict != null) {
-	    for (final JComponent jComponent : toDepict) {
-		jComponent.setFont(newFont);
-	    }
-	}
-    }
-
-    public void setSubBorders(final Border forEachComponent) {
-	for (final JComponent toAddBorderFor : toDepict) {
-	    toAddBorderFor.setBorder(forEachComponent);
-	}
+    public ListOfJComponent(final Alignment ofTheList, final JComponent... toDepict) {
+	this(ofTheList, STANDARD_DISTANCE_BETWEEN_JCOMPONENTS, toDepict);
     }
 
     private void setCorrectLayout() {
-	setLayout(new BorderLayout());
-	if (ofTheList == Alignment.HORIZONTAL) {
-	    final FlowLayout xDirection = new FlowLayout(FlowLayout.LEFT, distance, 0);
+	if (ofJComponentsToEachOther == Alignment.HORIZONTAL) {
+	    final FlowLayout xDirection = new FlowLayout(FlowLayout.LEFT, 0, 0);
 	    xDirection.setAlignOnBaseline(true);
 	    setLayout(xDirection);
 	} else {
@@ -93,14 +57,40 @@ public final class ListOfJComponent extends JPanel {
 	}
     }
 
-    private void addComponentsAndDistances() {
+    private void addComponentsAndCreateDistances() {
 	for (int i = 0; i < toDepict.size(); i++) {
 	    add(toDepict.get(i));
-	    if (ofTheList == Alignment.VERTICAL && i < toDepict.size()) {
-		add(Box.createVerticalStrut(distance));
-	    } else if (ofTheList == Alignment.HORIZONTAL && i < toDepict.size()) {
-		add(Box.createHorizontalStrut(distance));
+	    if (i < toDepict.size() - 1) {
+		if (ofJComponentsToEachOther == Alignment.VERTICAL) {
+		    add(Box.createVerticalStrut(distanceBetweenJComponents));
+		} else {
+		    add(Box.createHorizontalStrut(distanceBetweenJComponents));
+		}
 	    }
+	}
+    }
+
+    public void setBackgroundOfChildren(final Color newBackground) {
+	for (final JComponent jComponent : toDepict) {
+	    jComponent.setBackground(newBackground);
+	}
+    }
+
+    public void setForegroundOfChildren(final Color newForeground) {
+	for (final JComponent jComponent : toDepict) {
+	    jComponent.setBackground(newForeground);
+	}
+    }
+
+    public void setBorderOfChildren(final Border newBorder) {
+	for (final JComponent jComponent : toDepict) {
+	    jComponent.setBorder(newBorder);
+	}
+    }
+
+    public void setFontOfChildren(final Font newFont) {
+	for (final JComponent jComponent : toDepict) {
+	    jComponent.setFont(newFont);
 	}
     }
 
