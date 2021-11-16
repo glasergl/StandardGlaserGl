@@ -18,7 +18,7 @@ public class MyLabel extends JLabel {
     }
 
     public MyLabel(final String text, final Color background) {
-	this(text, background, Colors.ofText(), Fonts.standard);
+	this(text, background, Colors.ofText(), Fonts.standard());
     }
 
     public MyLabel(final Icon icon) {

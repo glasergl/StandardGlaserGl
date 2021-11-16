@@ -30,7 +30,7 @@ public class MyButton extends JButton {
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	setForeground(Colors.ofText());
 	setFocusPainted(false);
-	setFont(Fonts.standard);
+	setFont(Fonts.standard());
     }
 
 }

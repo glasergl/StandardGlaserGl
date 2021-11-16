@@ -46,7 +46,7 @@ public class MyHintTextField extends JPanel {
 	textField.getDocument().addDocumentListener(new HintController());
 
 	setLayout(null);
-	setFont(Fonts.standard);
+	setFont(Fonts.standard());
 	setBackground(Colors.getBackground(3));
 	add(textField);
 	add(hintDisplay);

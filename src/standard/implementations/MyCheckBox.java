@@ -18,7 +18,7 @@ public class MyCheckBox extends JCheckBox {
     }
 
     private void setStandardProperties() {
-	setFont(Fonts.standard);
+	setFont(Fonts.standard());
 	setForeground(Colors.ofText());
 	setBackground(Colors.getBackground(3));
 	setFocusPainted(false);
