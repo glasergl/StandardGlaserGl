@@ -2,6 +2,13 @@ package standard.settings;
 
 import java.awt.Color;
 
+/**
+ * Class which contains default Colors to use. Furthermore, a darkmode is
+ * supported.
+ *
+ * @author Gabriel Glaser
+ * @version 16.11.2021
+ */
 public final class Colors {
 
     private static boolean shouldBeDarkMode = false;
@@ -14,17 +21,21 @@ public final class Colors {
 	return shouldBeDarkMode;
     }
 
-    public static Color getBackground(final int background) {
-	final int value = shouldBeDarkMode ? 20 + background * 15 : 235 - 15 * background;
+    /**
+     * Calculates a color depending on darkmode or lightmode with the given depth.
+     * 
+     * @param backgroundDepth - the number of the background depths, the higher the
+     *                        number, the brighter or darker (depends on darkmode or
+     *                        lightmode)
+     * @return Color with depth of background.
+     */
+    public static Color getBackground(final int backgroundDepth) {
+	final int value = shouldBeDarkMode ? 20 + backgroundDepth * 15 : 235 - 15 * backgroundDepth;
 	return new Color(value, value, value);
     }
 
     public static Color ofText() {
 	return shouldBeDarkMode ? new Color(220, 220, 220) : Color.BLACK;
-    }
-
-    public static Color ofHintText() {
-	return new Color(127, 127, 127);
     }
 
     public static Color ofError() {

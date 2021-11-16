@@ -17,6 +17,8 @@ import standard.settings.Fonts;
 
 public class MyHintTextField extends JPanel {
 
+    protected static final Color OF_HINT_TEXT = new Color(127, 127, 127);
+
     private final JLabel hintDisplay;
 
     protected final String hint;
@@ -35,7 +37,7 @@ public class MyHintTextField extends JPanel {
     }
 
     private void setup() {
-	hintDisplay.setForeground(Colors.ofHintText());
+	hintDisplay.setForeground(OF_HINT_TEXT);
 	hintDisplay.setBorder(new EmptyBorder(2, 2, 2, 2));
 
 	textField.setForeground(Colors.ofText());
