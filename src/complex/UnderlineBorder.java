@@ -11,9 +11,11 @@ import javax.swing.border.AbstractBorder;
  * 
  * The difference to using MatteBorder is that the edges except the bottom one
  * are transparent, they exist and take the place, but they aren't visible.
+ * Therefore, a new Border which colors all edges of the component can be added
+ * without moving the component on screen.
  *
  * @author Gabriel Glaser
- * @version 27.09.2021
+ * @version 16.11.2021
  */
 public class UnderlineBorder extends AbstractBorder {
 

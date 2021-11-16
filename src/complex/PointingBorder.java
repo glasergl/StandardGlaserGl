@@ -12,10 +12,11 @@ import javax.swing.border.AbstractBorder;
 import standard.helper.enums.CelestialDirection;
 
 /**
- * Border which draws a triangle pointing at the defined celestial direction.
+ * Border which draws a triangle pointing at the defined celestial direction and
+ * a line which surrounds everything (the pointer, too).
  * 
  * @author Gabriel Glaser
- * @version 7.11.2021
+ * @version 16.11.2021
  */
 public class PointingBorder extends AbstractBorder {
 
@@ -23,24 +24,24 @@ public class PointingBorder extends AbstractBorder {
     private static final int STANDARD_HEIGHT = 15;
     private static final int STANDARD_WIDTH = 25;
 
-    private final CelestialDirection locationAtEdgeOfComponent;
+    private final CelestialDirection edgeForPointer;
     private final int height;
     private final int width;
     private final Color ofPointer;
     private final Color ofLineBorder;
 
-    public PointingBorder(final CelestialDirection locationAtEdgeOfComponent, final int height, final int width, final Color ofPointer,
+    public PointingBorder(final CelestialDirection edgeForPointer, final int height, final int width, final Color ofPointer,
 	    final Color ofLineBorder) {
 	super();
-	this.locationAtEdgeOfComponent = locationAtEdgeOfComponent;
+	this.edgeForPointer = edgeForPointer;
 	this.height = height;
 	this.width = width;
 	this.ofPointer = ofPointer;
 	this.ofLineBorder = ofLineBorder;
     }
 
-    public PointingBorder(final CelestialDirection locationAtEdgeOfComponent, final Color ofPointer, final Color ofLineBorder) {
-	this(locationAtEdgeOfComponent, STANDARD_HEIGHT, STANDARD_WIDTH, ofPointer, ofLineBorder);
+    public PointingBorder(final CelestialDirection edgeForPointer, final Color ofPointer, final Color ofLineBorder) {
+	this(edgeForPointer, STANDARD_HEIGHT, STANDARD_WIDTH, ofPointer, ofLineBorder);
     }
 
     public PointingBorder(final Color ofPointer, final Color ofLineBorder) {
@@ -52,7 +53,7 @@ public class PointingBorder extends AbstractBorder {
     }
 
     @Override
-    public void paintBorder(Component toPutThisAround, Graphics g, int x, int y, int w, int h) {
+    public void paintBorder(final Component toPutThisAround, final Graphics g, final int x, final int y, final int w, final int h) {
 	deleteCorrectPlace(g, toPutThisAround);
 	((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	g.setColor(ofPointer);
@@ -65,7 +66,7 @@ public class PointingBorder extends AbstractBorder {
 
     @Override
     public Insets getBorderInsets(Component c) {
-	switch (locationAtEdgeOfComponent) {
+	switch (edgeForPointer) {
 	case NORTH:
 	    return new Insets(height, 1, 1, 1);
 	case WEST:
@@ -86,18 +87,30 @@ public class PointingBorder extends AbstractBorder {
 	return insets;
     }
 
+    /**
+     * Clears the place where the pointer needs to be.
+     * 
+     * @param context
+     * @param toPutThisAround
+     */
     private void deleteCorrectPlace(final Graphics context, final Component toPutThisAround) {
-	if (locationAtEdgeOfComponent == CelestialDirection.NORTH) {
+	if (edgeForPointer == CelestialDirection.NORTH) {
 	    context.clearRect(0, 0, toPutThisAround.getWidth(), height);
-	} else if (locationAtEdgeOfComponent == CelestialDirection.WEST) {
+	} else if (edgeForPointer == CelestialDirection.WEST) {
 	    context.clearRect(0, 0, height, toPutThisAround.getWidth());
-	} else if (locationAtEdgeOfComponent == CelestialDirection.SOUTH) {
+	} else if (edgeForPointer == CelestialDirection.SOUTH) {
 	    context.clearRect(0, toPutThisAround.getHeight() - height, toPutThisAround.getWidth(), height);
 	} else {
 	    context.clearRect(toPutThisAround.getWidth() - height, 0, height, toPutThisAround.getHeight());
 	}
     }
 
+    /**
+     * Calculates the Polygon which represents the pointer.
+     * 
+     * @param toPutThisAround
+     * @return The pointer.
+     */
     private Polygon calculatePointer(final Component toPutThisAround) {
 	final Polygon pointer = new Polygon();
 	final int midX = toPutThisAround.getWidth() / 2;
@@ -106,15 +119,15 @@ public class PointingBorder extends AbstractBorder {
 	final int rightX = midX + width / 2;
 	final int upY = midY - width / 2;
 	final int downY = midY + width / 2;
-	if (locationAtEdgeOfComponent == CelestialDirection.NORTH) {
+	if (edgeForPointer == CelestialDirection.NORTH) {
 	    pointer.addPoint(leftX, height - 1);
 	    pointer.addPoint(midX, 0);
 	    pointer.addPoint(rightX, height - 1);
-	} else if (locationAtEdgeOfComponent == CelestialDirection.WEST) {
+	} else if (edgeForPointer == CelestialDirection.WEST) {
 	    pointer.addPoint(height - 1, upY);
 	    pointer.addPoint(0, midY);
 	    pointer.addPoint(height - 1, downY);
-	} else if (locationAtEdgeOfComponent == CelestialDirection.SOUTH) {
+	} else if (edgeForPointer == CelestialDirection.SOUTH) {
 	    pointer.addPoint(leftX, toPutThisAround.getHeight() - height);
 	    pointer.addPoint(midX, toPutThisAround.getHeight());
 	    pointer.addPoint(rightX, toPutThisAround.getHeight() - height);
@@ -126,19 +139,26 @@ public class PointingBorder extends AbstractBorder {
 	return pointer;
     }
 
+    /**
+     * Calculates the Polygon which surrounds everything, depending on the given
+     * Component.
+     * 
+     * @param toPutThisAround
+     * @return The Polygon of the line which surrounds everything.
+     */
     private Polygon calculateLineBorder(final Component toPutThisAround) {
 	final Polygon pointer = calculatePointer(toPutThisAround);
-	if (locationAtEdgeOfComponent == CelestialDirection.NORTH) {
+	if (edgeForPointer == CelestialDirection.NORTH) {
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, height - 1); // up-right
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, toPutThisAround.getHeight() - 1); // down-right
 	    pointer.addPoint(0, toPutThisAround.getHeight() - 1); // down-left
 	    pointer.addPoint(0, height - 1); // up-left
-	} else if (locationAtEdgeOfComponent == CelestialDirection.WEST) {
+	} else if (edgeForPointer == CelestialDirection.WEST) {
 	    pointer.addPoint(height, toPutThisAround.getHeight() - 1); // down-left
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, toPutThisAround.getHeight() - 1); // down-right
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, 0); // up-right
 	    pointer.addPoint(height, 0); // up-left
-	} else if (locationAtEdgeOfComponent == CelestialDirection.SOUTH) {
+	} else if (edgeForPointer == CelestialDirection.SOUTH) {
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, toPutThisAround.getHeight() - height); // down-right
 	    pointer.addPoint(toPutThisAround.getWidth() - 1, 0); // up-right
 	    pointer.addPoint(0, 0); // up-left
