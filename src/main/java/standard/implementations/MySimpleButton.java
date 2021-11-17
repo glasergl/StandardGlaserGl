@@ -1,5 +1,6 @@
 package standard.implementations;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -51,6 +53,8 @@ public class MySimpleButton extends JLabel {
 
     private final class SimpleButtonController implements MouseListener {
 
+	private Optional<Color> originalBackground;
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	    final ActionEvent click = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "");
@@ -61,12 +65,13 @@ public class MySimpleButton extends JLabel {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+	    originalBackground = Optional.of(getBackground());
 	    setBackground(Colors.getBackground(4));
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-	    setBackground(Colors.getBackground(3));
+	    setBackground(originalBackground.get());
 	}
 
 	@Override
