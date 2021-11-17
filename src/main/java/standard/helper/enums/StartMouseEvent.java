@@ -1,5 +1,5 @@
 package standard.helper.enums;
 
-public enum StartMouseEventName {
+public enum StartMouseEvent {
     PRESS, CLICK, ENTER;
 }

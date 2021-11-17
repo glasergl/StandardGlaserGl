@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import standard.helper.enums.CelestialDirection;
-import standard.helper.enums.StartMouseEventName;
+import standard.helper.enums.StartMouseEvent;
 import standard.implementations.MyPopUpComponent;
 
 /**
@@ -20,16 +20,16 @@ public class PopUpOnHoverController implements MouseListener {
     private static final CelestialDirection STANDARD_DIRECTION = CelestialDirection.SOUTH;
     private static final int STANDARD_X_OFFSET = 0;
     private static final int STANDARD_Y_OFFSET = -3;
-    private static final StartMouseEventName STANDARD_MOUSE_EVENT_TO_SHOW_POPUP = StartMouseEventName.ENTER;
+    private static final StartMouseEvent STANDARD_MOUSE_EVENT_TO_SHOW_POPUP = StartMouseEvent.ENTER;
 
     private final MyPopUpComponent popUpToDisplay;
     private final CelestialDirection directionOfPopUp;
     private final int xOffset;
     private final int yOffset;
-    private final StartMouseEventName mouseEventToShowPopUp;
+    private final StartMouseEvent mouseEventToShowPopUp;
 
     public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp, final int xOffset,
-	    final int yOffset, final StartMouseEventName mouseEventToShowPopUp) {
+	    final int yOffset, final StartMouseEvent mouseEventToShowPopUp) {
 	super();
 	this.popUpToDisplay = popUpToDisplay;
 	this.directionOfPopUp = directionOfPopUp;
@@ -39,16 +39,16 @@ public class PopUpOnHoverController implements MouseListener {
     }
 
     public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final int xOffset, final int yOffset,
-	    final StartMouseEventName mouseEventToShowPopUp) {
+	    final StartMouseEvent mouseEventToShowPopUp) {
 	this(popUpToDisplay, STANDARD_DIRECTION, xOffset, yOffset, mouseEventToShowPopUp);
     }
 
     public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp,
-	    final StartMouseEventName mouseEventToShowPopUp) {
+	    final StartMouseEvent mouseEventToShowPopUp) {
 	this(popUpToDisplay, directionOfPopUp, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
     }
 
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final StartMouseEventName mouseEventToShowPopUp) {
+    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final StartMouseEvent mouseEventToShowPopUp) {
 	this(popUpToDisplay, STANDARD_DIRECTION, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
     }
 
@@ -58,7 +58,7 @@ public class PopUpOnHoverController implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEventName.ENTER) {
+	if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
 	    popUpToDisplay.setVisible(true);
 	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
 	}
@@ -66,14 +66,14 @@ public class PopUpOnHoverController implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEventName.ENTER) {
+	if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
 	    popUpToDisplay.setVisible(false);
 	}
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEventName.CLICK) {
+	if (mouseEventToShowPopUp == StartMouseEvent.CLICK) {
 	    popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
 	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
 
@@ -82,7 +82,7 @@ public class PopUpOnHoverController implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEventName.PRESS) {
+	if (mouseEventToShowPopUp == StartMouseEvent.PRESS) {
 	    popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
 	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
 	}
