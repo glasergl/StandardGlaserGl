@@ -23,6 +23,10 @@ public final class Fonts {
 	return resizedStandard(40.0f);
     }
 
+    public static Font mediumBig() {
+	return resizedStandard(32.0f);
+    }
+
     public static Font small() {
 	return resizedStandard(12.0f);
     }
