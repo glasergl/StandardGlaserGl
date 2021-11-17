@@ -7,13 +7,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
 import standard.helper.CursorChangerOnHover;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
+/**
+ * Implementation of a simple button which displays text or an icon.
+ *
+ * @author Gabriel Glaser
+ * @version 17.11.2021
+ */
 public class MySimpleButton extends JLabel {
 
     private final List<ActionListener> actionListeners = new ArrayList<>();
@@ -29,8 +36,9 @@ public class MySimpleButton extends JLabel {
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
     }
 
-    public MySimpleButton(final int initialNumber) {
-	this(String.valueOf(initialNumber));
+    public MySimpleButton(final Icon toDisplay) {
+	this("");
+	setIcon(toDisplay);
     }
 
     public MySimpleButton() {
@@ -63,12 +71,10 @@ public class MySimpleButton extends JLabel {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
 	}
 
     }

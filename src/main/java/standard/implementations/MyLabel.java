@@ -22,7 +22,7 @@ public class MyLabel extends JLabel {
     }
 
     public MyLabel(final Icon icon) {
-	this("", new Color(0, true));
+	this("", Color.BLACK);
 	setIcon(icon);
     }
 

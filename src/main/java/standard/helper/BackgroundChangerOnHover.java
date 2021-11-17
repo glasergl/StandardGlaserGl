@@ -6,6 +6,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Optional;
 
+/**
+ * This MouseListener changes the background of the component this is added to
+ * when the mouse entered the component and changes it back if the mosue exits
+ * the area of the component.
+ *
+ * @author Gabriel Glaser
+ * @version 17.11.2021
+ */
 public class BackgroundChangerOnHover implements MouseListener {
 
     private final Color whileMouseEntered;

@@ -9,7 +9,7 @@ import javax.swing.border.Border;
  * This class allows to display a component anywhere on the screen.
  * 
  * @author Gabriel Glaser
- * @version 7.11.2021
+ * @version 17.11.2021
  */
 public class MyPopUpComponent extends JWindow {
 
@@ -21,7 +21,7 @@ public class MyPopUpComponent extends JWindow {
 	setBackground(new Color(0, true));
 	add(toShowAsPopUp);
     }
-    
+
     public MyPopUpComponent() {
 	super();
 	setBackground(new Color(0, true));

@@ -7,11 +7,11 @@ import java.awt.event.FocusListener;
 import java.util.Optional;
 
 /**
- * This FocusListener changes the background of a component when it gets
- * focused.
+ * This FocusListener changes the background of a component when it gets focused
+ * and changes it back if the component lost the focus.
  *
  * @author Gabriel Glaser
- * @version 27.09.2021
+ * @version 17.11.2021
  */
 public class BackgroundChangerOnFocus implements FocusListener {
 

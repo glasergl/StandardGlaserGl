@@ -7,11 +7,12 @@ import java.awt.event.MouseListener;
 import java.util.Optional;
 
 /**
- * Class which changes the mouse-cursor while the mouse is hovering on the
- * component this MouseListener is added to.
+ * This MouseListener changes the Cursor while the mouse entered the area of the
+ * component this MouseListener is added to and changes it back if the mouse
+ * exits the area.
  * 
  * @author Gabriel Glaser
- * @version 07.11.2021
+ * @version 17.11.2021
  */
 public class CursorChangerOnHover implements MouseListener {
 
