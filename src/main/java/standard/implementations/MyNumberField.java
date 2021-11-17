@@ -7,11 +7,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * TextField which changes the border when it doesnt contain a number or is
+ * TextField which changes the border when it doesn't contain a number or is
  * empty.
  * 
  * @author Gabriel Glaser
- * @version 7.11.2021
+ * @version 17.11.2021
  */
 public class MyNumberField extends MyHintTextField {
 

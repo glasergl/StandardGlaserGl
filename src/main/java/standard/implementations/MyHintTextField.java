@@ -15,6 +15,13 @@ import complex.UnderlineBorder;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
+/**
+ * An implementation of a TextField which displays a hint at the background when
+ * there is no textinput, yet.
+ *
+ * @author Gabriel Glaser
+ * @version 17.11.2021
+ */
 public class MyHintTextField extends JPanel {
 
     protected static final Color OF_HINT_TEXT = new Color(127, 127, 127);
