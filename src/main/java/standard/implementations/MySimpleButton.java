@@ -61,6 +61,7 @@ public class MySimpleButton extends JLabel {
 	    for (final ActionListener actionListener : actionListeners) {
 		actionListener.actionPerformed(click);
 	    }
+	    requestFocus();
 	}
 
 	@Override
