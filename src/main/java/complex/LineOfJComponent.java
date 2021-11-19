@@ -1,6 +1,7 @@
 package complex;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -28,5 +29,15 @@ public class LineOfJComponent extends JPanel {
 
     public void addToRight(final JComponent toAdd) {
 	right.add(toAdd);
+    }
+
+    @Override
+    public void setBackground(final Color newBackground) {
+	super.setBackground(newBackground);
+	if (left != null && middle != null && right != null) {
+	    left.setBackground(newBackground);
+	    middle.setBackground(newBackground);
+	    right.setBackground(newBackground);
+	}
     }
 }
