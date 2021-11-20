@@ -75,6 +75,10 @@ public class MyHintTextField extends JPanel {
 	return hint;
     }
 
+    public void addDocumentListener(final DocumentListener documentListener) {
+	textField.getDocument().addDocumentListener(documentListener);
+    }
+
     @Override
     public void setBounds(final int x, final int y, final int width, final int height) {
 	super.setBounds(x, y, width, height);
