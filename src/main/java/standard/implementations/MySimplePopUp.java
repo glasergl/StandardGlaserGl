@@ -2,6 +2,8 @@ package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Optional;
+
 import javax.swing.JComponent;
 import javax.swing.JWindow;
 import javax.swing.border.Border;
@@ -27,6 +29,7 @@ public class MySimplePopUp extends JWindow {
 
 	private JComponent toShowAsPopUp;
 	private boolean addedToFrame = false;
+	private Optional<JComponent> sibling = Optional.empty();
 
 	public MySimplePopUp(final JComponent toShowAsPopUp, final CelestialDirection directionOfPopUp, final int xOffset, final int yOffset,
 			final JComponent toGetTheFrame) {
@@ -79,6 +82,23 @@ public class MySimplePopUp extends JWindow {
 
 	public void updateLocation(final JComponent sibling) {
 		setLocation(getLocationOfPopUp(sibling));
+		this.sibling = Optional.of(sibling);
+	}
+
+	public void setSibling(final JComponent sibling) {
+		this.sibling = Optional.of(sibling);
+	}
+
+	public JComponent getSibling() {
+		if (sibling.isEmpty()) {
+			throw new RuntimeException("No Sibling of PopUp");
+		} else {
+			return sibling.get();
+		}
+	}
+
+	public void updateLocation() {
+		updateLocation(getSibling());
 	}
 
 	@Override

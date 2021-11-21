@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -39,7 +41,9 @@ public class MyFrame extends JFrame {
 		setResizable(false);
 		setLayout(new BorderLayout());
 		getContentPane().setBackground(Colors.getBackground(1));
-		addComponentListener(new PopUpMover());
+		final PopUpController forAllPopUps = new PopUpController();
+		addComponentListener(forAllPopUps);
+		addWindowListener(forAllPopUps);
 	}
 
 	/**
@@ -66,11 +70,25 @@ public class MyFrame extends JFrame {
 		controlledPopUps.stream().forEach(MySimplePopUp::dispose);
 	}
 
-	private class PopUpMover implements ComponentListener {
-
+	private class PopUpController implements WindowListener, ComponentListener {
+		
 		@Override
 		public void componentMoved(ComponentEvent e) {
+			controlledPopUps.stream().forEach(MySimplePopUp::updateLocation);
+		}
 
+		@Override
+		public void windowActivated(WindowEvent e) {
+			controlledPopUps.stream().forEach((popUp) -> {
+				popUp.setVisible(true);
+			});
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			controlledPopUps.stream().forEach((popUp) -> {
+				popUp.setVisible(false);
+			});
 		}
 
 		@Override
@@ -83,6 +101,26 @@ public class MyFrame extends JFrame {
 
 		@Override
 		public void componentHidden(ComponentEvent e) {
+		}
+		
+		@Override
+		public void windowOpened(WindowEvent e) {
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
 		}
 
 	}
