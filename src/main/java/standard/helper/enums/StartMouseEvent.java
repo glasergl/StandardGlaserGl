@@ -9,5 +9,5 @@ package standard.helper.enums;
  * @version 17.11.2021
  */
 public enum StartMouseEvent {
-	PRESS, CLICK, ENTER;
+    PRESS, CLICK, ENTER;
 }
