@@ -2,10 +2,12 @@ package standard;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JFrame;
-import standard.implementations.MyPopUpComponent;
+import standard.implementations.MySimplePopUp;
 import standard.settings.Colors;
 
 /**
@@ -16,7 +18,7 @@ import standard.settings.Colors;
  */
 public class MyFrame extends JFrame {
 
-	private static final Set<MyPopUpComponent> CONTROLLED_POP_UPS = new HashSet<>();
+	private final Set<MySimplePopUp> controlledPopUps = new HashSet<>();
 
 	public MyFrame(final String title, final Image icon) {
 		super(title);
@@ -37,6 +39,7 @@ public class MyFrame extends JFrame {
 		setResizable(false);
 		setLayout(new BorderLayout());
 		getContentPane().setBackground(Colors.getBackground(1));
+		addComponentListener(new PopUpMover());
 	}
 
 	/**
@@ -49,18 +52,39 @@ public class MyFrame extends JFrame {
 		setVisible(true);
 	}
 
-	public static void controllPopUp(final MyPopUpComponent toControl) {
-		CONTROLLED_POP_UPS.add(toControl);
+	public void controllPopUp(final MySimplePopUp toControl) {
+		controlledPopUps.add(toControl);
 	}
 
-	public static void stopControllingPopUp(final MyPopUpComponent toRemove) {
-		CONTROLLED_POP_UPS.remove(toRemove);
+	public void stopControllingPopUp(final MySimplePopUp toRemove) {
+		controlledPopUps.remove(toRemove);
 	}
 
 	@Override
 	public void dispose() {
 		super.dispose();
-		CONTROLLED_POP_UPS.stream().forEach(MyPopUpComponent::dispose);
+		controlledPopUps.stream().forEach(MySimplePopUp::dispose);
+	}
+
+	private class PopUpMover implements ComponentListener {
+
+		@Override
+		public void componentMoved(ComponentEvent e) {
+
+		}
+
+		@Override
+		public void componentResized(ComponentEvent e) {
+		}
+
+		@Override
+		public void componentShown(ComponentEvent e) {
+		}
+
+		@Override
+		public void componentHidden(ComponentEvent e) {
+		}
+
 	}
 
 }
