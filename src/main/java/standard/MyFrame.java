@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFrame;
 import standard.implementations.MySimplePopUp;
 import standard.settings.Colors;
@@ -18,7 +18,7 @@ import standard.settings.Colors;
  */
 public class MyFrame extends JFrame {
 
-	private final Set<MySimplePopUp> controlledPopUps = new HashSet<>();
+	private final List<MySimplePopUp> controlledPopUps = new LinkedList<>();
 
 	public MyFrame(final String title, final Image icon) {
 		super(title);
