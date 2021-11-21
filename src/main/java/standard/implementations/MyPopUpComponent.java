@@ -5,6 +5,8 @@ import javax.swing.JComponent;
 import javax.swing.JWindow;
 import javax.swing.border.Border;
 
+import standard.MyFrame;
+
 /**
  * This class allows to display a component anywhere on the screen.
  * 
@@ -18,12 +20,14 @@ public class MyPopUpComponent extends JWindow {
 	public MyPopUpComponent(final JComponent toShowAsPopUp) {
 		super();
 		this.toShowAsPopUp = toShowAsPopUp;
+		MyFrame.controllPopUp(this);
 		setBackground(new Color(0, true));
 		add(toShowAsPopUp);
 	}
 
 	public MyPopUpComponent() {
 		super();
+		MyFrame.controllPopUp(this);
 		setBackground(new Color(0, true));
 	}
 
