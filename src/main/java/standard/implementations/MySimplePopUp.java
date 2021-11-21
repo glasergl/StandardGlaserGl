@@ -5,7 +5,7 @@ import java.awt.Point;
 import javax.swing.JComponent;
 import javax.swing.JWindow;
 import javax.swing.border.Border;
-import standard.MyFrame;
+import standard.SwingFunctions;
 import standard.helper.enums.CelestialDirection;
 
 /**
@@ -23,23 +23,25 @@ public class MySimplePopUp extends JWindow {
 	private final CelestialDirection directionOfPopUp;
 	private final int xOffset;
 	private final int yOffset;
+	private final JComponent toGetTheFrame;
 
 	private JComponent toShowAsPopUp;
+	private boolean addedToFrame = false;
 
 	public MySimplePopUp(final JComponent toShowAsPopUp, final CelestialDirection directionOfPopUp, final int xOffset, final int yOffset,
-			final MyFrame parent) {
+			final JComponent toGetTheFrame) {
 		super();
 		this.toShowAsPopUp = toShowAsPopUp;
 		this.directionOfPopUp = directionOfPopUp;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
-		parent.controllPopUp(this);
+		this.toGetTheFrame = toGetTheFrame;
 		setBackground(new Color(0, 0, 0, 0));
 		add(toShowAsPopUp);
 	}
 
-	public MySimplePopUp(final JComponent toShowAsPopUp, final MyFrame parent) {
-		this(toShowAsPopUp, STANDARD_DIRECTION_OF_POP_UP, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, parent);
+	public MySimplePopUp(final JComponent toShowAsPopUp, final JComponent toGetTheFrame) {
+		this(toShowAsPopUp, STANDARD_DIRECTION_OF_POP_UP, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, toGetTheFrame);
 	}
 
 	public void setPopUpComponent(final JComponent toShowAsPopUp) {
@@ -55,8 +57,8 @@ public class MySimplePopUp extends JWindow {
 		final Point locationOfToListenForHovers = sibling.getLocationOnScreen();
 		final int xOfToListenForHovers = (int) locationOfToListenForHovers.getX();
 		final int yOfToListenForHovers = (int) locationOfToListenForHovers.getY();
-		final int widthDifference = getWidth() - getWidth();
-		final int heightDifference = getHeight() - getHeight();
+		final int widthDifference = Math.abs(getWidth() - sibling.getWidth());
+		final int heightDifference = Math.abs(getHeight() - sibling.getHeight());
 		int x = xOfToListenForHovers;
 		int y = yOfToListenForHovers;
 		if (directionOfPopUp == CelestialDirection.NORTH) {
@@ -83,6 +85,10 @@ public class MySimplePopUp extends JWindow {
 	public void setVisible(final boolean shouldBeVisible) {
 		super.setVisible(shouldBeVisible);
 		if (isVisible()) {
+			if (addedToFrame) {
+				SwingFunctions.getMyFrame(toGetTheFrame).controllPopUp(this);
+				addedToFrame = true;
+			}
 			pack();
 		}
 	}

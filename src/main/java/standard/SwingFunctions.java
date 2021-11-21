@@ -1,8 +1,11 @@
 package standard;
 
 import java.awt.Image;
+import java.awt.Window;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 /**
  * Class which contains functions which are generally applicable for swing
@@ -25,6 +28,15 @@ public final class SwingFunctions {
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Couldn't get image from jar with name " + imageFileName);
+		}
+	}
+
+	public static MyFrame getMyFrame(final JComponent toGetFrameOf) {
+		final Window window = SwingUtilities.windowForComponent(toGetFrameOf);
+		if (!(window instanceof MyFrame)) {
+			throw new RuntimeException(toGetFrameOf + " was not added to a frame yet or not added to a MyFrame");
+		} else {
+			return (MyFrame) window;
 		}
 	}
 }
