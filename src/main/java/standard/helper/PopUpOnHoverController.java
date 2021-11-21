@@ -17,103 +17,103 @@ import standard.implementations.MyPopUpComponent;
  */
 public class PopUpOnHoverController implements MouseListener {
 
-    private static final CelestialDirection STANDARD_DIRECTION = CelestialDirection.SOUTH;
-    private static final int STANDARD_X_OFFSET = 0;
-    private static final int STANDARD_Y_OFFSET = -3;
-    private static final StartMouseEvent STANDARD_MOUSE_EVENT_TO_SHOW_POPUP = StartMouseEvent.ENTER;
+	private static final CelestialDirection STANDARD_DIRECTION = CelestialDirection.SOUTH;
+	private static final int STANDARD_X_OFFSET = 0;
+	private static final int STANDARD_Y_OFFSET = -3;
+	private static final StartMouseEvent STANDARD_MOUSE_EVENT_TO_SHOW_POPUP = StartMouseEvent.ENTER;
 
-    private final MyPopUpComponent popUpToDisplay;
-    private final CelestialDirection directionOfPopUp;
-    private final int xOffset;
-    private final int yOffset;
-    private final StartMouseEvent mouseEventToShowPopUp;
+	private final MyPopUpComponent popUpToDisplay;
+	private final CelestialDirection directionOfPopUp;
+	private final int xOffset;
+	private final int yOffset;
+	private final StartMouseEvent mouseEventToShowPopUp;
 
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp, final int xOffset,
-	    final int yOffset, final StartMouseEvent mouseEventToShowPopUp) {
-	super();
-	this.popUpToDisplay = popUpToDisplay;
-	this.directionOfPopUp = directionOfPopUp;
-	this.xOffset = xOffset;
-	this.yOffset = yOffset;
-	this.mouseEventToShowPopUp = mouseEventToShowPopUp;
-    }
-
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final int xOffset, final int yOffset,
-	    final StartMouseEvent mouseEventToShowPopUp) {
-	this(popUpToDisplay, STANDARD_DIRECTION, xOffset, yOffset, mouseEventToShowPopUp);
-    }
-
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp,
-	    final StartMouseEvent mouseEventToShowPopUp) {
-	this(popUpToDisplay, directionOfPopUp, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
-    }
-
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final StartMouseEvent mouseEventToShowPopUp) {
-	this(popUpToDisplay, STANDARD_DIRECTION, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
-    }
-
-    public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay) {
-	this(popUpToDisplay, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, STANDARD_MOUSE_EVENT_TO_SHOW_POPUP);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
-	    popUpToDisplay.setVisible(true);
-	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
+	public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp, final int xOffset,
+			final int yOffset, final StartMouseEvent mouseEventToShowPopUp) {
+		super();
+		this.popUpToDisplay = popUpToDisplay;
+		this.directionOfPopUp = directionOfPopUp;
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
+		this.mouseEventToShowPopUp = mouseEventToShowPopUp;
 	}
-    }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
-	    popUpToDisplay.setVisible(false);
+	public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final int xOffset, final int yOffset,
+			final StartMouseEvent mouseEventToShowPopUp) {
+		this(popUpToDisplay, STANDARD_DIRECTION, xOffset, yOffset, mouseEventToShowPopUp);
 	}
-    }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEvent.CLICK) {
-	    popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
-	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
-
+	public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final CelestialDirection directionOfPopUp,
+			final StartMouseEvent mouseEventToShowPopUp) {
+		this(popUpToDisplay, directionOfPopUp, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
 	}
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-	if (mouseEventToShowPopUp == StartMouseEvent.PRESS) {
-	    popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
-	    popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
+	public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay, final StartMouseEvent mouseEventToShowPopUp) {
+		this(popUpToDisplay, STANDARD_DIRECTION, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, mouseEventToShowPopUp);
 	}
-    }
 
-    private Point getLocationOfPopUp(final Component toListenForHovers) {
-	final Point locationOfToListenForHovers = toListenForHovers.getLocationOnScreen();
-	final int xOfToListenForHovers = (int) locationOfToListenForHovers.getX();
-	final int yOfToListenForHovers = (int) locationOfToListenForHovers.getY();
-	final int widthDifference = popUpToDisplay.getWidth() - toListenForHovers.getWidth();
-	final int heightDifference = popUpToDisplay.getHeight() - toListenForHovers.getHeight();
-	int x = xOfToListenForHovers;
-	int y = yOfToListenForHovers;
-	if (directionOfPopUp == CelestialDirection.NORTH) {
-	    x -= widthDifference / 2;
-	    y -= popUpToDisplay.getHeight();
-	} else if (directionOfPopUp == CelestialDirection.WEST) {
-	    x -= popUpToDisplay.getWidth();
-	    y -= heightDifference / 2;
-	} else if (directionOfPopUp == CelestialDirection.SOUTH) {
-	    x -= widthDifference / 2;
-	    y += toListenForHovers.getHeight();
-	} else {
-	    x += toListenForHovers.getWidth();
-	    y -= heightDifference / 2;
+	public PopUpOnHoverController(final MyPopUpComponent popUpToDisplay) {
+		this(popUpToDisplay, STANDARD_X_OFFSET, STANDARD_Y_OFFSET, STANDARD_MOUSE_EVENT_TO_SHOW_POPUP);
 	}
-	return new Point(x + xOffset, y + yOffset);
-    }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
+			popUpToDisplay.setVisible(true);
+			popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
+			popUpToDisplay.setVisible(false);
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (mouseEventToShowPopUp == StartMouseEvent.CLICK) {
+			popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
+			popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
+
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if (mouseEventToShowPopUp == StartMouseEvent.PRESS) {
+			popUpToDisplay.setVisible(!popUpToDisplay.isVisible());
+			popUpToDisplay.setLocation(getLocationOfPopUp(e.getComponent()));
+		}
+	}
+
+	private Point getLocationOfPopUp(final Component toListenForHovers) {
+		final Point locationOfToListenForHovers = toListenForHovers.getLocationOnScreen();
+		final int xOfToListenForHovers = (int) locationOfToListenForHovers.getX();
+		final int yOfToListenForHovers = (int) locationOfToListenForHovers.getY();
+		final int widthDifference = popUpToDisplay.getWidth() - toListenForHovers.getWidth();
+		final int heightDifference = popUpToDisplay.getHeight() - toListenForHovers.getHeight();
+		int x = xOfToListenForHovers;
+		int y = yOfToListenForHovers;
+		if (directionOfPopUp == CelestialDirection.NORTH) {
+			x -= widthDifference / 2;
+			y -= popUpToDisplay.getHeight();
+		} else if (directionOfPopUp == CelestialDirection.WEST) {
+			x -= popUpToDisplay.getWidth();
+			y -= heightDifference / 2;
+		} else if (directionOfPopUp == CelestialDirection.SOUTH) {
+			x -= widthDifference / 2;
+			y += toListenForHovers.getHeight();
+		} else {
+			x += toListenForHovers.getWidth();
+			y -= heightDifference / 2;
+		}
+		return new Point(x + xOffset, y + yOffset);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
 
 }

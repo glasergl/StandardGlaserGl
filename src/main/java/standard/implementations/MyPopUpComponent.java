@@ -13,35 +13,35 @@ import javax.swing.border.Border;
  */
 public class MyPopUpComponent extends JWindow {
 
-    private JComponent toShowAsPopUp;
+	private JComponent toShowAsPopUp;
 
-    public MyPopUpComponent(final JComponent toShowAsPopUp) {
-	super();
-	this.toShowAsPopUp = toShowAsPopUp;
-	setBackground(new Color(0, true));
-	add(toShowAsPopUp);
-    }
-
-    public MyPopUpComponent() {
-	super();
-	setBackground(new Color(0, true));
-    }
-
-    @Override
-    public void setVisible(final boolean shouldBeVisible) {
-	super.setVisible(shouldBeVisible);
-	if (isVisible()) {
-	    pack();
+	public MyPopUpComponent(final JComponent toShowAsPopUp) {
+		super();
+		this.toShowAsPopUp = toShowAsPopUp;
+		setBackground(new Color(0, true));
+		add(toShowAsPopUp);
 	}
-    }
 
-    public void setPopUpComponent(final JComponent toShowAsPopUp) {
-	this.toShowAsPopUp = toShowAsPopUp;
-	add(toShowAsPopUp);
-    }
+	public MyPopUpComponent() {
+		super();
+		setBackground(new Color(0, true));
+	}
 
-    public void setBorder(final Border toSetAroundThePopUpComponent) {
-	toShowAsPopUp.setBorder(toSetAroundThePopUpComponent);
-    }
+	@Override
+	public void setVisible(final boolean shouldBeVisible) {
+		super.setVisible(shouldBeVisible);
+		if (isVisible()) {
+			pack();
+		}
+	}
+
+	public void setPopUpComponent(final JComponent toShowAsPopUp) {
+		this.toShowAsPopUp = toShowAsPopUp;
+		add(toShowAsPopUp);
+	}
+
+	public void setBorder(final Border toSetAroundThePopUpComponent) {
+		toShowAsPopUp.setBorder(toSetAroundThePopUpComponent);
+	}
 
 }
