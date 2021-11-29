@@ -16,6 +16,8 @@ import standard.settings.Colors;
  */
 public class JPanelFactory {
 
+    private static final Color STANDARD_BACKGROUND = Colors.getGray(0);
+
     public static JPanel create(final LayoutManager layout, final Color background, final JComponent... componentsToAdd) {
 	final JPanel panel = new JPanel(layout);
 	panel.setBackground(background);
@@ -25,8 +27,15 @@ public class JPanelFactory {
 	return panel;
     }
 
+    /**
+     * Sets the background to Colors.getGray(0).
+     * 
+     * @param layout
+     * @param components
+     * @return
+     */
     public static JPanel create(final LayoutManager layout, final JComponent... components) {
-	return create(layout, Colors.getGray(0), components);
+	return create(layout, STANDARD_BACKGROUND, components);
     }
 
 }

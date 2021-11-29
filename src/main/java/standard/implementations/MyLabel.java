@@ -8,7 +8,7 @@ import standard.settings.Colors;
 import standard.settings.Fonts;
 
 public class MyLabel extends JLabel {
-
+    // TODO MyTextLabel and MyIconLabel
     public MyLabel(final String text, final Color background, final Color colorOfText, final Font fontOfText) {
 	super(text);
 	setOpaque(true);

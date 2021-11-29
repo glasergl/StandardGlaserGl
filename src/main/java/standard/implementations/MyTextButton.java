@@ -15,6 +15,8 @@ import standard.settings.Fonts;
 
 public class MyTextButton extends JLabel {
 
+    //TODO MyIconButton
+    
     private static final Color BACKGROUND = new Color(210, 210, 210);
     private static final Color BACKGROUND_WHILE_FOCUSED = new Color(190, 190, 190);
     private static final Color OF_TEXT = Color.BLACK;
