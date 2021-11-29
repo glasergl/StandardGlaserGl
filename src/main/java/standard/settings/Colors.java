@@ -11,35 +11,50 @@ import java.awt.Color;
  */
 public final class Colors {
 
-    private static boolean shouldBeDarkMode = false;
+    private static boolean darkMode = false;
 
-    public static void setDarkModeEnabled(final boolean darkModeEnabled) {
-	shouldBeDarkMode = darkModeEnabled;
+    public static void setDarkModeEnabled(final boolean shouldBeDarkMode) {
+	darkMode = shouldBeDarkMode;
     }
 
     public static boolean isDarkMode() {
-	return shouldBeDarkMode;
+	return darkMode;
     }
 
     /**
-     * Calculates a color depending on darkmode or lightmode with the given depth.
+     * Calculates a color depending on darkmode or lightmode with the given
+     * intensity.
      * 
-     * @param backgroundDepth - the number of the background depths, the higher the
-     *                        number, the brighter or darker (depends on darkmode or
-     *                        lightmode)
+     * @param brightness - the number of the background depths, the higher the
+     *                   number, the brighter or darker (depends on darkmode or
+     *                   lightmode)
      * @return Color with depth of background.
      */
-    public static Color getBackground(final int backgroundDepth) {
-	final int value = shouldBeDarkMode ? 20 + backgroundDepth * 15 : 235 - 15 * backgroundDepth;
-	return new Color(value, value, value);
+    public static Color getGray(final int brightness) {
+	if (brightness < 0 || brightness > 5) {
+	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2, 3, 4}, but is " + brightness);
+	}
+	final int rgbEntry = darkMode ? 35 + brightness * 20 : 255 - 20 - 15 * brightness;
+	return new Color(rgbEntry, rgbEntry, rgbEntry);
+    }
+
+    public static Color getBlue(final int brightness) {
+	if (brightness == 0) {
+	    return darkMode ? new Color(0, 72, 255) : new Color(79, 129, 255);
+	} else if (brightness == 1) {
+	    return new Color(43, 103, 255);
+	} else if (brightness == 2) {
+	    return darkMode ? new Color(79, 129, 255) : new Color(0, 72, 255);
+	}
+	throw new IllegalArgumentException("Brightness has to be in {0, 1, 2}, but is " + brightness);
     }
 
     public static Color ofText() {
-	return shouldBeDarkMode ? new Color(220, 220, 220) : Color.BLACK;
+	return darkMode ? new Color(220, 220, 220) : Color.BLACK;
     }
 
     public static Color ofError() {
-	return Color.RED;
+	return new Color(232, 49, 49);
     }
 
     public static Color ofFocus() {

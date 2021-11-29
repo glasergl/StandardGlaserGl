@@ -30,7 +30,7 @@ public class MySimpleButton extends JLabel {
     public MySimpleButton(final String initialText) {
 	super(initialText);
 	setOpaque(true);
-	setBackground(Colors.getBackground(3));
+	setBackground(Colors.getGray(3));
 	setForeground(Colors.ofText());
 	setFont(Fonts.standard());
 	setHorizontalAlignment(SwingConstants.CENTER);
@@ -67,7 +67,7 @@ public class MySimpleButton extends JLabel {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	    originalBackground = Optional.of(getBackground());
-	    setBackground(Colors.getBackground(4));
+	    setBackground(Colors.getGray(4));
 	}
 
 	@Override

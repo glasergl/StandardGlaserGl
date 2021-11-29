@@ -27,7 +27,7 @@ public class MyLabel extends JLabel {
     }
 
     public MyLabel(final String text) {
-	this(text, Colors.getBackground(2));
+	this(text, Colors.getGray(2));
     }
 
     public MyLabel() {

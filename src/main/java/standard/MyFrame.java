@@ -1,6 +1,7 @@
 package standard;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -10,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFrame;
 import standard.implementations.MySimplePopUp;
-import standard.settings.Colors;
 
 /**
  * Top-Level container with standard properties to prevent boiler-plate code.
@@ -40,7 +40,7 @@ public class MyFrame extends JFrame {
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	setResizable(false);
 	setLayout(new BorderLayout());
-	getContentPane().setBackground(Colors.getBackground(1));
+	getContentPane().setBackground(Color.WHITE);
 	final PopUpController forAllPopUps = new PopUpController();
 	addComponentListener(forAllPopUps);
 	addWindowListener(forAllPopUps);
