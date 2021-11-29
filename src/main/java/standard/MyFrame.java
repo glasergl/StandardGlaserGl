@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFrame;
 import standard.implementations.MySimplePopUp;
+import standard.settings.Colors;
 
 /**
  * Top-Level container with standard properties to prevent boiler-plate code.
@@ -40,7 +41,7 @@ public class MyFrame extends JFrame {
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	setResizable(false);
 	setLayout(new BorderLayout());
-	getContentPane().setBackground(Color.WHITE);
+	getContentPane().setBackground(Colors.isDarkMode() ? Color.BLACK : Color.WHITE);
 	final PopUpController forAllPopUps = new PopUpController();
 	addComponentListener(forAllPopUps);
 	addWindowListener(forAllPopUps);

@@ -8,52 +8,36 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import javax.swing.Icon;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import standard.helper.CursorChangerOnHover;
-import standard.settings.Colors;
 import standard.settings.Fonts;
 
-/**
- * Implementation of a simple button which displays text or an icon.
- *
- * @author Gabriel Glaser
- * @version 17.11.2021
- */
-public class MySimpleButton extends JLabel {
+public class MyTextButton extends JLabel {
+
+    private static final Color BACKGROUND = new Color(210, 210, 210);
+    private static final Color BACKGROUND_WHILE_HOVERED = new Color(190, 190, 190);
+    private static final Color OF_TEXT = Color.BLACK;
 
     private final List<ActionListener> actionListeners = new ArrayList<>();
 
-    public MySimpleButton(final String initialText) {
-	super(initialText);
+    public MyTextButton(final String text) {
+	super(text);
 	setOpaque(true);
-	setBackground(Colors.getGray(2));
-	setForeground(Colors.ofText());
+	setBackground(BACKGROUND);
+	setForeground(OF_TEXT);
+	setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 	setFont(Fonts.standard());
-	setHorizontalAlignment(SwingConstants.CENTER);
-	addMouseListener(new SimpleButtonController());
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
-    }
-
-    public MySimpleButton(final Icon toDisplay) {
-	this("");
-	setIcon(toDisplay);
-    }
-
-    public MySimpleButton() {
-	this("");
+	addMouseListener(new ButtonController());
     }
 
     public void addActionListener(final ActionListener toAdd) {
 	actionListeners.add(toAdd);
     }
 
-    private final class SimpleButtonController implements MouseListener {
-
-	private Optional<Color> originalBackground;
+    private final class ButtonController implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -66,13 +50,12 @@ public class MySimpleButton extends JLabel {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-	    originalBackground = Optional.of(getBackground());
-	    setBackground(Colors.getGray(3));
+	    setBackground(BACKGROUND_WHILE_HOVERED);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-	    setBackground(originalBackground.get());
+	    setBackground(BACKGROUND);
 	}
 
 	@Override
