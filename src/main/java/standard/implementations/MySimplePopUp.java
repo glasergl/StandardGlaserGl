@@ -3,7 +3,6 @@ package standard.implementations;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Optional;
-
 import javax.swing.JComponent;
 import javax.swing.JWindow;
 import javax.swing.border.Border;

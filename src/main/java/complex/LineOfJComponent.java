@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.util.Arrays;
 import java.util.function.Consumer;
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
