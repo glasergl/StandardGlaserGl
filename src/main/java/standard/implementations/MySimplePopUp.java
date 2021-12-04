@@ -84,19 +84,10 @@ public class MySimplePopUp extends JDialog {
 
     @Override
     public void setVisible(final boolean shouldBeVisible) {
-	if (shouldBeVisible) {
-	    updateLocation();
-	}
-	if (owner.isPresent()) {
-	    final MyFrame owner = this.owner.get();
-	    owner.setFocusable(!shouldBeVisible);
-	}
+	updateLocation();
 	super.setVisible(shouldBeVisible);
 	if (shouldBeVisible) {
 	    requestFocusInWindow();
-	} else if (owner.isPresent()) {
-	    final MyFrame owner = this.owner.get();
-	    owner.requestFocusInWindow();
 	}
     }
 
@@ -161,10 +152,6 @@ public class MySimplePopUp extends JDialog {
 	return new Point(centerX, centerY);
     }
 
-    public void test() {
-
-    }
-
     /**
      * Adds a Listener to the owner of this PopUp which disposes this, when the
      * MyFrame is disposed.
@@ -177,7 +164,7 @@ public class MySimplePopUp extends JDialog {
 	public void windowClosed(WindowEvent e) {
 	    dispose();
 	}
-	
+
 	@Override
 	public void windowGainedFocus(WindowEvent e) {
 	    setVisible(false);
