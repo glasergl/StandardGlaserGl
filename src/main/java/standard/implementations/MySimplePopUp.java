@@ -84,14 +84,19 @@ public class MySimplePopUp extends JDialog {
 
     @Override
     public void setVisible(final boolean shouldBeVisible) {
-	updateLocation();
-	super.setVisible(shouldBeVisible);
+	if (shouldBeVisible) {
+	    updateLocation();
+	}
 	if (owner.isPresent()) {
 	    final MyFrame owner = this.owner.get();
 	    owner.setFocusable(!shouldBeVisible);
 	}
+	super.setVisible(shouldBeVisible);
 	if (shouldBeVisible) {
 	    requestFocusInWindow();
+	} else if (owner.isPresent()) {
+	    final MyFrame owner = this.owner.get();
+	    owner.requestFocusInWindow();
 	}
     }
 
@@ -154,6 +159,10 @@ public class MySimplePopUp extends JDialog {
 	    centerY = (int) (screenSize.getHeight() / 2);
 	}
 	return new Point(centerX, centerY);
+    }
+
+    public void test() {
+
     }
 
     /**
