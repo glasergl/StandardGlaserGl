@@ -177,6 +177,11 @@ public class MySimplePopUp extends JDialog {
 	public void windowClosed(WindowEvent e) {
 	    dispose();
 	}
+	
+	@Override
+	public void windowGainedFocus(WindowEvent e) {
+	    setVisible(false);
+	}
     }
 
 }
