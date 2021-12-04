@@ -2,7 +2,6 @@ package standard.helper;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JComponent;
 import standard.helper.enums.StartMouseEvent;
 import standard.implementations.MySimplePopUp;
 
@@ -34,7 +33,7 @@ public class PopUpOnHoverController implements MouseListener {
     public void mouseEntered(MouseEvent e) {
 	if (mouseEventToShowPopUp == StartMouseEvent.ENTER) {
 	    toControl.setVisible(true);
-	    toControl.updateLocation((JComponent) e.getComponent());
+	    toControl.updateLocation();
 	}
     }
 
@@ -49,7 +48,7 @@ public class PopUpOnHoverController implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 	if (mouseEventToShowPopUp == StartMouseEvent.CLICK) {
 	    toControl.setVisible(!toControl.isVisible());
-	    toControl.updateLocation((JComponent) e.getComponent());
+	    toControl.updateLocation();
 	}
     }
 
@@ -57,7 +56,7 @@ public class PopUpOnHoverController implements MouseListener {
     public void mousePressed(MouseEvent e) {
 	if (mouseEventToShowPopUp == StartMouseEvent.PRESS) {
 	    toControl.setVisible(!toControl.isVisible());
-	    toControl.updateLocation((JComponent) e.getComponent());
+	    toControl.updateLocation();
 	}
     }
 
