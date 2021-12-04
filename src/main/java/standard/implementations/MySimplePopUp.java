@@ -86,9 +86,6 @@ public class MySimplePopUp extends JDialog {
     public void setVisible(final boolean shouldBeVisible) {
 	updateLocation();
 	super.setVisible(shouldBeVisible);
-	if (shouldBeVisible) {
-	    requestFocusInWindow();
-	}
     }
 
     private void setup() {
@@ -163,11 +160,6 @@ public class MySimplePopUp extends JDialog {
 	@Override
 	public void windowClosed(WindowEvent e) {
 	    dispose();
-	}
-
-	@Override
-	public void windowGainedFocus(WindowEvent e) {
-	    setVisible(false);
 	}
     }
 
