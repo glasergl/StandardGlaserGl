@@ -1,10 +1,10 @@
-package standard.helper;
+package standard.helper.listeners;
 
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Optional;
+import standard.helper.emptyListenerImplementations.MyMouseListener;
 
 /**
  * This MouseListener changes the Cursor while the mouse entered the area of the
@@ -14,7 +14,7 @@ import java.util.Optional;
  * @author Gabriel Glaser
  * @version 17.11.2021
  */
-public class CursorChangerOnHover implements MouseListener {
+public class CursorChangerOnHover extends MyMouseListener {
 
     private final Cursor whileMouseEntered;
     private Optional<Cursor> whileMouseExited = Optional.empty();
@@ -35,18 +35,6 @@ public class CursorChangerOnHover implements MouseListener {
     public void mouseExited(final MouseEvent event) {
 	final Component whichTheMouseLeft = event.getComponent();
 	whichTheMouseLeft.setCursor(whileMouseExited.get());
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent event) {
-    }
-
-    @Override
-    public void mousePressed(final MouseEvent event) {
-    }
-
-    @Override
-    public void mouseReleased(final MouseEvent event) {
     }
 
 }

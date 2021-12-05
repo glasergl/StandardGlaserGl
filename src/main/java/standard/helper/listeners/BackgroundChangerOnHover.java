@@ -1,10 +1,10 @@
-package standard.helper;
+package standard.helper.listeners;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Optional;
+import standard.helper.emptyListenerImplementations.MyMouseListener;
 
 /**
  * This MouseListener changes the background of the component this is added to
@@ -14,7 +14,7 @@ import java.util.Optional;
  * @author Gabriel Glaser
  * @version 17.11.2021
  */
-public class BackgroundChangerOnHover implements MouseListener {
+public class BackgroundChangerOnHover extends MyMouseListener {
 
     private final Color whileMouseEntered;
     private Optional<Color> whileMouseExited = Optional.empty();
@@ -35,18 +35,6 @@ public class BackgroundChangerOnHover implements MouseListener {
     public void mouseExited(final MouseEvent event) {
 	final Component whoLostHover = event.getComponent();
 	whoLostHover.setBackground(whileMouseExited.get());
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent event) {
-    }
-
-    @Override
-    public void mousePressed(final MouseEvent event) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent event) {
     }
 
 }

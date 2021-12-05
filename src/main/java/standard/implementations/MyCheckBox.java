@@ -2,7 +2,8 @@ package standard.implementations;
 
 import java.awt.Cursor;
 import javax.swing.JCheckBox;
-import standard.helper.CursorChangerOnHover;
+
+import standard.helper.listeners.CursorChangerOnHover;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 

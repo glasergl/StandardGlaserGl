@@ -1,10 +1,10 @@
-package standard.helper;
+package standard.helper.listeners;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.Optional;
+import standard.helper.emptyListenerImplementations.MyFocusListener;
 
 /**
  * This FocusListener changes the background of a component when it gets focused
@@ -13,7 +13,7 @@ import java.util.Optional;
  * @author Gabriel Glaser
  * @version 17.11.2021
  */
-public class BackgroundChangerOnFocus implements FocusListener {
+public class BackgroundChangerOnFocus extends MyFocusListener {
 
     private final Color whileFocused;
     private Optional<Color> whileNotFocused = Optional.empty();

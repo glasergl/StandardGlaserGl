@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import standard.helper.CursorChangerOnHover;
+
+import standard.helper.listeners.CursorChangerOnHover;
 import standard.settings.Fonts;
 
 public class MyTextButton extends JLabel {
