@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
+
+import javax.swing.JComponent;
 import javax.swing.border.AbstractBorder;
 
 import standard.helper.enums.CelestialDirection;
@@ -44,8 +46,16 @@ public class PointingBorder extends AbstractBorder {
 	this(edgeForPointer, STANDARD_HEIGHT, STANDARD_WIDTH, ofPointer, ofLineBorder);
     }
 
+    public PointingBorder(final CelestialDirection edgeForPointer, final JComponent toSetThisAround) {
+	this(edgeForPointer, toSetThisAround.getBackground(), toSetThisAround.getForeground());
+    }
+
     public PointingBorder(final Color ofPointer, final Color ofLineBorder) {
 	this(STANDARD_DIRECTION, ofPointer, ofLineBorder);
+    }
+
+    public PointingBorder(final JComponent toSetThisAround) {
+	this(toSetThisAround.getBackground(), toSetThisAround.getForeground());
     }
 
     public PointingBorder(final Color color) {

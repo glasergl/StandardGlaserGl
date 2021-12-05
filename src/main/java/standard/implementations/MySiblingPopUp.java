@@ -2,10 +2,13 @@ package standard.implementations;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
+
 import javax.swing.JComponent;
 import javax.swing.JWindow;
 import complex.PointingBorder;
 import standard.MyFrame;
+import standard.helper.emptyListenerImplementations.MyComponentListener;
 import standard.helper.enums.CelestialDirection;
 
 /**
@@ -24,6 +27,7 @@ public class MySiblingPopUp extends JWindow {
     private final int xOffset;
     private final int yOffset;
 
+    private final MyFrame owner;
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;
 
@@ -34,6 +38,7 @@ public class MySiblingPopUp extends JWindow {
 	this.relativeDirectionOfPopUp = relativeDirectionOfPopUp;
 	this.xOffset = xOffset;
 	this.yOffset = yOffset;
+	this.owner = owner;
 	this.sibling = sibling;
 	setup();
     }
@@ -58,9 +63,10 @@ public class MySiblingPopUp extends JWindow {
 
     private void setup() {
 	setBackground(new Color(0, 0, 0, 0));
-	toShowAsPopUp.setBorder(new PointingBorder(relativeDirectionOfPopUp, toShowAsPopUp.getBackground(), toShowAsPopUp.getForeground()));
+	toShowAsPopUp.setBorder(new PointingBorder(relativeDirectionOfPopUp.getOpposite(), toShowAsPopUp));
 	setSize((int) toShowAsPopUp.getPreferredSize().getWidth(), (int) toShowAsPopUp.getPreferredSize().getHeight());
 	add(toShowAsPopUp);
+	owner.addComponentListener(new PopUpMoverOnMove());
     }
 
     /**
@@ -89,6 +95,15 @@ public class MySiblingPopUp extends JWindow {
 	    y -= heightDifference / 2;
 	}
 	return new Point(x + xOffset, y + yOffset);
+    }
+
+    private class PopUpMoverOnMove extends MyComponentListener {
+	@Override
+	public void componentMoved(ComponentEvent e) {
+	    if (isVisible()) {
+		updateLocation();
+	    }
+	}
     }
 
 }

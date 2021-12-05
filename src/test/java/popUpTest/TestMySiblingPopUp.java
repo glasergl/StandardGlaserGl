@@ -2,6 +2,7 @@ package popUpTest;
 
 import javax.swing.SwingUtilities;
 import standard.MyFrame;
+import standard.helper.listeners.PopUpDisplayerOnClick;
 import standard.helper.listeners.PopUpDisplayerOnHover;
 import standard.implementations.MyLabel;
 import standard.implementations.MySiblingPopUp;
@@ -15,7 +16,7 @@ public class TestMySiblingPopUp extends MyFrame {
     public TestMySiblingPopUp() {
 	super();
 	add(testLabel);
-	testLabel.addMouseListener(new PopUpDisplayerOnHover(testPopUp));
+	testLabel.addMouseListener(new PopUpDisplayerOnClick(testPopUp));
 	start();
     }
 
