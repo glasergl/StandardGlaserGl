@@ -22,7 +22,6 @@ public class PopUpDisplayerOnClick extends MyMouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-	System.out.println(toControl.isVisible());
 	toControl.setVisible(!toControl.isVisible());
     }
 

@@ -3,7 +3,6 @@ package popUpTest;
 import javax.swing.SwingUtilities;
 import standard.MyFrame;
 import standard.helper.listeners.PopUpDisplayerOnClick;
-import standard.helper.listeners.PopUpDisplayerOnHover;
 import standard.implementations.MyLabel;
 import standard.implementations.MySiblingPopUp;
 
