@@ -39,7 +39,14 @@ public class SiblingPopUpDisplayerOnHover extends MyMouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 	popUp.get().setVisible(false);
-	;
+    }
+
+    public MySiblingPopUp getPopUp() {
+	if (popUp.isEmpty()) {
+	    throw new RuntimeException("Pop Up wasn't created yet");
+	} else {
+	    return popUp.get();
+	}
     }
 
 }

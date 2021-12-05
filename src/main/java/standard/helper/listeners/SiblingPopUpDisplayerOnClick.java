@@ -39,4 +39,12 @@ public class SiblingPopUpDisplayerOnClick extends MyMouseListener {
 	}
     }
 
+    public MySiblingPopUp getPopUp() {
+	if (popUp.isEmpty()) {
+	    throw new RuntimeException("Pop Up wasn't created yet");
+	} else {
+	    return popUp.get();
+	}
+    }
+
 }
