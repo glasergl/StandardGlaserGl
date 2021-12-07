@@ -3,15 +3,20 @@ package standard.implementations;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Optional;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import complex.UnderlineBorder;
+import standard.helper.emptyListenerImplementations.MyFocusListener;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
@@ -51,6 +56,7 @@ public class MyHintTextField extends JPanel {
 	textField.setBorder(new UnderlineBorder(2, Colors.ofText()));
 	textField.setOpaque(false);
 	textField.getDocument().addDocumentListener(new HintController());
+	textField.addFocusListener(new FocusBorderPainter());
 
 	setLayout(null);
 	setFont(Fonts.standard());
@@ -156,6 +162,23 @@ public class MyHintTextField extends JPanel {
 	    }
 	}
 
+    }
+
+    private class FocusBorderPainter extends MyFocusListener {
+
+	private Optional<Border> old = Optional.empty();
+
+	@Override
+	public void focusGained(FocusEvent e) {
+	    old = Optional.of(getBorder());
+	    setBorder(new LineBorder(Colors.ofFocus(), 2));
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+	    setBorder(old.get());
+	    old = Optional.empty();
+	}
     }
 
 }
