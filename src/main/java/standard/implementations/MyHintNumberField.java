@@ -1,6 +1,8 @@
 package standard.implementations;
 
 import java.awt.Color;
+import java.util.Optional;
+
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
@@ -13,20 +15,20 @@ import javax.swing.event.DocumentListener;
  * @author Gabriel Glaser
  * @version 17.11.2021
  */
-public class MyNumberField extends MyHintTextField {
+public class MyHintNumberField extends MyHintTextField {
 
-    public MyNumberField(final String hint, final int initialValue) {
+    public MyHintNumberField(final String hint, final int initialValue) {
 	super(hint);
 	textField.getDocument().addDocumentListener(new NumberValidator());
 	setText(String.valueOf(initialValue));
     }
 
-    public MyNumberField(final String hint) {
+    public MyHintNumberField(final String hint) {
 	this(hint, -1);
 	setText("");
     }
 
-    public MyNumberField() {
+    public MyHintNumberField() {
 	this("");
     }
 
@@ -46,7 +48,7 @@ public class MyNumberField extends MyHintTextField {
      * @version 7.11.2021
      */
     private class NumberValidator implements DocumentListener {
-	private final Border old = getBorder();
+	private Optional<Border> old = Optional.empty();
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
@@ -66,9 +68,13 @@ public class MyNumberField extends MyHintTextField {
 	private void update() {
 	    final String currentContent = textField.getText();
 	    if (!currentContent.matches("[0-9]*")) {
+		old = Optional.of(getBorder());
 		setBorder(new LineBorder(Color.RED, 2));
 	    } else {
-		setBorder(old);
+		if (old.isPresent()) {
+		    setBorder(old.get());
+		    old = Optional.empty();
+		}
 	    }
 	}
 

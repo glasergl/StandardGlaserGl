@@ -5,19 +5,18 @@ import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
+import javax.swing.border.LineBorder;
+import standard.helper.emptyListenerImplementations.MyMouseListener;
 import standard.helper.listeners.CursorChangerOnHover;
+import standard.settings.Colors;
 import standard.settings.Fonts;
 
 public class MyTextButton extends JLabel {
 
-    //TODO MyIconButton
-    
     private static final Color BACKGROUND = new Color(210, 210, 210);
     private static final Color BACKGROUND_WHILE_FOCUSED = new Color(190, 190, 190);
     private static final Color OF_TEXT = Color.BLACK;
@@ -35,6 +34,7 @@ public class MyTextButton extends JLabel {
 	setHorizontalAlignment(SwingConstants.CENTER);
 	setVerticalAlignment(SwingConstants.CENTER);
 	setFont(Fonts.standard());
+	setBorder(new LineBorder(Colors.ofText(), 1));
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	addMouseListener(new ButtonController());
     }
@@ -43,7 +43,7 @@ public class MyTextButton extends JLabel {
 	actionListeners.add(toAdd);
     }
 
-    private final class ButtonController implements MouseListener {
+    private final class ButtonController extends MyMouseListener {
 
 	private Color old;
 
@@ -65,14 +65,6 @@ public class MyTextButton extends JLabel {
 	@Override
 	public void mouseExited(MouseEvent e) {
 	    setBackground(old);
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
 	}
 
     }

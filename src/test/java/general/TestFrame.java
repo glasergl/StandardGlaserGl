@@ -1,11 +1,10 @@
 package general;
 
+import java.awt.Container;
 import java.awt.FlowLayout;
-
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
-
 import standard.MyFrame;
 import standard.implementations.MyLabel;
 import standard.implementations.MyTextButton;
@@ -57,11 +56,13 @@ public class TestFrame extends MyFrame {
 
     public static void showFrameWithComponents(final JComponent... components) {
 	final MyFrame frame = new MyFrame();
-	frame.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+	final Container contentPane = frame.getContentPane();
+	contentPane.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 	for (final JComponent component : components) {
-	    frame.getContentPane().add(component);
+	    contentPane.add(component);
 	}
 	frame.start();
+	frame.setSize(frame.getWidth(), frame.getHeight() + 50);
     }
 
 }
