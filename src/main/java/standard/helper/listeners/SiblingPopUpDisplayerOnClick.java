@@ -15,36 +15,36 @@ import standard.implementations.MySiblingPopUp;
  */
 public class SiblingPopUpDisplayerOnClick extends MyMouseListener {
 
-    private final JComponent toShowAsPopUp;
-    private final JComponent sibling;
+	private final JComponent toShowAsPopUp;
+	private final JComponent sibling;
 
-    private Optional<MySiblingPopUp> popUp = Optional.empty();
+	private Optional<MySiblingPopUp> popUp = Optional.empty();
 
-    public SiblingPopUpDisplayerOnClick(final JComponent toShowAsPopUp, final JComponent sibling) {
-	super();
-	this.toShowAsPopUp = toShowAsPopUp;
-	this.sibling = sibling;
-	sibling.addMouseListener(this);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-	if (popUp.isEmpty()) {
-	    final MySiblingPopUp popUp = new MySiblingPopUp(toShowAsPopUp, SwingFunctions.getMyFrame(sibling), sibling);
-	    this.popUp = Optional.of(popUp);
-	    popUp.setVisible(true);
-	} else {
-	    final MySiblingPopUp popUp = this.popUp.get();
-	    popUp.setVisible(!popUp.isVisible());
+	public SiblingPopUpDisplayerOnClick(final JComponent toShowAsPopUp, final JComponent sibling) {
+		super();
+		this.toShowAsPopUp = toShowAsPopUp;
+		this.sibling = sibling;
+		sibling.addMouseListener(this);
 	}
-    }
 
-    public MySiblingPopUp getPopUp() {
-	if (popUp.isEmpty()) {
-	    throw new RuntimeException("Pop Up wasn't created yet");
-	} else {
-	    return popUp.get();
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (popUp.isEmpty()) {
+			final MySiblingPopUp popUp = new MySiblingPopUp(toShowAsPopUp, SwingFunctions.getMyFrame(sibling), sibling);
+			this.popUp = Optional.of(popUp);
+			popUp.setVisible(true);
+		} else {
+			final MySiblingPopUp popUp = this.popUp.get();
+			popUp.setVisible(!popUp.isVisible());
+		}
 	}
-    }
+
+	public MySiblingPopUp getPopUp() {
+		if (popUp.isEmpty()) {
+			throw new RuntimeException("Pop Up wasn't created yet");
+		} else {
+			return popUp.get();
+		}
+	}
 
 }

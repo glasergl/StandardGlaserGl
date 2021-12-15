@@ -8,14 +8,14 @@ import standard.implementations.MyTextButton;
 
 public class TestButton {
 
-    public static void main(String[] args) {
-	SwingUtilities.invokeLater(() -> {
-	    String buttonText = "Click me!";
-	    MyTextButton textButton = new MyTextButton(buttonText);
-	    ImageIcon icon = new ImageIcon("src\\test\\resources\\TestIcon.png");
-	    MyIconButton iconButton = new MyIconButton(icon, 100, 100);
-	    TestFrame.showFrameWithComponents(textButton, iconButton);
-	});
-    }
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> {
+			String buttonText = "Click me!";
+			MyTextButton textButton = new MyTextButton(buttonText);
+			ImageIcon icon = new ImageIcon("src\\test\\resources\\TestIcon.png");
+			MyIconButton iconButton = new MyIconButton(icon, 100, 100);
+			TestFrame.showFrameWithComponents(textButton, iconButton);
+		});
+	}
 
 }

@@ -6,10 +6,10 @@ import standard.implementations.MyLabel;
 
 public class TestLabel {
 
-    public static void main(String[] args) {
-	SwingUtilities.invokeLater(() -> {
-	    TestFrame.showFrameWithComponents(new MyLabel("Test1231231"));
-	});
-    }
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> {
+			TestFrame.showFrameWithComponents(new MyLabel("Test1231231"));
+		});
+	}
 
 }
