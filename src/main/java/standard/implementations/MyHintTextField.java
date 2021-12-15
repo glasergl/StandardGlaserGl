@@ -6,13 +6,11 @@ import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Optional;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import complex.UnderlineBorder;
@@ -171,7 +169,7 @@ public class MyHintTextField extends JPanel {
 	@Override
 	public void focusGained(FocusEvent e) {
 	    old = Optional.of(getBorder());
-	    setBorder(new LineBorder(Colors.ofFocus(), 2));
+	    setBorder(new UnderlineBorder(2, Colors.ofFocus()));
 	}
 
 	@Override
