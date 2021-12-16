@@ -13,7 +13,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import complex.UnderlineBorder;
+
+import complex.MyMatteBorder;
 import standard.helper.emptyListenerImplementations.MyFocusListener;
 import standard.settings.Colors;
 import standard.settings.Fonts;
@@ -48,10 +49,9 @@ public class MyHintTextField extends JPanel {
 
 	private void setup() {
 		hintDisplay.setForeground(OF_HINT_TEXT);
-		hintDisplay.setBorder(new EmptyBorder(2, 2, 2, 2));
 
 		textField.setForeground(Colors.ofText());
-		textField.setBorder(new UnderlineBorder(2, Colors.ofText()));
+		textField.setBorder(new MyMatteBorder(2, 2, 0, 2, 0, 0, 2, 0, Colors.ofText()));
 		textField.setOpaque(false);
 		textField.getDocument().addDocumentListener(new HintController());
 		textField.addFocusListener(new FocusBorderPainter());
@@ -169,7 +169,7 @@ public class MyHintTextField extends JPanel {
 		@Override
 		public void focusGained(FocusEvent e) {
 			old = Optional.of(getBorder());
-			setBorder(new UnderlineBorder(2, Colors.ofFocus()));
+			setBorder(new MyMatteBorder(2, 2, 0, 2, 0, 0, 2, 0, Colors.ofFocus()));
 		}
 
 		@Override
