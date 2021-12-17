@@ -1,6 +1,5 @@
 package general;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import javax.swing.JComponent;
@@ -34,11 +33,11 @@ public class TestFrame extends MyFrame {
 		lb4.setBackground(Colors.getGray(4));
 		System.out.println(
 				"" + Colors.getGray(0) + Colors.getGray(1) + Colors.getGray(2) + Colors.getGray(3) + Colors.getGray(4));
-//	add(lb0);
-//	add(lb1);
-//	add(lb2);
-//	add(lb3);
-//	add(lb4);
+		// add(lb0);
+		// add(lb1);
+		// add(lb2);
+		// add(lb3);
+		// add(lb4);
 		add(new MyTextButton("hehehehe"));
 		setSize(500, 500);
 		setLocationRelativeTo(null);
