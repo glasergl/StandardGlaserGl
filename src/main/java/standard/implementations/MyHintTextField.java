@@ -10,10 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
 import complex.MyMatteBorder;
 import standard.helper.emptyListenerImplementations.MyFocusListener;
 import standard.settings.Colors;
