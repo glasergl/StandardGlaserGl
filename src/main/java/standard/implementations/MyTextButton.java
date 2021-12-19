@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import standard.helper.emptyListenerImplementations.MyMouseListener;
 import standard.helper.listeners.CursorChangerOnHover;
@@ -17,24 +20,39 @@ import standard.settings.Fonts;
 
 public class MyTextButton extends JLabel {
 
-    private static final Color BACKGROUND = new Color(210, 210, 210);
-    private static final Color BACKGROUND_WHILE_FOCUSED = new Color(190, 190, 190);
-    private static final Color OF_TEXT = Color.BLACK;
+    private static final Color BACKGROUND = Colors.getGray(4);
+    private static final Color BACKGROUND_WHILE_FOCUSED = Colors.getGray(5);
+    private static final Color OF_TEXT = Colors.ofText();
+    private static final int ADDITIONAL_WIDTH = 25;
+    private static final int ADDITIONAL_HEIGHT = 8;
+    private static final Border STANDARD_BORDER = new CompoundBorder(new LineBorder(Colors.getBlue(1), 3), new EmptyBorder(ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH, ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH));
 
     private final List<ActionListener> actionListeners = new ArrayList<>();
+    private final boolean withBorder;
 
-    public MyTextButton(final String text) {
+    public MyTextButton(final String text, final boolean withBorder) {
 	super(text);
 	if (text.length() == 0) {
 	    throw new IllegalArgumentException("Button text has to contain atleast one character.");
 	}
+	this.withBorder = withBorder;
+	setup();
+    }
+
+    public MyTextButton(final String text) {
+	this(text, true);
+    }
+
+    private void setup() {
 	setOpaque(true);
 	setBackground(BACKGROUND);
 	setForeground(OF_TEXT);
 	setHorizontalAlignment(SwingConstants.CENTER);
 	setVerticalAlignment(SwingConstants.CENTER);
 	setFont(Fonts.standard());
-	setBorder(new LineBorder(Colors.ofText(), 1));
+	if (withBorder) {
+	    setBorder(STANDARD_BORDER);
+	}
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	addMouseListener(new ButtonController());
     }
