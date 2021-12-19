@@ -18,26 +18,21 @@ import javax.swing.event.DocumentListener;
 public class MyHintNumberField extends MyHintTextField {
 
 	public MyHintNumberField(final String hint, final int initialValue) {
-		super(hint);
+		super(hint, String.valueOf(initialValue));
 		textField.getDocument().addDocumentListener(new NumberValidator());
-		setText(String.valueOf(initialValue));
 	}
 
 	public MyHintNumberField(final String hint) {
-		this(hint, -1);
-		setText("");
-	}
-
-	public MyHintNumberField() {
-		this("");
+		super(hint, "");
+		textField.getDocument().addDocumentListener(new NumberValidator());
 	}
 
 	public int getNumber() {
 		return Integer.valueOf(getText());
 	}
 
-	public void setNumber(int day) {
-		setText(String.valueOf(day));
+	public void setNumber(int number) {
+		setText(String.valueOf(number));
 	}
 
 	/**

@@ -1,19 +1,25 @@
 package standard.implementations;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
 import java.util.Optional;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.Border;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import complex.MyMatteBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import standard.helper.emptyListenerImplementations.MyFocusListener;
+import standard.helper.emptyListenerImplementations.MyMouseListener;
+import standard.helper.listeners.CursorChangerOnHover;
 import standard.settings.Colors;
 import standard.settings.Fonts;
 
@@ -26,43 +32,27 @@ import standard.settings.Fonts;
  */
 public class MyHintTextField extends JPanel {
 
-	protected static final Color OF_HINT_TEXT = new Color(127, 127, 127);
-
-	private final JLabel hintDisplay;
+	private static final Border FOCUSED_BORDER = new LineBorder(Colors.ofFocus(), 1);
+	private static final Border UNFOCUSED_BORDER = new LineBorder(Colors.ofText(), 1);
+	private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
+	private static final float HINT_SIZE_FACTOR = 5.0f / 7.0f;
+	private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 20;
+	private static final int LENGTH_OF_STEP_MS = 5;
 
 	protected final String hint;
-	protected final JTextField textField = new JTextField();
+	protected final JTextField textField;
+	private final JLabel hintDisplay;
 
 	public MyHintTextField(final String hint, final String initialContent) {
 		super();
 		this.hint = hint;
+		this.textField = new JTextField(initialContent);
 		this.hintDisplay = new JLabel(hint);
 		setup();
-		textField.setText(initialContent);
 	}
 
 	public MyHintTextField(final String hint) {
 		this(hint, "");
-	}
-
-	private void setup() {
-		hintDisplay.setForeground(OF_HINT_TEXT);
-
-		textField.setForeground(Colors.ofText());
-		textField.setBorder(new MyMatteBorder(2, 2, 0, 2, 0, 0, 2, 0, Colors.ofText()));
-		textField.setOpaque(false);
-		textField.getDocument().addDocumentListener(new HintController());
-		textField.addFocusListener(new FocusBorderPainter());
-
-		setLayout(null);
-		setFont(Fonts.standard());
-		setBackground(Colors.getGray(2));
-		add(textField);
-		add(hintDisplay);
-	}
-
-	public void setColumns(final int columns) {
-		textField.setColumns(columns);
 	}
 
 	public void setText(final String newContent) {
@@ -73,101 +63,99 @@ public class MyHintTextField extends JPanel {
 		return textField.getText();
 	}
 
-	public String getHintText() {
+	public String getHint() {
 		return hint;
 	}
 
-	public void addDocumentListener(final DocumentListener documentListener) {
-		textField.getDocument().addDocumentListener(documentListener);
-	}
-
-	@Override
-	public void setBounds(final int x, final int y, final int width, final int height) {
-		super.setBounds(x, y, width, height);
-		hintDisplay.setBounds(0, 0, width, height);
-		textField.setBounds(0, 0, width, height);
-	}
-
-	@Override
-	public void setFont(final Font newFont) {
-		super.setFont(newFont);
-		if (hintDisplay != null && textField != null) {
-			hintDisplay.setFont(newFont);
-			textField.setFont(newFont);
-		}
+	public void setColumns(final int columns) {
+		textField.setColumns(columns);
+		hintDisplay.setPreferredSize(new Dimension((int) textField.getPreferredSize().getWidth(),
+				(int) hintDisplay.getPreferredSize().getHeight()));
 	}
 
 	@Override
 	public void setBackground(final Color newBackground) {
 		super.setBackground(newBackground);
-		if (hintDisplay != null) {
+		if (textField != null && hintDisplay != null) {
+			textField.setBackground(newBackground);
 			hintDisplay.setBackground(newBackground);
 		}
 	}
 
 	@Override
+	public void setFont(final Font newFont) {
+		super.setFont(newFont);
+		if (textField != null) {
+			textField.setFont(newFont);
+		}
+	}
+
+	@Override
 	public Dimension getPreferredSize() {
-		return textField.getPreferredSize();
+		final Dimension preferredSizeOfTextField = textField.getPreferredSize();
+		final Dimension preferredSizeOfHintDisplay = hintDisplay.getPreferredSize();
+		return new Dimension((int) preferredSizeOfTextField.getWidth(),
+				(int) (preferredSizeOfTextField.getHeight() + preferredSizeOfHintDisplay.getHeight()));
 	}
 
-	@Override
-	public void addFocusListener(final FocusListener toAdd) {
-		textField.addFocusListener(toAdd);
+	private void setup() {
+		setLayout(new BorderLayout());
+		setBackground(Colors.getGray(2));
+		setFont(Fonts.standard());
+		setBorder(UNFOCUSED_BORDER);
+
+		textField.setForeground(Colors.ofText());
+		textField.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField.addFocusListener(new BorderController());
+		textField.addFocusListener(new HintDeactivaterForTextField());
+
+		hintDisplay.setForeground(HINT_TEXT_COLOR);
+		hintDisplay.addMouseListener(new HintActivaterForHintLabel());
+		hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
+
+		showInitialState();
 	}
 
-	@Override
-	public void setBorder(final Border newBorder) {
-		if (textField != null) {
-			textField.setBorder(newBorder);
+	private void showInitialState() {
+		if (textField.getText().length() == 0) {
+			hintDisplay.setFont(textField.getFont());
+			add(hintDisplay, BorderLayout.CENTER);
 		} else {
-			super.setBorder(newBorder);
+			final Font ofTextField = textField.getFont();
+			final Font smallerFont = ofTextField.deriveFont(HINT_SIZE_FACTOR * ofTextField.getSize2D());
+			hintDisplay.setFont(smallerFont);
+			add(hintDisplay, BorderLayout.NORTH);
+			add(textField, BorderLayout.CENTER);
 		}
 	}
 
-	@Override
-	public Border getBorder() {
-		if (textField != null) {
-			return textField.getBorder();
-		} else {
-			return super.getBorder();
+	private void showFocusedState() {
+		remove(hintDisplay);
+		new HintAnimationTransitioner(true);
+		add(hintDisplay, BorderLayout.NORTH);
+		add(textField, BorderLayout.CENTER);
+		revalidate();
+		repaint();
+	}
+
+	private void showUnfocusedState() {
+		if (textField.getText().length() == 0) {
+			remove(textField);
+			remove(hintDisplay);
+			add(hintDisplay, BorderLayout.CENTER);
+			new HintAnimationTransitioner(false);
+			revalidate();
+			repaint();
 		}
 	}
 
-	private class HintController implements DocumentListener {
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			updateHintComponent();
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			updateHintComponent();
-		}
-
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			updateHintComponent();
-		}
-
-		private void updateHintComponent() {
-			if (textField.getText().length() == 0) {
-				hintDisplay.setText(hint);
-			} else {
-				hintDisplay.setText("");
-			}
-		}
-
-	}
-
-	private class FocusBorderPainter extends MyFocusListener {
-
+	private class BorderController extends MyFocusListener {
 		private Optional<Border> old = Optional.empty();
 
 		@Override
 		public void focusGained(FocusEvent e) {
 			old = Optional.of(getBorder());
-			setBorder(new MyMatteBorder(2, 2, 0, 2, 0, 0, 2, 0, Colors.ofFocus()));
+			setBorder(FOCUSED_BORDER);
 		}
 
 		@Override
@@ -177,4 +165,56 @@ public class MyHintTextField extends JPanel {
 		}
 	}
 
+	private class HintActivaterForHintLabel extends MyMouseListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (!textField.isFocusOwner()) {
+				showFocusedState();
+				textField.requestFocusInWindow();
+			}
+		}
+	}
+
+	private class HintDeactivaterForTextField extends MyFocusListener {
+		@Override
+		public void focusLost(FocusEvent e) {
+			showUnfocusedState();
+		}
+	}
+
+	private class HintAnimationTransitioner implements ActionListener {
+
+		private final Timer timer = new Timer(LENGTH_OF_STEP_MS, this);
+		private final Font startFont;
+		private final Font endFont;
+		private final float startFontSize;
+		private final float endFontSize;
+		private int currentTransitionIndex = 1;
+
+		public HintAnimationTransitioner(final boolean fromFocusedToUnfocused) {
+			super();
+			startFont = hintDisplay.getFont();
+			if (fromFocusedToUnfocused) {
+				endFont = textField.getFont().deriveFont(HINT_SIZE_FACTOR * textField.getFont().getSize2D());
+			} else {
+				endFont = textField.getFont();
+			}
+			startFontSize = startFont.getSize2D();
+			endFontSize = endFont.getSize2D();
+			timer.start();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (currentTransitionIndex <= NUMBER_OF_HINT_TRANSITION_STEPS) {
+				final float alpha = (float) currentTransitionIndex / NUMBER_OF_HINT_TRANSITION_STEPS;
+				final float newSize = (1 - alpha) * startFontSize + alpha * endFontSize;
+				final Font newFont = startFont.deriveFont(newSize);
+				hintDisplay.setFont(newFont);
+				currentTransitionIndex++;
+			} else {
+				timer.stop();
+			}
+		}
+	}
 }

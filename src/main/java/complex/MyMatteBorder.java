@@ -43,7 +43,7 @@ public class MyMatteBorder extends AbstractBorder {
 	}
 
 	public MyMatteBorder(final int top, final int left, final int bottom, final int right, final Color color) {
-		this(top, left, bottom, right, top, left, bottom, right, color);
+		this(0, 0, 0, 0, top, left, bottom, right, color);
 	}
 
 	public MyMatteBorder(final int width, final Color color) {

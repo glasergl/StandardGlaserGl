@@ -4,7 +4,6 @@ import general.TestFrame;
 import standard.implementations.MyHintNumberField;
 import standard.implementations.MyHintTextField;
 import standard.implementations.MyTextButton;
-
 public class TestTextField {
 
 	static String initialText = "Hello there";
@@ -18,7 +17,7 @@ public class TestTextField {
 	public static void main(String[] args) {
 		textField.setColumns(20);
 		numberField.setColumns(10);
-		TestFrame.showFrameWithComponents(textField, numberField, new MyTextButton("Change focus"));
+		TestFrame.showFrameWithComponents(numberField, textField, new MyTextButton("Change focus"));
 	}
 
 }
