@@ -63,9 +63,9 @@ public class MyTextField extends JPanel {
     public void setText(final String newContent) {
 	textField.setText(newContent);
 	if (newContent.length() == 0) {
-	    showUnfocusedState();
+	    showUnfocusedState(false);
 	} else {
-	    showFocusedState();
+	    showFocusedState(false);
 	}
     }
 
@@ -128,13 +128,14 @@ public class MyTextField extends JPanel {
 	setBorder(UNFOCUSED_BORDER);
 
 	textField.setForeground(Colors.ofText());
-	textField.setBorder(new EmptyBorder(0, 0, 0, 0));
+	textField.setBorder(new EmptyBorder(0, 1, 0, 0));
 	textField.addFocusListener(new BorderController());
 	textField.addFocusListener(new HintDeactivaterForTextField());
 
 	hintDisplay.setForeground(HINT_TEXT_COLOR);
 	hintDisplay.addMouseListener(new HintActivaterForHintLabel());
 	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
+	hintDisplay.setBorder(new EmptyBorder(0, 1, 0, 0));
 
 	showInitialState();
     }
@@ -152,21 +153,25 @@ public class MyTextField extends JPanel {
 	}
     }
 
-    private void showFocusedState() {
+    private void showFocusedState(final boolean withAnimation) {
 	remove(hintDisplay);
-	new HintAnimationTransitioner(true);
+	if (withAnimation) {
+	    new HintAnimationTransitioner(true);
+	}
 	add(hintDisplay, BorderLayout.NORTH);
 	add(textField, BorderLayout.CENTER);
 	revalidate();
 	repaint();
     }
 
-    private void showUnfocusedState() {
+    private void showUnfocusedState(final boolean withAnimation) {
 	if (textField.getText().length() == 0) {
 	    remove(textField);
 	    remove(hintDisplay);
 	    add(hintDisplay, BorderLayout.CENTER);
-	    new HintAnimationTransitioner(false);
+	    if (withAnimation) {
+		new HintAnimationTransitioner(false);
+	    }
 	    revalidate();
 	    repaint();
 	}
@@ -192,7 +197,7 @@ public class MyTextField extends JPanel {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	    if (!textField.isFocusOwner()) {
-		showFocusedState();
+		showFocusedState(true);
 		textField.requestFocusInWindow();
 	    }
 	}
@@ -201,7 +206,7 @@ public class MyTextField extends JPanel {
     private class HintDeactivaterForTextField extends MyFocusListener {
 	@Override
 	public void focusLost(FocusEvent e) {
-	    showUnfocusedState();
+	    showUnfocusedState(true);
 	}
     }
 
