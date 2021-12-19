@@ -16,25 +16,25 @@ import standard.helper.emptyListenerImplementations.MyMouseListener;
  */
 public class CursorChangerOnHover extends MyMouseListener {
 
-	private final Cursor whileMouseEntered;
-	private Optional<Cursor> whileMouseExited = Optional.empty();
+    private final Cursor whileMouseEntered;
+    private Optional<Cursor> whileMouseExited = Optional.empty();
 
-	public CursorChangerOnHover(final Cursor whileMouseEntered) {
-		super();
-		this.whileMouseEntered = whileMouseEntered;
-	}
+    public CursorChangerOnHover(final Cursor whileMouseEntered) {
+	super();
+	this.whileMouseEntered = whileMouseEntered;
+    }
 
-	@Override
-	public void mouseEntered(final MouseEvent event) {
-		final Component whereTheMouseIsOn = event.getComponent();
-		whileMouseExited = Optional.of(whereTheMouseIsOn.getCursor());
-		whereTheMouseIsOn.setCursor(whileMouseEntered);
-	}
+    @Override
+    public void mouseEntered(final MouseEvent event) {
+	final Component whereTheMouseIsOn = event.getComponent();
+	whileMouseExited = Optional.of(whereTheMouseIsOn.getCursor());
+	whereTheMouseIsOn.setCursor(whileMouseEntered);
+    }
 
-	@Override
-	public void mouseExited(final MouseEvent event) {
-		final Component whichTheMouseLeft = event.getComponent();
-		whichTheMouseLeft.setCursor(whileMouseExited.get());
-	}
+    @Override
+    public void mouseExited(final MouseEvent event) {
+	final Component whichTheMouseLeft = event.getComponent();
+	whichTheMouseLeft.setCursor(whileMouseExited.get());
+    }
 
 }
