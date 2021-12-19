@@ -17,6 +17,8 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentListener;
+
 import standard.helper.emptyListenerImplementations.MyFocusListener;
 import standard.helper.emptyListenerImplementations.MyMouseListener;
 import standard.helper.listeners.CursorChangerOnHover;
@@ -71,6 +73,10 @@ public class MyHintTextField extends JPanel {
 		textField.setColumns(columns);
 		hintDisplay.setPreferredSize(new Dimension((int) textField.getPreferredSize().getWidth(),
 				(int) hintDisplay.getPreferredSize().getHeight()));
+	}
+
+	public void addDocumentListener(final DocumentListener toAdd) {
+		textField.getDocument().addDocumentListener(toAdd);
 	}
 
 	@Override

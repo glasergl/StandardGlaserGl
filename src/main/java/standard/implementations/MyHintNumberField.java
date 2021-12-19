@@ -19,12 +19,12 @@ public class MyHintNumberField extends MyHintTextField {
 
 	public MyHintNumberField(final String hint, final int initialValue) {
 		super(hint, String.valueOf(initialValue));
-		textField.getDocument().addDocumentListener(new NumberValidator());
+		addDocumentListener(new NumberValidator());
 	}
 
 	public MyHintNumberField(final String hint) {
 		super(hint, "");
-		textField.getDocument().addDocumentListener(new NumberValidator());
+		addDocumentListener(new NumberValidator());
 	}
 
 	public int getNumber() {
