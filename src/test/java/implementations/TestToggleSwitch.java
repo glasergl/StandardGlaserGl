@@ -8,7 +8,9 @@ public class TestToggleSwitch {
 
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
-	    TestFrame.showFrameWithComponents(new MyToggleSwitch());
+	    MyToggleSwitch tsUntoggled = new MyToggleSwitch();
+	    MyToggleSwitch tsToggled = new MyToggleSwitch();
+	    TestFrame.showFrameWithComponents(tsUntoggled, tsToggled);
 	});
     }
 

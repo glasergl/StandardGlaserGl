@@ -8,7 +8,8 @@ public class TestLabel {
 
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
-	    TestFrame.showFrameWithComponents(new MyLabel("Test1231231"));
+	    MyLabel lb = new MyLabel("Test12312");
+	    TestFrame.showFrameWithComponents(lb);
 	});
     }
 
