@@ -17,8 +17,8 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.event.DocumentListener;
-import complex.MyMatteBorder;
 import standard.helper.emptyListenerImplementations.MyFocusListener;
 import standard.helper.emptyListenerImplementations.MyMouseListener;
 import standard.helper.listeners.CursorChangerOnHover;
@@ -34,8 +34,8 @@ import standard.settings.Fonts;
  */
 public class MyTextField extends JPanel {
 
-    private static final Border UNFOCUSED_BORDER = new MyMatteBorder(0, 0, 2, 0, Colors.ofText());
-    private static final Border FOCUSED_BORDER = new MyMatteBorder(0, 0, 2, 0, Colors.ofFocus());
+    private static final Border UNFOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofText());
+    private static final Border FOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofFocus());
     private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
     private static final float HINT_SIZE_FACTOR = 5.0f / 7.0f;
     private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 10;
