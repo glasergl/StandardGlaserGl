@@ -1,23 +1,27 @@
 package implementations;
 
 import general.TestFrame;
-import standard.implementations.MyHintNumberField;
-import standard.implementations.MyHintTextField;
-import standard.implementations.MyTextButton;
+import standard.implementations.MyNumberField;
+import standard.implementations.MyTextField;
+
 public class TestTextField {
 
-	static String initialText = "Hello there";
-	static String hint = "Star Wars quote";
-	static MyHintTextField textField = new MyHintTextField(hint, initialText);
+	static MyTextField normalTextField = new MyTextField("With hint", "and initial text");
+	static MyNumberField numberField = new MyNumberField("NumberField", 20);
 
-	static int initialNumber = 5;
-	static String numberHint = "Alter";
-	static MyHintNumberField numberField = new MyHintNumberField(numberHint, initialNumber);
+	static MyTextField withNoInitialText = new MyTextField("No initial text, but with hint");
+	static MyTextField withNoHint = new MyTextField();
+	static MyTextField withoutAnything = new MyTextField();
 
 	public static void main(String[] args) {
-		textField.setColumns(20);
+		normalTextField.setColumns(20);
 		numberField.setColumns(10);
-		TestFrame.showFrameWithComponents(numberField, textField, new MyTextButton("Change focus"));
+
+		withNoInitialText.setColumns(30);
+		withNoHint.setColumns(30);
+		withNoHint.setText("With initial text, but no hint");
+		withoutAnything.setColumns(15);
+		TestFrame.showFrameWithComponents(normalTextField, numberField, withNoInitialText, withNoHint, withoutAnything);
 	}
 
 }

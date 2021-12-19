@@ -15,14 +15,14 @@ import javax.swing.event.DocumentListener;
  * @author Gabriel Glaser
  * @version 17.11.2021
  */
-public class MyHintNumberField extends MyHintTextField {
+public class MyNumberField extends MyTextField {
 
-	public MyHintNumberField(final String hint, final int initialValue) {
+	public MyNumberField(final String hint, final int initialValue) {
 		super(hint, String.valueOf(initialValue));
 		addDocumentListener(new NumberValidator());
 	}
 
-	public MyHintNumberField(final String hint) {
+	public MyNumberField(final String hint) {
 		super(hint, "");
 		addDocumentListener(new NumberValidator());
 	}
