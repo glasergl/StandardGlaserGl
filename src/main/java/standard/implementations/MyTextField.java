@@ -13,6 +13,7 @@ import java.util.Optional;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -37,7 +38,7 @@ public class MyTextField extends JPanel {
     private static final Border FOCUSED_BORDER = new MyMatteBorder(0, 0, 2, 0, Colors.ofFocus());
     private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
     private static final float HINT_SIZE_FACTOR = 5.0f / 7.0f;
-    private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 20;
+    private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 10;
     private static final int LENGTH_OF_STEP_MS = 5;
 
     protected final String hint;
@@ -217,6 +218,8 @@ public class MyTextField extends JPanel {
 	private final Font endFont;
 	private final float startFontSize;
 	private final float endFontSize;
+	private final boolean fromFocusedToUnfocused;
+
 	private int currentTransitionIndex = 1;
 
 	public HintAnimationTransitioner(final boolean fromFocusedToUnfocused) {
@@ -229,6 +232,7 @@ public class MyTextField extends JPanel {
 	    }
 	    startFontSize = startFont.getSize2D();
 	    endFontSize = endFont.getSize2D();
+	    this.fromFocusedToUnfocused = fromFocusedToUnfocused;
 	    timer.start();
 	}
 
@@ -239,6 +243,9 @@ public class MyTextField extends JPanel {
 		final float newSize = (1 - alpha) * startFontSize + alpha * endFontSize;
 		final Font newFont = startFont.deriveFont(newSize);
 		hintDisplay.setFont(newFont);
+		if (NUMBER_OF_HINT_TRANSITION_STEPS / 2 <= currentTransitionIndex) {
+		    hintDisplay.setVerticalAlignment(fromFocusedToUnfocused ? SwingConstants.TOP : SwingConstants.CENTER);
+		}
 		currentTransitionIndex++;
 	    } else {
 		timer.stop();
