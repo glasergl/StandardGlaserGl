@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
-
 import container.MyFrame;
 
 /**
@@ -14,12 +13,14 @@ import container.MyFrame;
  * programs.
  *
  * @author Gabriel Glaser
- * @version 16.11.2021
+ * @version 20.12.2021
  */
 public final class SwingFunctions {
 
     /**
-     * Loads an image while the whole program being stored in a .jar-File.
+     * Function which Loads an Image.
+     * 
+     * The function works while the programm is packed in a .jar, too.
      * 
      * @param imageFileName
      * @return The desired Image.
@@ -33,6 +34,11 @@ public final class SwingFunctions {
 	}
     }
 
+    /**
+     * 
+     * @param toGetFrameOf
+     * @return The Window casted to MyFrame of the given JComponent.
+     */
     public static MyFrame getMyFrame(final JComponent toGetFrameOf) {
 	final Window window = SwingUtilities.windowForComponent(toGetFrameOf);
 	if (!(window instanceof MyFrame)) {

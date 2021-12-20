@@ -1,10 +1,10 @@
 package container;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-
 import settings.Colors;
 
 /**
@@ -13,30 +13,51 @@ import settings.Colors;
  * easier.
  *
  * @author Gabriel Glaser
- * @version 29.11.2021
+ * @version 20.12.2021
  */
 public class JPanelFactory {
 
     private static final Color STANDARD_BACKGROUND = Colors.getGray(0);
+    private static final LayoutManager STANDARD_LAYOUT_MANAGER = new FlowLayout(FlowLayout.LEFT, 5, 5);
 
-    public static JPanel create(final LayoutManager layout, final Color background, final JComponent... componentsToAdd) {
-	final JPanel panel = new JPanel(layout);
-	panel.setBackground(background);
-	for (final JComponent toAdd : componentsToAdd) {
-	    panel.add(toAdd);
+    /**
+     * Creates a JPanel with the given LayoutManager and background and adds the
+     * given JComponents in their order to it.
+     * 
+     * @param layout
+     * @param background
+     * @param jComponentsToAdd
+     * @return The created JPanel.
+     */
+    public static JPanel create(final LayoutManager layout, final Color background, final JComponent... jComponentsToAdd) {
+	final JPanel jPanel = new JPanel(layout);
+	jPanel.setBackground(background);
+	for (final JComponent toAdd : jComponentsToAdd) {
+	    jPanel.add(toAdd);
 	}
-	return panel;
+	return jPanel;
     }
 
     /**
-     * Sets the background to Colors.getGray(0).
+     * Creates a JPanel with the given LayoutManager and adds the given JComponent
+     * in their order to it.
      * 
      * @param layout
-     * @param components
-     * @return
+     * @param jComponents
+     * @return The created JPanel.
      */
-    public static JPanel create(final LayoutManager layout, final JComponent... components) {
-	return create(layout, STANDARD_BACKGROUND, components);
+    public static JPanel create(final LayoutManager layout, final JComponent... jComponents) {
+	return create(layout, STANDARD_BACKGROUND, jComponents);
+    }
+
+    /**
+     * Creates a JPanel and adds the given JComponent in their order to it.
+     * 
+     * @param jComponents
+     * @return The created JPanel.
+     */
+    public static JPanel create(final JComponent... jComponents) {
+	return create(STANDARD_LAYOUT_MANAGER, jComponents);
     }
 
 }

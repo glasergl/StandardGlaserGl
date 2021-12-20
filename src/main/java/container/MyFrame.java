@@ -2,19 +2,19 @@ package container;
 
 import java.awt.Color;
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import general.SwingFunctions;
 import settings.Colors;
 
 /**
  * Top-Level container with standard properties to prevent boiler-plate code.
  *
  * @author Gabriel Glaser
- * @version 16.11.2021
+ * @version 20.12.2021
  */
 public class MyFrame extends JFrame {
 
-    private static final ImageIcon STANDARD_ICON = new ImageIcon("src\\main\\resources\\StandardIcon.png");
+    private static final Image STANDARD_ICON = SwingFunctions.getImage("StandardIcon.png", MyFrame.class);
 
     public MyFrame(final String title, final Image icon) {
 	super(title);
@@ -23,7 +23,7 @@ public class MyFrame extends JFrame {
     }
 
     public MyFrame(final String title) {
-	this(title, STANDARD_ICON.getImage());
+	this(title, STANDARD_ICON);
     }
 
     public MyFrame() {

@@ -7,7 +7,7 @@ import java.awt.Color;
  * supported.
  *
  * @author Gabriel Glaser
- * @version 16.11.2021
+ * @version 20.12.2021
  */
 public final class Colors {
 
@@ -23,12 +23,11 @@ public final class Colors {
 
     /**
      * Calculates a color depending on darkmode or lightmode with the given
-     * intensity.
+     * brightness.
      * 
-     * @param brightness - the number of the background depths, the higher the
-     *                   number, the brighter or darker (depends on darkmode or
-     *                   lightmode)
-     * @return Color with depth of background.
+     * @param brightness of the returned gray (depends on darkmode or lightmode),
+     *                   has to be in [0,4]
+     * @return Gray with the given brightness.
      */
     public static Color getGray(final int brightness) {
 	if (brightness < 0 || brightness > 5) {
@@ -38,6 +37,14 @@ public final class Colors {
 	return new Color(rgbEntry, rgbEntry, rgbEntry);
     }
 
+    /**
+     * Calculates a version of blue depending on darkmode or lightmode with the
+     * given brightness.
+     * 
+     * @param brightness of the returned blue (depends on darkmode or lightmode),
+     *                   has to be in [0, 2].
+     * @return Blue with the given brightness.
+     */
     public static Color getBlue(final int brightness) {
 	if (brightness == 0) {
 	    return darkMode ? new Color(0, 72, 255) : new Color(79, 129, 255);

@@ -3,7 +3,6 @@ package eventListener;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
 import javax.swing.JComponent;
-
 import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
 import myComponent.MySiblingPopUp;
@@ -12,10 +11,10 @@ import myComponent.MySiblingPopUp;
  * MouseListener which changes the visibility of the pop up on click.
  * 
  * @author Gabriel Glaser
- * @version 5.12.2021
+ * @version 20.12.2021
  */
 public class SiblingPopUpDisplayerOnClick extends MyMouseListener {
-
+//TODO add constructor to set direction.
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;
 

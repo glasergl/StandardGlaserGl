@@ -2,13 +2,13 @@ package myComponent;
 
 import java.awt.Cursor;
 import javax.swing.JCheckBox;
-
 import eventListener.CursorChangerOnHover;
 import settings.Colors;
 import settings.Fonts;
 
 public class MyCheckBox extends JCheckBox {
-
+//TODO adaptive background for parent.
+//TODO fully custom implementation.
     public MyCheckBox(final String title, final boolean shouldBeSelected) {
 	super(title, shouldBeSelected);
 	setForeground(Colors.ofText());

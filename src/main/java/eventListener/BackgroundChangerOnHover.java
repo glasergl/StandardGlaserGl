@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
-
 import eventListener.emptyImplementation.MyMouseListener;
 
 /**
@@ -13,7 +12,7 @@ import eventListener.emptyImplementation.MyMouseListener;
  * the area of the component.
  *
  * @author Gabriel Glaser
- * @version 17.11.2021
+ * @version 20.12.2021
  */
 public class BackgroundChangerOnHover extends MyMouseListener {
 
@@ -26,15 +25,15 @@ public class BackgroundChangerOnHover extends MyMouseListener {
     }
 
     @Override
-    public void mouseEntered(final MouseEvent event) {
-	final Component whoGotHoveredOn = event.getComponent();
+    public void mouseEntered(final MouseEvent mouseEvent) {
+	final Component whoGotHoveredOn = mouseEvent.getComponent();
 	whileMouseExited = Optional.of(whoGotHoveredOn.getBackground());
 	whoGotHoveredOn.setBackground(whileMouseEntered);
     }
 
     @Override
-    public void mouseExited(final MouseEvent event) {
-	final Component whoLostHover = event.getComponent();
+    public void mouseExited(final MouseEvent mouseEvent) {
+	final Component whoLostHover = mouseEvent.getComponent();
 	whoLostHover.setBackground(whileMouseExited.get());
     }
 

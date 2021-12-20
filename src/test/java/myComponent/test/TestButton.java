@@ -2,7 +2,6 @@ package myComponent.test;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
-
 import container.test.TestFrame;
 import myComponent.MyIconButton;
 import myComponent.MyTextButton;

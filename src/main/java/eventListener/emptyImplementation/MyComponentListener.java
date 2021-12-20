@@ -7,24 +7,24 @@ import java.awt.event.ComponentListener;
  * Empty implementation of ComponentListener.
  *
  * @author Gabriel Glaser
- * @version 05.12.2021
+ * @version 20.12.2021
  */
 public class MyComponentListener implements ComponentListener {
 
     @Override
-    public void componentResized(ComponentEvent e) {
+    public void componentResized(final ComponentEvent componentEvent) {
     }
 
     @Override
-    public void componentMoved(ComponentEvent e) {
+    public void componentMoved(final ComponentEvent componentEvent) {
     }
 
     @Override
-    public void componentShown(ComponentEvent e) {
+    public void componentShown(final ComponentEvent componentEvent) {
     }
 
     @Override
-    public void componentHidden(ComponentEvent e) {
+    public void componentHidden(final ComponentEvent componentEvent) {
     }
 
 }

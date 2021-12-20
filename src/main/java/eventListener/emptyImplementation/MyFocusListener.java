@@ -7,16 +7,16 @@ import java.awt.event.FocusListener;
  * Empty implementation of FocusListener.
  *
  * @author Gabriel Glaser
- * @version 05.12.2021
+ * @version 20.12.2021
  */
 public class MyFocusListener implements FocusListener {
 
     @Override
-    public void focusGained(FocusEvent e) {
+    public void focusGained(final FocusEvent focusEvent) {
     }
 
     @Override
-    public void focusLost(FocusEvent e) {
+    public void focusLost(final FocusEvent focusEvent) {
     }
 
 }

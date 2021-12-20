@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import settings.Colors;

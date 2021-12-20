@@ -1,7 +1,6 @@
 package myComponent.test;
 
 import javax.swing.SwingUtilities;
-
 import container.test.TestFrame;
 import myComponent.MyCheckBox;
 

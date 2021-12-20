@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
-
 import eventListener.emptyImplementation.MyMouseListener;
 
 /**
@@ -13,7 +12,7 @@ import eventListener.emptyImplementation.MyMouseListener;
  * exits the area.
  * 
  * @author Gabriel Glaser
- * @version 17.11.2021
+ * @version 20.12.2021
  */
 public class CursorChangerOnHover extends MyMouseListener {
 
@@ -26,15 +25,15 @@ public class CursorChangerOnHover extends MyMouseListener {
     }
 
     @Override
-    public void mouseEntered(final MouseEvent event) {
-	final Component whereTheMouseIsOn = event.getComponent();
+    public void mouseEntered(final MouseEvent mouseEvent) {
+	final Component whereTheMouseIsOn = mouseEvent.getComponent();
 	whileMouseExited = Optional.of(whereTheMouseIsOn.getCursor());
 	whereTheMouseIsOn.setCursor(whileMouseEntered);
     }
 
     @Override
-    public void mouseExited(final MouseEvent event) {
-	final Component whichTheMouseLeft = event.getComponent();
+    public void mouseExited(final MouseEvent mouseEvent) {
+	final Component whichTheMouseLeft = mouseEvent.getComponent();
 	whichTheMouseLeft.setCursor(whileMouseExited.get());
     }
 

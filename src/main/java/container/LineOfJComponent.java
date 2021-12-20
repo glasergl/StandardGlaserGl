@@ -12,14 +12,14 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import entities.Alignment;
+import entity.Alignment;
 
 /**
  * Class which represents a List of JComponents, which are placed from left to
  * right or from top to bottom.
  * 
  * @author Gabriel Glaser
- * @version 16.11.2021
+ * @version 20.12.2021
  */
 public final class LineOfJComponent extends JPanel {
 

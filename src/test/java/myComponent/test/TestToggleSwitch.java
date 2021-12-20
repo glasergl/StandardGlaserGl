@@ -1,7 +1,7 @@
 package myComponent.test;
 
+import java.awt.Dimension;
 import javax.swing.SwingUtilities;
-
 import container.test.TestFrame;
 import myComponent.MyToggleSwitch;
 
@@ -11,6 +11,8 @@ public class TestToggleSwitch {
 	SwingUtilities.invokeLater(() -> {
 	    MyToggleSwitch tsUntoggled = new MyToggleSwitch();
 	    MyToggleSwitch tsToggled = new MyToggleSwitch();
+	    tsUntoggled.setPreferredSize(new Dimension(200, 100));
+	    tsToggled.setPreferredSize(new Dimension(200, 100));
 	    TestFrame.showFrameWithComponents(tsUntoggled, tsToggled);
 	});
     }

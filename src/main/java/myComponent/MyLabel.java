@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.Icon;
 import javax.swing.JLabel;
-
 import settings.Colors;
 import settings.Fonts;
 

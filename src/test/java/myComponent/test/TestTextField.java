@@ -1,7 +1,6 @@
 package myComponent.test;
 
 import javax.swing.SwingUtilities;
-
 import container.test.TestFrame;
 import myComponent.MyNumberField;
 import myComponent.MyTextField;
@@ -22,7 +21,7 @@ public class TestTextField {
 	    withNoHint.setColumns(30);
 	    withNoHint.setText("With initial text, but no hint");
 	    withoutAnything.setColumns(15);
-	    
+
 	    TestFrame.showFrameWithComponents(normalTextField, numberField, withNoInitialText, withNoHint, withoutAnything);
 	});
     }

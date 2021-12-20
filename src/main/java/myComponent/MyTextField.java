@@ -19,7 +19,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.DocumentListener;
-
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyFocusListener;
 import eventListener.emptyImplementation.MyMouseListener;
@@ -31,10 +30,11 @@ import settings.Fonts;
  * there is no textinput, yet.
  *
  * @author Gabriel Glaser
- * @version 17.11.2021
+ * @version 20.12.2021
  */
 public class MyTextField extends JPanel {
-
+    // TODO getText(hasToHaveAValue: boolean) -> error
+    // TODO reduce height
     private static final Border UNFOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofText());
     private static final Border FOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofFocus());
     private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);

@@ -1,10 +1,9 @@
 package border.test;
 
 import javax.swing.SwingUtilities;
-
 import border.PointingBorder;
 import container.test.TestFrame;
-import entities.CelestialDirection;
+import entity.CelestialDirection;
 import myComponent.MyLabel;
 
 public class TestPointingBorder {

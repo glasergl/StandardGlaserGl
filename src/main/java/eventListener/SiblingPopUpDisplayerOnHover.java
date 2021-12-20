@@ -3,7 +3,6 @@ package eventListener;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
 import javax.swing.JComponent;
-
 import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
 import myComponent.MySiblingPopUp;
@@ -13,10 +12,10 @@ import myComponent.MySiblingPopUp;
  * component this MouseListener is added to.
  * 
  * @author Gabriel Glaser
- * @version 7.11.2021
+ * @version 20.12.2021
  */
 public class SiblingPopUpDisplayerOnHover extends MyMouseListener {
-
+// TODO add constructor to set direction.
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;
 

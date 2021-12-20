@@ -1,7 +1,7 @@
 package container.test;
 
+import java.awt.Dimension;
 import javax.swing.SwingUtilities;
-
 import container.RowOfJComponent;
 import myComponent.MyLabel;
 
@@ -29,6 +29,8 @@ public class TestRowOfJComponent {
 
 	    row.addToRight(right1);
 	    row.addToRight(right2);
+
+	    row.setPreferredSize(new Dimension(800, row.getPreferredSize().height));
 
 	    TestFrame.showFrameWithComponents(row);
 	});

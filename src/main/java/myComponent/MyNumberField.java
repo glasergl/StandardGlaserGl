@@ -2,21 +2,21 @@ package myComponent;
 
 import java.awt.Color;
 import java.util.Optional;
-
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * TextField which changes the border when it doesn't contain a number or is
- * empty.
+ * TextField which changes the border to a red border when it doesn't contain a
+ * number and isn't empty.
  * 
  * @author Gabriel Glaser
- * @version 17.11.2021
+ * @version 20.12.2021
  */
 public class MyNumberField extends MyTextField {
-
+    // TODO prevent reading non numbers.
+    // TODO fix border bug
     public MyNumberField(final String hint, final int initialValue) {
 	super(hint, String.valueOf(initialValue));
 	addDocumentListener(new NumberValidator());

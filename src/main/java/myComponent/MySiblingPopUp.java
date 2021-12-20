@@ -3,23 +3,21 @@ package myComponent;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
-
 import javax.swing.JComponent;
 import javax.swing.JWindow;
-
 import border.PointingBorder;
 import container.MyFrame;
-import entities.CelestialDirection;
+import entity.CelestialDirection;
 import eventListener.emptyImplementation.MyComponentListener;
 
 /**
  * This class allows to display a component relative to an sibling.
  * 
  * @author Gabriel Glaser
- * @version 05.12.2021
+ * @version 20.12.2021
  */
 public class MySiblingPopUp extends JWindow {
-
+//TODO add that the popup is always within the window bounds.
     private static final CelestialDirection STANDARD_RELATIVE_DIRECTION_OF_POP_UP = CelestialDirection.SOUTH;
     private static final int STANDARD_X_LOCATION_OFFSET = 0;
     private static final int STANDARD_Y_LOCATION_OFFSET = -3;
@@ -47,33 +45,11 @@ public class MySiblingPopUp extends JWindow {
 	this(toShowAsPopUp, STANDARD_RELATIVE_DIRECTION_OF_POP_UP, STANDARD_X_LOCATION_OFFSET, STANDARD_Y_LOCATION_OFFSET, owner, sibling);
     }
 
-    public Point getLocationOfPopUp() {
-	return getLocationRelativeToSibling();
-    }
-
-    public void updateLocation() {
-	setLocation(getLocationOfPopUp());
-    }
-
-    @Override
-    public void setVisible(final boolean shouldBeVisible) {
-	super.setVisible(shouldBeVisible);
-	updateLocation();
-    }
-
-    private void setup() {
-	setBackground(new Color(0, 0, 0, 0));
-	toShowAsPopUp.setBorder(new PointingBorder(relativeDirectionOfPopUp.getOpposite(), toShowAsPopUp));
-	setSize((int) toShowAsPopUp.getPreferredSize().getWidth(), (int) toShowAsPopUp.getPreferredSize().getHeight());
-	add(toShowAsPopUp);
-	owner.addComponentListener(new PopUpMoverOnMove());
-    }
-
     /**
      * @return The location relative to the sibling by considering the relative
      *         direction to sibling and the offsets.
      */
-    private Point getLocationRelativeToSibling() {
+    private Point getLocationOfPopUp() {
 	final Point locationOfSibling = sibling.getLocationOnScreen();
 	final int xOfToListenForHovers = (int) locationOfSibling.getX();
 	final int yOfToListenForHovers = (int) locationOfSibling.getY();
@@ -95,6 +71,24 @@ public class MySiblingPopUp extends JWindow {
 	    y -= heightDifference / 2;
 	}
 	return new Point(x + xOffset, y + yOffset);
+    }
+
+    public void updateLocation() {
+	setLocation(getLocationOfPopUp());
+    }
+
+    @Override
+    public void setVisible(final boolean shouldBeVisible) {
+	super.setVisible(shouldBeVisible);
+	updateLocation();
+    }
+
+    private void setup() {
+	setBackground(new Color(0, 0, 0, 0));
+	toShowAsPopUp.setBorder(new PointingBorder(relativeDirectionOfPopUp.getOpposite(), toShowAsPopUp));
+	setSize(toShowAsPopUp.getPreferredSize().width, toShowAsPopUp.getPreferredSize().height);
+	add(toShowAsPopUp);
+	owner.addComponentListener(new PopUpMoverOnMove());
     }
 
     private class PopUpMoverOnMove extends MyComponentListener {

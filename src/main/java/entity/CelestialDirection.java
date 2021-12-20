@@ -1,4 +1,4 @@
-package entities;
+package entity;
 
 public enum CelestialDirection {
     NORTH, EAST, SOUTH, WEST;

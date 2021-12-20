@@ -12,7 +12,7 @@ import eventListener.emptyImplementation.MyFocusListener;
  * and changes it back if the component lost the focus.
  *
  * @author Gabriel Glaser
- * @version 17.11.2021
+ * @version 20.12.2021
  */
 public class BackgroundChangerOnFocus extends MyFocusListener {
 
@@ -25,15 +25,15 @@ public class BackgroundChangerOnFocus extends MyFocusListener {
     }
 
     @Override
-    public void focusGained(final FocusEvent event) {
-	final Component whoGainedFocus = event.getComponent();
+    public void focusGained(final FocusEvent focusEvent) {
+	final Component whoGainedFocus = focusEvent.getComponent();
 	whileNotFocused = Optional.of(whoGainedFocus.getBackground());
 	whoGainedFocus.setBackground(whileFocused);
     }
 
     @Override
-    public void focusLost(final FocusEvent event) {
-	final Component whoLostFocus = event.getComponent();
+    public void focusLost(final FocusEvent focusEvent) {
+	final Component whoLostFocus = focusEvent.getComponent();
 	whoLostFocus.setBackground(whileNotFocused.get());
     }
 
