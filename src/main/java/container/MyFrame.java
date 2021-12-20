@@ -2,8 +2,8 @@ package container;
 
 import java.awt.Color;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
 import settings.Colors;
 
 /**
@@ -14,6 +14,8 @@ import settings.Colors;
  */
 public class MyFrame extends JFrame {
 
+    private static final ImageIcon STANDARD_ICON = new ImageIcon("src\\main\\resources\\StandardIcon.png");
+
     public MyFrame(final String title, final Image icon) {
 	super(title);
 	setIconImage(icon);
@@ -21,7 +23,7 @@ public class MyFrame extends JFrame {
     }
 
     public MyFrame(final String title) {
-	this(title, null);
+	this(title, STANDARD_ICON.getImage());
     }
 
     public MyFrame() {
