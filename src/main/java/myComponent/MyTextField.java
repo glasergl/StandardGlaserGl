@@ -35,6 +35,7 @@ import settings.Fonts;
 public class MyTextField extends JPanel {
     // TODO getText(hasToHaveAValue: boolean) -> error
     // TODO reduce height
+    // TODO x Button to delete content.
     private static final Border UNFOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofText());
     private static final Border FOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofFocus());
     private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
