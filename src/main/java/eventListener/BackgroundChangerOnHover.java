@@ -8,11 +8,11 @@ import eventListener.emptyImplementation.MyMouseListener;
 
 /**
  * This MouseListener changes the background of the component this is added to
- * when the mouse entered the component and changes it back if the mosue exits
+ * when the mouse entered the component and changes it back if the mouse exits
  * the area of the component.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 23.12.2021
  */
 public class BackgroundChangerOnHover extends MyMouseListener {
 
