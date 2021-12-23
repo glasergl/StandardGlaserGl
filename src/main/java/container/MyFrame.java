@@ -13,7 +13,7 @@ import settings.Colors;
  * @version 20.12.2021
  */
 public class MyFrame extends JFrame {
-
+//TODO setVisible(false) to all popups if one getComponents() gets focus.
     private static final Image STANDARD_ICON = SwingFunctions.getImage("StandardIcon.png", MyFrame.class);
 
     public MyFrame(final String title, final Image icon) {
