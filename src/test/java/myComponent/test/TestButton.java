@@ -1,5 +1,7 @@
 package myComponent.test;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import container.test.TestFrame;
@@ -10,11 +12,14 @@ public class TestButton {
 
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
-	    String buttonText = "Click me!";
-	    MyTextButton textButton = new MyTextButton(buttonText);
+	    MyTextButton textButton = new MyTextButton("Click me!");
 	    ImageIcon icon = new ImageIcon("src\\test\\resources\\TestIcon.png");
 	    MyIconButton iconButton = new MyIconButton(icon, 100, 100);
-	    TestFrame.showFrameWithComponents(textButton, iconButton);
+	    MyTextButton textButton1 = new MyTextButton("Click me with other colors!");
+	    textButton1.setBackground(Color.RED);
+	    textButton1.setBackgroundWhileMouseHovered(Color.GREEN);
+	    textButton1.setTextColorWhileMouseHovered(Color.WHITE);
+	    TestFrame.showFrameWithComponents(textButton, textButton1, iconButton);
 	});
     }
 
