@@ -9,9 +9,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
@@ -36,6 +42,7 @@ public class MyCheckBox extends JPanel {
 
     private final Check check = new Check();
     private final JLabel title = new JLabel();
+    private final List<ChangeListener> changeListeners = new ArrayList<>();
 
     private Color checkColor = STANDARD_COLOR_OF_CHECK;
     private Color checkBackground = STANDARD_CHECK_BACKGROUND;
@@ -83,6 +90,10 @@ public class MyCheckBox extends JPanel {
 	SwingFunctions.updateJComponent(check);
     }
 
+    public void addChangeListener(final ChangeListener toAdd) {
+	changeListeners.add(toAdd);
+    }
+
     @Override
     public void setFont(final Font newFont) {
 	super.setFont(newFont);
@@ -118,6 +129,10 @@ public class MyCheckBox extends JPanel {
 	    isSelected = !isSelected;
 	    revalidate();
 	    repaint();
+	    final ChangeEvent changeEvent = new ChangeEvent(MyCheckBox.this);
+	    for (final ChangeListener changeListener : changeListeners) {
+		changeListener.stateChanged(changeEvent);
+	    }
 	}
 
 	@Override
