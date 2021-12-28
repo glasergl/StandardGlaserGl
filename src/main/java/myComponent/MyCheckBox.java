@@ -1,25 +1,172 @@
 package myComponent;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
-import javax.swing.JCheckBox;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import eventListener.CursorChangerOnHover;
+import eventListener.emptyImplementation.MyMouseListener;
+import general.SwingFunctions;
 import settings.Colors;
 import settings.Fonts;
 
-public class MyCheckBox extends JCheckBox {
-//TODO adaptive background for parent.
-//TODO fully custom implementation.
-    public MyCheckBox(final String title, final boolean shouldBeSelected) {
-	super(title, shouldBeSelected);
-	setForeground(Colors.ofText());
-	setBackground(Colors.getGray(2));
-	setFocusPainted(false);
-	setFont(Fonts.standard());
-	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
+/**
+ * Custom CheckBox implementation which adapts to the parents background.
+ *
+ * @author Gabriel Glaser
+ * @version 28.12.2021
+ */
+public class MyCheckBox extends JPanel {
+
+    private static final boolean STANDARD_IS_SELECTED = false;
+    private static final int DISTANCE_BETWEEN_CHECK_AND_TEXT = 5;
+    private static final Color STANDARD_COLOR_OF_CHECK = Color.BLACK;
+    private static final Color STANDARD_CHECK_BACKGROUND = Colors.getGray(1);
+    private static final Color STANDARD_CHECK_BACKGROUND_WHILE_HOVERED = Colors.getGray(3);
+    private static final Color STANDARD_CHECK_BORDER_COLOR = STANDARD_COLOR_OF_CHECK;
+    private static final int CHECK_BORDER_THICKNESS = 1;
+
+    private final Check check = new Check();
+    private final JLabel title = new JLabel();
+
+    private Color checkColor = STANDARD_COLOR_OF_CHECK;
+    private Color checkBackground = STANDARD_CHECK_BACKGROUND;
+    private Color checkBackgroundWhileHovered = STANDARD_CHECK_BACKGROUND_WHILE_HOVERED;
+    private Color checkBorderColor = STANDARD_CHECK_BORDER_COLOR;
+    private boolean isSelected;
+
+    public MyCheckBox(final String title, final boolean isSelected) {
+	super(new BorderLayout(DISTANCE_BETWEEN_CHECK_AND_TEXT, 0));
+	this.isSelected = isSelected;
+	this.title.setText(title);
+	setup();
     }
 
     public MyCheckBox(final String title) {
-	this(title, false);
+	this(title, STANDARD_IS_SELECTED);
+    }
+
+    public boolean isSelected() {
+	return isSelected;
+    }
+
+    public void setSelected(final boolean isSelected) {
+	this.isSelected = isSelected;
+	SwingFunctions.updateJComponent(check);
+    }
+
+    public void setColorOfCheck(final Color checkColor) {
+	this.checkColor = checkColor;
+	SwingFunctions.updateJComponent(check);
+    }
+
+    public void setBackgroundOfCheck(final Color checkBackground) {
+	this.checkBackground = checkBackground;
+	SwingFunctions.updateJComponent(check);
+    }
+
+    public void setBackgroundOfCheckWhileHovered(final Color checkBackgroundWhileHovered) {
+	this.checkBackgroundWhileHovered = checkBackgroundWhileHovered;
+	SwingFunctions.updateJComponent(check);
+    }
+
+    public void setBorderColorOfCheck(final Color checkBorderColor) {
+	this.checkBorderColor = checkBorderColor;
+	SwingFunctions.updateJComponent(check);
+    }
+
+    @Override
+    public void setFont(final Font newFont) {
+	super.setFont(newFont);
+	if (title != null) {
+	    title.setFont(newFont);
+	}
+    }
+
+    /**
+     * Sets the background to the same background of the parent and then paints it.
+     * 
+     * @param context
+     */
+    @Override
+    public void paintComponent(final Graphics context) {
+	final Container parent = getParent();
+	setBackground(parent.getBackground());
+	super.paintComponent(context);
+    }
+
+    private void setup() {
+	setFont(Fonts.standard());
+	check.setBackground(checkBackground);
+	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
+	addMouseListener(new CheckBoxController());
+	add(check, BorderLayout.WEST);
+	add(title, BorderLayout.EAST);
+    }
+
+    private final class CheckBoxController extends MyMouseListener {
+	@Override
+	public void mouseClicked(final MouseEvent mouseEvent) {
+	    isSelected = !isSelected;
+	    revalidate();
+	    repaint();
+	}
+
+	@Override
+	public void mouseEntered(final MouseEvent mouseEvent) {
+	    check.setBackground(checkBackgroundWhileHovered);
+	}
+
+	@Override
+	public void mouseExited(final MouseEvent mouseEvent) {
+	    check.setBackground(checkBackground);
+	}
+    }
+
+    private final class Check extends JPanel {
+
+	public Check() {
+	    super();
+	    setBorder(new LineBorder(checkBorderColor, CHECK_BORDER_THICKNESS));
+	}
+
+	@Override
+	public void paintComponent(final Graphics context) {
+	    SwingFunctions.setAntialiasing(context, true);
+	    super.paintComponent(context);
+	    if (isSelected) {
+		context.setColor(checkColor);
+		context.fillPolygon(calculateCheck());
+	    }
+	}
+
+	@Override
+	public Dimension getPreferredSize() {
+	    final Dimension preferredSizeOfTitle = title.getPreferredSize();
+	    return new Dimension(preferredSizeOfTitle.height, preferredSizeOfTitle.height);
+	}
+
+	private Polygon calculateCheck() {
+	    final Polygon check = new Polygon();
+	    final Dimension preferredSize = getPreferredSize();
+	    final int width = preferredSize.width;
+	    final int height = preferredSize.height;
+	    check.addPoint((int) (0.434 * width), (int) (0.85 * height));
+	    check.addPoint((int) (0.96 * width), (int) (0.13 * height));
+	    check.addPoint((int) (0.882 * width), (int) (0.078 * height));
+	    check.addPoint((int) (0.434 * width), (int) (0.706 * height));
+	    check.addPoint((int) (0.132 * width), (int) (0.386 * height));
+	    check.addPoint((int) (0.07 * width), (int) (0.436 * height));
+	    return check;
+	}
     }
 
 }
