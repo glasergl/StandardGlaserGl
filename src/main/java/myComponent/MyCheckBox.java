@@ -35,7 +35,7 @@ public class MyCheckBox extends JPanel {
     private static final boolean STANDARD_IS_SELECTED = false;
     private static final int DISTANCE_BETWEEN_CHECK_AND_TEXT = 5;
     private static final Color STANDARD_COLOR_OF_CHECK = Color.BLACK;
-    private static final Color STANDARD_CHECK_BACKGROUND = Colors.getGray(1);
+    private static final Color STANDARD_CHECK_BACKGROUND = Colors.getGray(2);
     private static final Color STANDARD_CHECK_BACKGROUND_WHILE_HOVERED = Colors.getGray(3);
     private static final Color STANDARD_CHECK_BORDER_COLOR = STANDARD_COLOR_OF_CHECK;
     private static final int CHECK_BORDER_THICKNESS = 1;
