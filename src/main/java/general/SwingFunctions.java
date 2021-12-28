@@ -1,10 +1,16 @@
 package general;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Window;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import container.MyFrame;
 
@@ -46,5 +52,37 @@ public final class SwingFunctions {
 	} else {
 	    return (MyFrame) window;
 	}
+    }
+
+    /**
+     * Activates or deactivates Anti-Aliasing on a graphics context.
+     * 
+     * If Anti-Aliasing isn't supported on the Graphics instance, nothing happens.
+     * 
+     * @param context
+     * @param antialiasingOn
+     */
+    public static void setAntialiasing(final Graphics context, final boolean antialiasingOn) {
+	if (context instanceof Graphics2D) {
+	    final Graphics2D graphics2D = (Graphics2D) context;
+	    graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, antialiasingOn ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
+	}
+    }
+
+    /**
+     * @param width
+     * @param height
+     * @return An invisible JComponent with the desired width and height.
+     */
+    public static JComponent getInvisibleComponentWithBounds(final int width, final int height) {
+	final JPanel invisibleJPanel = new JPanel();
+	invisibleJPanel.setBackground(new Color(0, 0, 0, 0));
+	invisibleJPanel.setPreferredSize(new Dimension(width, height));
+	return invisibleJPanel;
+    }
+
+    public static void updateJComponent(final JComponent toUpdate) {
+	toUpdate.revalidate();
+	toUpdate.repaint();
     }
 }
