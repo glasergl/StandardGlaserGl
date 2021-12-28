@@ -11,13 +11,11 @@ import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
@@ -96,7 +94,7 @@ public class MyCheckBox extends JPanel {
     }
 
     private void notifyChangeListeners() {
-	final ChangeEvent changeEvent = new ChangeEvent(MyCheckBox.this);
+	final ChangeEvent changeEvent = new ChangeEvent(this);
 	for (final ChangeListener changeListener : changeListeners) {
 	    changeListener.stateChanged(changeEvent);
 	}
@@ -111,7 +109,8 @@ public class MyCheckBox extends JPanel {
     }
 
     /**
-     * Sets the background to the same background of the parent and then paints it.
+     * Additionally, sets the background to the same background as the parent. (And
+     * does the standard painting, too)
      * 
      * @param context
      */

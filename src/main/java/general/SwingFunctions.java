@@ -41,7 +41,6 @@ public final class SwingFunctions {
     }
 
     /**
-     * 
      * @param toGetFrameOf
      * @return The Window casted to MyFrame of the given JComponent.
      */
@@ -81,6 +80,11 @@ public final class SwingFunctions {
 	return invisibleJPanel;
     }
 
+    /**
+     * revalidates and repaints the given JComponent.
+     * 
+     * @param toUpdate
+     */
     public static void updateJComponent(final JComponent toUpdate) {
 	toUpdate.revalidate();
 	toUpdate.repaint();

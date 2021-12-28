@@ -5,19 +5,21 @@ import java.awt.FlowLayout;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import container.MyFrame;
+import general.SwingFunctions;
 import settings.Colors;
 
 public class TestFrame extends MyFrame {
 
     public TestFrame() {
 	super("Test");
-	start();
     }
 
     public static void main(String[] args) {
 	Colors.setDarkModeEnabled(false);
 	SwingUtilities.invokeLater(() -> {
-	    new TestFrame();
+	    final TestFrame testFrame = new TestFrame();
+	    testFrame.getContentPane().add(SwingFunctions.getInvisibleComponentWithBounds(50, 50));
+	    testFrame.start();
 	});
     }
 

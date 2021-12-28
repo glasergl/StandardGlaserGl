@@ -53,7 +53,7 @@ public class AnimatedUnderlineBorder extends AbstractBorder {
 	context.fillRect(x, height - thickness, width, thickness);
 	context.setColor(foreground);
 	final int currentWidth = (int) (((double) currentAnimationStep / MAX_ANIMATION_STEP) * width);
-	final int middleX = width / 2 - currentWidth / 2;
+	final int middleX = (width / 2) - (currentWidth / 2);
 	context.fillRect(middleX, height - thickness, currentWidth, thickness);
 	if (currentAnimationStep <= MAX_ANIMATION_STEP) {
 	    final Timer timer = new Timer(MS_BETWEEN_ANIMATION_STEP, (repaint) -> {

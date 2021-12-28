@@ -23,7 +23,7 @@ import entity.Direction;
  */
 public class MyToggleSwitch extends JComponent {
 
-    public static Color standardToggledBackground = Color.BLACK;
+    public static Color standardToggledBackground = Color.BLUE;
     public static Color standardUntoggledBackground = Color.GREEN;
     public static Color standardToggleCircle = Color.GRAY;
     public static Color standardToggleHover = Color.DARK_GRAY;

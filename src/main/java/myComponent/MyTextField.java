@@ -19,7 +19,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.DocumentListener;
-
 import border.AnimatedUnderlineBorder;
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyFocusListener;

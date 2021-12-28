@@ -10,10 +10,10 @@ import settings.Colors;
  * Top-Level container with standard properties to prevent boiler-plate code.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 28.12.2021
  */
 public class MyFrame extends JFrame {
-//TODO setVisible(false) to all popups if one getComponents() gets focus.
+
     private static final Image STANDARD_ICON = SwingFunctions.getImage("StandardIcon.png", MyFrame.class);
 
     public MyFrame(final String title, final Image icon) {
@@ -33,6 +33,7 @@ public class MyFrame extends JFrame {
     private void setup() {
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	setResizable(false);
+	setBackground(Colors.isDarkMode() ? Color.BLACK : Color.WHITE);
 	getContentPane().setBackground(Colors.isDarkMode() ? Color.BLACK : Color.WHITE);
     }
 

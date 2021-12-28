@@ -1,7 +1,6 @@
 package myComponent.test;
 
 import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import container.test.TestFrame;
