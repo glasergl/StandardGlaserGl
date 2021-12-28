@@ -36,7 +36,7 @@ public class MyCheckBox extends JPanel {
     private static final int DISTANCE_BETWEEN_CHECK_AND_TEXT = 5;
     private static final Color STANDARD_COLOR_OF_CHECK = Color.BLACK;
     private static final Color STANDARD_CHECK_BACKGROUND = Colors.getGray(2);
-    private static final Color STANDARD_CHECK_BACKGROUND_WHILE_HOVERED = Colors.getGray(3);
+    private static final Color STANDARD_CHECK_BACKGROUND_WHILE_HOVERED = Colors.getGray(4);
     private static final Color STANDARD_CHECK_BORDER_COLOR = STANDARD_COLOR_OF_CHECK;
     private static final int CHECK_BORDER_THICKNESS = 1;
 
@@ -185,7 +185,7 @@ public class MyCheckBox extends JPanel {
 	    check.addPoint((int) (0.882 * width), (int) (0.078 * height));
 	    check.addPoint((int) (0.434 * width), (int) (0.706 * height));
 	    check.addPoint((int) (0.132 * width), (int) (0.386 * height));
-	    check.addPoint((int) (0.07 * width), (int) (0.436 * height));
+	    check.addPoint((int) (0.1 * width), (int) (0.436 * height));
 	    return check;
 	}
     }
