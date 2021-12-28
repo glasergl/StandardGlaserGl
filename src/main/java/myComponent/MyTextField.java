@@ -13,7 +13,6 @@ import java.util.Optional;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -34,13 +33,12 @@ import settings.Fonts;
  */
 public class MyTextField extends JPanel {
     // TODO getText(hasToHaveAValue: boolean) -> error
-    // TODO reduce height
     // TODO x Button to delete content.
     private static final Border UNFOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofText());
     private static final Border FOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofFocus());
     private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
     private static final float HINT_SIZE_FACTOR = 5.0f / 7.0f;
-    private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 10;
+    private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 15;
     private static final int LENGTH_OF_STEP_MS = 5;
 
     protected final String hint;
@@ -82,7 +80,6 @@ public class MyTextField extends JPanel {
 
     public void setColumns(final int columns) {
 	textField.setColumns(columns);
-	hintDisplay.setPreferredSize(new Dimension(textField.getPreferredSize().width, hintDisplay.getPreferredSize().height));
     }
 
     public int getColumns() {
@@ -220,7 +217,6 @@ public class MyTextField extends JPanel {
 	private final Font endFont;
 	private final float startFontSize;
 	private final float endFontSize;
-	private final boolean fromFocusedToUnfocused;
 
 	private int currentTransitionIndex = 1;
 
@@ -234,7 +230,6 @@ public class MyTextField extends JPanel {
 	    }
 	    startFontSize = startFont.getSize2D();
 	    endFontSize = endFont.getSize2D();
-	    this.fromFocusedToUnfocused = fromFocusedToUnfocused;
 	    timer.start();
 	}
 
@@ -245,9 +240,6 @@ public class MyTextField extends JPanel {
 		final float newSize = (1 - alpha) * startFontSize + alpha * endFontSize;
 		final Font newFont = startFont.deriveFont(newSize);
 		hintDisplay.setFont(newFont);
-		if (NUMBER_OF_HINT_TRANSITION_STEPS / 2 <= currentTransitionIndex) {
-		    hintDisplay.setVerticalAlignment(fromFocusedToUnfocused ? SwingConstants.TOP : SwingConstants.CENTER);
-		}
 		currentTransitionIndex++;
 	    } else {
 		timer.stop();
