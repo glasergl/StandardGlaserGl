@@ -129,6 +129,7 @@ public class MyCheckBox extends JPanel {
 	    isSelected = !isSelected;
 	    revalidate();
 	    repaint();
+	    requestFocus();
 	    final ChangeEvent changeEvent = new ChangeEvent(MyCheckBox.this);
 	    for (final ChangeListener changeListener : changeListeners) {
 		changeListener.stateChanged(changeEvent);
