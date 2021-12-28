@@ -21,35 +21,28 @@ import settings.Colors;
  * @version 20.12.2021
  */
 public class PointingBorder extends AbstractBorder {
-    // TODO apply thickness
+
     private static final CelestialDirection STANDARD_DIRECTION_OF_POINTER = CelestialDirection.NORTH;
     private static final int STANDARD_HEIGHT_OF_POINTER = 15;
     private static final int STANDARD_WIDTH_OF_POINTER = 25;
-    private static final int STANDARD_THICKNESS_OF_LINE_BORDER = 1;
 
     private final CelestialDirection directionOfPointer;
     private final int heightOfPointer;
     private final int widthOfPointer;
-    private final int thicknessOfLineBorder;
     private final Color colorOfPointer;
     private final Color colorOfLineBorder;
 
-    public PointingBorder(final CelestialDirection directionOfPointer, final int heightOfPointer, final int widthOfPointer, final int thicknessOfLineBorder, final Color colorOfPointer, final Color colorOfLineBorder) {
+    public PointingBorder(final CelestialDirection directionOfPointer, final int heightOfPointer, final int widthOfPointer, final Color colorOfPointer, final Color colorOfLineBorder) {
 	super();
 	this.directionOfPointer = directionOfPointer;
 	this.heightOfPointer = heightOfPointer;
 	this.widthOfPointer = widthOfPointer;
-	this.thicknessOfLineBorder = thicknessOfLineBorder;
 	this.colorOfPointer = colorOfPointer;
 	this.colorOfLineBorder = colorOfLineBorder;
     }
 
-    public PointingBorder(final CelestialDirection edgeForPointer, final int thicknessOfLineBorder, final Color ofPointer, final Color ofLineBorder) {
-	this(edgeForPointer, STANDARD_HEIGHT_OF_POINTER, STANDARD_WIDTH_OF_POINTER, thicknessOfLineBorder, ofPointer, ofLineBorder);
-    }
-
     public PointingBorder(final CelestialDirection edgeForPointer, final Color ofPointer, final Color ofLineBorder) {
-	this(edgeForPointer, STANDARD_HEIGHT_OF_POINTER, STANDARD_WIDTH_OF_POINTER, STANDARD_THICKNESS_OF_LINE_BORDER, ofPointer, ofLineBorder);
+	this(edgeForPointer, STANDARD_HEIGHT_OF_POINTER, STANDARD_WIDTH_OF_POINTER, ofPointer, ofLineBorder);
     }
 
     public PointingBorder(final CelestialDirection edgeForPointer, final JComponent toSetThisAround) {
