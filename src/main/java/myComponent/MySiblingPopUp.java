@@ -14,7 +14,7 @@ import eventListener.emptyImplementation.MyComponentListener;
  * This class allows to display a component relative to an sibling.
  * 
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 28.12.2021
  */
 public class MySiblingPopUp extends JWindow {
 //TODO add that the popup is always within the window bounds.
@@ -41,8 +41,12 @@ public class MySiblingPopUp extends JWindow {
 	setup();
     }
 
+    public MySiblingPopUp(final JComponent toShowAsPopUp, final CelestialDirection relativeDirectionOfPopUp, final MyFrame owner, final JComponent sibling) {
+	this(toShowAsPopUp, relativeDirectionOfPopUp, STANDARD_X_LOCATION_OFFSET, STANDARD_Y_LOCATION_OFFSET, owner, sibling);
+    }
+
     public MySiblingPopUp(final JComponent toShowAsPopUp, final MyFrame owner, final JComponent sibling) {
-	this(toShowAsPopUp, STANDARD_RELATIVE_DIRECTION_OF_POP_UP, STANDARD_X_LOCATION_OFFSET, STANDARD_Y_LOCATION_OFFSET, owner, sibling);
+	this(toShowAsPopUp, STANDARD_RELATIVE_DIRECTION_OF_POP_UP, owner, sibling);
     }
 
     /**
