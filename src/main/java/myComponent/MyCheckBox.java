@@ -68,6 +68,7 @@ public class MyCheckBox extends JPanel {
     public void setSelected(final boolean isSelected) {
 	this.isSelected = isSelected;
 	SwingFunctions.updateJComponent(check);
+	notifyChangeListeners();
     }
 
     public void setColorOfCheck(final Color checkColor) {
@@ -92,6 +93,13 @@ public class MyCheckBox extends JPanel {
 
     public void addChangeListener(final ChangeListener toAdd) {
 	changeListeners.add(toAdd);
+    }
+
+    private void notifyChangeListeners() {
+	final ChangeEvent changeEvent = new ChangeEvent(MyCheckBox.this);
+	for (final ChangeListener changeListener : changeListeners) {
+	    changeListener.stateChanged(changeEvent);
+	}
     }
 
     @Override
@@ -129,11 +137,8 @@ public class MyCheckBox extends JPanel {
 	    isSelected = !isSelected;
 	    revalidate();
 	    repaint();
+	    notifyChangeListeners();
 	    requestFocus();
-	    final ChangeEvent changeEvent = new ChangeEvent(MyCheckBox.this);
-	    for (final ChangeListener changeListener : changeListeners) {
-		changeListener.stateChanged(changeEvent);
-	    }
 	}
 
 	@Override
