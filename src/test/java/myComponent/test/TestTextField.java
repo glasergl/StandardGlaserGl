@@ -2,27 +2,20 @@ package myComponent.test;
 
 import javax.swing.SwingUtilities;
 import container.test.TestFrame;
-import myComponent.MyNumberField;
-import myComponent.MyTextField;
+import myComponent.textField.MyTextField;
 
 public class TestTextField {
 
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
-	    MyTextField normalTextField = new MyTextField("With hint", "and initial text");
-	    MyNumberField numberField = new MyNumberField("NumberField", 20);
-	    MyTextField withNoInitialText = new MyTextField("No initial text, but with hint");
-	    MyTextField withNoHint = new MyTextField();
-	    MyTextField withoutAnything = new MyTextField();
-
-	    normalTextField.setColumns(20);
-	    numberField.setColumns(10);
-	    withNoInitialText.setColumns(30);
-	    withNoHint.setColumns(30);
-	    withNoHint.setText("With initial text, but no hint");
-	    withoutAnything.setColumns(15);
-
-	    TestFrame.showFrameWithComponents(normalTextField, numberField, withNoInitialText, withNoHint, withoutAnything);
+	    MyTextField textFieldWithoutInitialContent = new MyTextField();
+	    MyTextField textFieldWithInitialContent = new MyTextField("Initial Content");
+//	    MyHintTextField normalTextField = new MyHintTextField("With hint", "and initial text");
+//	    MyNumberField numberField = new MyNumberField("NumberField", 20);
+//	    MyHintTextField withNoInitialText = new MyHintTextField("No initial text, but with hint");
+	    textFieldWithoutInitialContent.setColumns(15);
+	    textFieldWithInitialContent.setColumns(25);
+	    TestFrame.showFrameWithComponents(textFieldWithoutInitialContent, textFieldWithInitialContent);
 	});
     }
 

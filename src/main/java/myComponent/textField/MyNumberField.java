@@ -1,4 +1,4 @@
-package myComponent;
+package myComponent.textField;
 
 import java.awt.Color;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import javax.swing.event.DocumentListener;
  * @author Gabriel Glaser
  * @version 20.12.2021
  */
-public class MyNumberField extends MyTextField {
+public class MyNumberField extends MyHintTextField {
     // TODO prevent reading non numbers.
     // TODO fix border bug
     public MyNumberField(final String hint, final int initialValue) {

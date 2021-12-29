@@ -1,26 +1,21 @@
-package myComponent;
+package myComponent.textField;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
-import java.util.Optional;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.Timer;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import javax.swing.event.DocumentListener;
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyFocusListener;
 import eventListener.emptyImplementation.MyMouseListener;
+import myComponent.MyTextButton;
 import settings.Colors;
 import settings.Fonts;
 
@@ -29,35 +24,30 @@ import settings.Fonts;
  * there is no textinput, yet.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 29.12.2021
  */
-public class MyTextField extends JPanel {
+public class MyHintTextField extends JPanel {
     // TODO getText(hasToHaveAValue: boolean) -> error
-    // TODO x Button to delete content.
-    private static final Border UNFOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofText());
-    private static final Border FOCUSED_BORDER = new MatteBorder(0, 0, 2, 0, Colors.ofFocus());
-    private static final Color HINT_TEXT_COLOR = new Color(127, 127, 127);
-    private static final float HINT_SIZE_FACTOR = 5.0f / 7.0f;
-    private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 15;
-    private static final int LENGTH_OF_STEP_MS = 5;
 
     protected final String hint;
     protected final JTextField textField;
     private final JLabel hintDisplay;
+    private final MyTextButton deleteButton;
 
-    public MyTextField(final String hint, final String initialContent) {
+    public MyHintTextField(final String hint, final String initialContent) {
 	super();
 	this.hint = hint;
 	this.textField = new JTextField(initialContent);
 	this.hintDisplay = new JLabel(hint);
+	this.deleteButton = new MyTextButton("X");
 	setup();
     }
 
-    public MyTextField(final String hint) {
+    public MyHintTextField(final String hint) {
 	this(hint, "");
     }
 
-    public MyTextField() {
+    public MyHintTextField() {
 	this("");
     }
 
@@ -113,7 +103,7 @@ public class MyTextField extends JPanel {
 	textFieldToCalculatePreferredSize.setFont(getFont());
 	textFieldToCalculatePreferredSize.setColumns(getColumns());
 	final JLabel labelToCalculatePreferredSize = new JLabel("calculate preferred size");
-	labelToCalculatePreferredSize.setFont(getFont().deriveFont(HINT_SIZE_FACTOR * getFont().getSize2D()));
+	labelToCalculatePreferredSize.setFont(getFont().deriveFont(TextFieldAttributes.HINT_SIZE_FACTOR * getFont().getSize2D()));
 	final Dimension preferredSizeOfTextField = textFieldToCalculatePreferredSize.getPreferredSize();
 	final Dimension preferredSizeOfHintDisplay = labelToCalculatePreferredSize.getPreferredSize();
 	final int preferredWidth = preferredSizeOfTextField.width;
@@ -125,18 +115,28 @@ public class MyTextField extends JPanel {
 	setLayout(new BorderLayout());
 	setBackground(Colors.getGray(2));
 	setFont(Fonts.standard());
-	setBorder(UNFOCUSED_BORDER);
+	setBorder(TextFieldAttributes.UNFOCUSED_BORDER);
 
 	textField.setForeground(Colors.ofText());
 	textField.setBorder(new EmptyBorder(0, 1, 0, 0));
-	textField.addFocusListener(new BorderController());
 	textField.addFocusListener(new HintDeactivaterForTextField());
 
-	hintDisplay.setForeground(HINT_TEXT_COLOR);
+	hintDisplay.setForeground(TextFieldAttributes.HINT_TEXT_COLOR);
 	hintDisplay.addMouseListener(new HintActivaterForHintLabel());
 	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
 	hintDisplay.setBorder(new EmptyBorder(0, 1, 0, 0));
 
+	deleteButton.setBackground(getBackground());
+	deleteButton.setBackgroundWhileMouseHovered(getBackground());
+	deleteButton.setForeground(TextFieldAttributes.HINT_TEXT_COLOR);
+	deleteButton.setForegroundWhileMouseHovered(Colors.getGray(4));
+	deleteButton.setFont(getFont());
+	deleteButton.setBorder(new EmptyBorder(0, 0, 0, 5));
+	deleteButton.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
+	deleteButton.setFocusable(false);
+	deleteButton.addActionListener((click) -> {
+	    textField.setText("");
+	});
 	showInitialState();
     }
 
@@ -146,10 +146,11 @@ public class MyTextField extends JPanel {
 	    add(hintDisplay, BorderLayout.CENTER);
 	} else {
 	    final Font ofTextField = textField.getFont();
-	    final Font smallerFont = ofTextField.deriveFont(HINT_SIZE_FACTOR * ofTextField.getSize2D());
+	    final Font smallerFont = ofTextField.deriveFont(TextFieldAttributes.HINT_SIZE_FACTOR * ofTextField.getSize2D());
 	    hintDisplay.setFont(smallerFont);
 	    add(hintDisplay, BorderLayout.NORTH);
 	    add(textField, BorderLayout.CENTER);
+	    add(deleteButton, BorderLayout.EAST);
 	}
     }
 
@@ -160,6 +161,7 @@ public class MyTextField extends JPanel {
 	}
 	add(hintDisplay, BorderLayout.NORTH);
 	add(textField, BorderLayout.CENTER);
+	add(deleteButton, BorderLayout.EAST);
 	revalidate();
 	repaint();
     }
@@ -168,6 +170,7 @@ public class MyTextField extends JPanel {
 	if (textField.getText().length() == 0) {
 	    remove(textField);
 	    remove(hintDisplay);
+	    remove(deleteButton);
 	    add(hintDisplay, BorderLayout.CENTER);
 	    if (withAnimation) {
 		new HintAnimationTransitioner(false);
@@ -177,23 +180,7 @@ public class MyTextField extends JPanel {
 	}
     }
 
-    private class BorderController extends MyFocusListener {
-	private Optional<Border> old = Optional.empty();
-
-	@Override
-	public void focusGained(FocusEvent e) {
-	    old = Optional.of(getBorder());
-	    setBorder(FOCUSED_BORDER);
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-	    setBorder(old.get());
-	    old = Optional.empty();
-	}
-    }
-
-    private class HintActivaterForHintLabel extends MyMouseListener {
+    private final class HintActivaterForHintLabel extends MyMouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	    if (!textField.isFocusOwner()) {
@@ -203,47 +190,11 @@ public class MyTextField extends JPanel {
 	}
     }
 
-    private class HintDeactivaterForTextField extends MyFocusListener {
+    private final class HintDeactivaterForTextField extends MyFocusListener {
 	@Override
 	public void focusLost(FocusEvent e) {
 	    showUnfocusedState(true);
 	}
     }
 
-    private class HintAnimationTransitioner implements ActionListener {
-
-	private final Timer timer = new Timer(LENGTH_OF_STEP_MS, this);
-	private final Font startFont;
-	private final Font endFont;
-	private final float startFontSize;
-	private final float endFontSize;
-
-	private int currentTransitionIndex = 1;
-
-	public HintAnimationTransitioner(final boolean fromFocusedToUnfocused) {
-	    super();
-	    startFont = hintDisplay.getFont();
-	    if (fromFocusedToUnfocused) {
-		endFont = textField.getFont().deriveFont(HINT_SIZE_FACTOR * textField.getFont().getSize2D());
-	    } else {
-		endFont = textField.getFont();
-	    }
-	    startFontSize = startFont.getSize2D();
-	    endFontSize = endFont.getSize2D();
-	    timer.start();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    if (currentTransitionIndex <= NUMBER_OF_HINT_TRANSITION_STEPS) {
-		final float alpha = (float) currentTransitionIndex / NUMBER_OF_HINT_TRANSITION_STEPS;
-		final float newSize = (1 - alpha) * startFontSize + alpha * endFontSize;
-		final Font newFont = startFont.deriveFont(newSize);
-		hintDisplay.setFont(newFont);
-		currentTransitionIndex++;
-	    } else {
-		timer.stop();
-	    }
-	}
-    }
 }
