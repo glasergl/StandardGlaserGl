@@ -14,16 +14,16 @@ import javax.swing.event.DocumentListener;
  * @author Gabriel Glaser
  * @version 20.12.2021
  */
-public class MyNumberField extends MyHintTextField {
+public class MyNumberField extends MyTextField {
     // TODO prevent reading non numbers.
     // TODO fix border bug
-    public MyNumberField(final String hint, final int initialValue) {
-	super(hint, String.valueOf(initialValue));
+    public MyNumberField(final int initialValue) {
+	super(String.valueOf(initialValue));
 	addDocumentListener(new NumberValidator());
     }
 
-    public MyNumberField(final String hint) {
-	super(hint, "");
+    public MyNumberField() {
+	super();
 	addDocumentListener(new NumberValidator());
     }
 
