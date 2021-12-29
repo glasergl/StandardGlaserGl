@@ -95,7 +95,7 @@ public class MySiblingPopUp extends JWindow {
 	owner.addComponentListener(new PopUpMoverOnMove());
     }
 
-    private class PopUpMoverOnMove extends MyComponentListener {
+    private class PopUpMoverOnMove implements MyComponentListener {
 	@Override
 	public void componentMoved(ComponentEvent e) {
 	    if (isVisible()) {

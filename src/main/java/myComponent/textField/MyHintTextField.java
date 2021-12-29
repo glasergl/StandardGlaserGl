@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyFocusListener;
 import eventListener.emptyImplementation.MyMouseListener;

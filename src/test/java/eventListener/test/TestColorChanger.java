@@ -4,6 +4,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 import container.test.TestFrame;
+import entity.ColorType;
+import eventListener.ColorChangerOnClick;
 import eventListener.ColorChangerOnFocus;
 import eventListener.ColorChangerOnHover;
 
@@ -11,12 +13,16 @@ public class TestColorChanger {
 
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
-	    JButton bt1 = new JButton("Hello there");
-	    bt1.setOpaque(true);
-	    JButton bt2 = new JButton("General Kenobi");
-	    bt1.addMouseListener(new ColorChangerOnHover(Color.RED, Color.WHITE));
-	    bt2.addFocusListener(new ColorChangerOnFocus(Color.RED, Color.WHITE));
-	    TestFrame.showFrameWithComponents(bt1, bt2);
+	    JButton hoverTest = new JButton("HoverTest");
+	    JButton focusTest = new JButton("FocusTest");
+	    JButton clickTest = new JButton("ClickTest");
+	    hoverTest.addMouseListener(new ColorChangerOnHover(Color.RED, ColorType.BACKGROUND));
+	    hoverTest.addMouseListener(new ColorChangerOnHover(Color.WHITE, ColorType.FOREGROUND));
+	    focusTest.addFocusListener(new ColorChangerOnFocus(Color.RED, ColorType.BACKGROUND));
+	    focusTest.addFocusListener(new ColorChangerOnFocus(Color.WHITE, ColorType.FOREGROUND));
+	    clickTest.addMouseListener(new ColorChangerOnClick(Color.RED, ColorType.BACKGROUND));
+	    clickTest.addMouseListener(new ColorChangerOnClick(Color.WHITE, ColorType.FOREGROUND));
+	    TestFrame.showFrameWithComponents(hoverTest, focusTest, clickTest);
 	});
     }
 

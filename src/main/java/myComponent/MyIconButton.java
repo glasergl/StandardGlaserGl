@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import settings.Colors;
@@ -28,7 +29,7 @@ public class MyIconButton extends JPanel {
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
     }
 
-    private class ButtonController extends MyMouseListener {
+    private class ButtonController implements MyMouseListener {
 
 	private Optional<Color> oldBackground = Optional.empty();
 

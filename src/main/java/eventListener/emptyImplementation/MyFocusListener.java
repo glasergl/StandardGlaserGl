@@ -4,19 +4,29 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 /**
- * Empty implementation of FocusListener.
+ * Interface extension of FocusListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 29.12.2021
  */
-public class MyFocusListener implements FocusListener {
+public interface MyFocusListener extends FocusListener {
 
+    /**
+     * Does nothing.
+     * 
+     * @param focusGainEvent
+     */
     @Override
-    public void focusGained(final FocusEvent focusEvent) {
+    public default void focusGained(final FocusEvent focusGainEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param focusLostEvent
+     */
     @Override
-    public void focusLost(final FocusEvent focusEvent) {
+    public default void focusLost(final FocusEvent focusLostEvent) {
     }
 
 }

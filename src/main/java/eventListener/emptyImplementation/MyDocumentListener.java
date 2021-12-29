@@ -4,41 +4,43 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * Implementation of a DocumentListener which, by default, calls the new method
+ * Interface extension of DocumentListener which, by default, calls the method
  * update() on insert, remove and change.
+ * 
+ * update() does nothing by default.
  *
  * @author Gabriel Glaser
  * @version 29.12.2021
  */
-public class MyDocumentListener implements DocumentListener {
+public interface MyDocumentListener extends DocumentListener {
 
     /**
      * Calls update().
      * 
-     * @param insertDocumentEvent
+     * @param insertEvent
      */
     @Override
-    public void insertUpdate(final DocumentEvent insertDocumentEvent) {
+    public default void insertUpdate(final DocumentEvent insertEvent) {
 	update();
     }
 
     /**
      * Calls update().
      * 
-     * @param insertDocumentEvent
+     * @param removeEvent
      */
     @Override
-    public void removeUpdate(final DocumentEvent removeDocumentEvent) {
+    public default void removeUpdate(final DocumentEvent removeEvent) {
 	update();
     }
 
     /**
      * Calls update().
      * 
-     * @param insertDocumentEvent
+     * @param changeEvent
      */
     @Override
-    public void changedUpdate(final DocumentEvent documentChanged) {
+    public default void changedUpdate(final DocumentEvent changeEvent) {
 	update();
     }
 
@@ -46,7 +48,7 @@ public class MyDocumentListener implements DocumentListener {
      * Does nothing. By default: Gets called by insertUpdate(), removeUpdate() and
      * changedUpdate().
      */
-    public void update() {
+    public default void update() {
     }
 
 }

@@ -15,7 +15,7 @@ import myComponent.MySiblingPopUp;
  * @author Gabriel Glaser
  * @version 28.12.2021
  */
-public class SiblingPopUpDisplayerOnHover extends MyMouseListener {
+public class SiblingPopUpDisplayerOnHover implements MyMouseListener {
 
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;

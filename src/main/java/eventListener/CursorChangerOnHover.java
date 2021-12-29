@@ -14,7 +14,7 @@ import eventListener.emptyImplementation.MyMouseListener;
  * @author Gabriel Glaser
  * @version 20.12.2021
  */
-public class CursorChangerOnHover extends MyMouseListener {
+public class CursorChangerOnHover implements MyMouseListener {
 
     private final Cursor whileMouseEntered;
     private Optional<Cursor> whileMouseExited = Optional.empty();

@@ -13,6 +13,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import entity.ColorType;
 import eventListener.ColorChangerOnHover;
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
@@ -33,8 +35,9 @@ public class MyTextButton extends JLabel {
     private final boolean withBorder;
 
     private Color backgroundWhileMouseHovered = STANDARD_BACKGROUND_WHILE_MOUSE_HOVERED;
-    private Color textColorWhileMouseHovered = STANDARD_COLOR_OF_TEXT;
-    private ColorChangerOnHover mouseListenerForColors = new ColorChangerOnHover(backgroundWhileMouseHovered, textColorWhileMouseHovered);
+    private Color foregroundWhileMouseHovered = STANDARD_COLOR_OF_TEXT;
+    private ColorChangerOnHover mouseListenerForBackground = new ColorChangerOnHover(backgroundWhileMouseHovered, ColorType.BACKGROUND);
+    private ColorChangerOnHover mouseListenerForForeground = new ColorChangerOnHover(foregroundWhileMouseHovered, ColorType.FOREGROUND);
 
     public MyTextButton(final String text, final boolean withBorder) {
 	super(text);
@@ -56,7 +59,7 @@ public class MyTextButton extends JLabel {
 	if (withBorder) {
 	    setBorder(STANDARD_BORDER);
 	}
-	addMouseListener(mouseListenerForColors);
+	addMouseListener(mouseListenerForBackground);
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	addMouseListener(new ButtonController());
     }
@@ -67,16 +70,16 @@ public class MyTextButton extends JLabel {
 
     public void setBackgroundWhileMouseHovered(final Color backgroundWhileMouseHovered) {
 	this.backgroundWhileMouseHovered = backgroundWhileMouseHovered;
-	removeMouseListener(mouseListenerForColors);
-	mouseListenerForColors = mouseListenerForColors.getInstanceWithDifferentBackground(backgroundWhileMouseHovered);
-	addMouseListener(mouseListenerForColors);
+	removeMouseListener(mouseListenerForBackground);
+	mouseListenerForBackground = new ColorChangerOnHover(backgroundWhileMouseHovered, ColorType.BACKGROUND);
+	addMouseListener(mouseListenerForBackground);
     }
 
-    public void setForegroundWhileMouseHovered(final Color textColorWhileMouseHovered) {
-	this.textColorWhileMouseHovered = textColorWhileMouseHovered;
-	removeMouseListener(mouseListenerForColors);
-	mouseListenerForColors = mouseListenerForColors.getInstanceWithDifferentForeground(textColorWhileMouseHovered);
-	addMouseListener(mouseListenerForColors);
+    public void setForegroundWhileMouseHovered(final Color foregroundWhileMouseHovered) {
+	this.foregroundWhileMouseHovered = foregroundWhileMouseHovered;
+	removeMouseListener(mouseListenerForForeground);
+	mouseListenerForForeground = new ColorChangerOnHover(foregroundWhileMouseHovered, ColorType.BACKGROUND);
+	addMouseListener(mouseListenerForForeground);
     }
 
     public Color getBackgroundWhileMouseHovered() {
@@ -84,10 +87,10 @@ public class MyTextButton extends JLabel {
     }
 
     public Color getTextColorWhileMouseHovered() {
-	return textColorWhileMouseHovered;
+	return foregroundWhileMouseHovered;
     }
 
-    private final class ButtonController extends MyMouseListener {
+    private final class ButtonController implements MyMouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

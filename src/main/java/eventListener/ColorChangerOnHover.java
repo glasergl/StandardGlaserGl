@@ -4,53 +4,41 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
+import entity.ColorType;
 import eventListener.emptyImplementation.MyMouseListener;
 
 /**
- * This MouseListener changes the background and foreground of the component
- * this is added to while the mouse entered it and changes it back if the mouse
- * exits the area of the component.
+ * This MouseListener changes either the background or the foreground of the
+ * given Component when the Mouse hovers over the Component this is added to.
+ * The Component, which gets its color changed, can be given at the constructor
+ * or else is the source of the event.
  *
  * @author Gabriel Glaser
- * @version 23.12.2021
+ * @version 29.12.2021
  */
-public class ColorChangerOnHover extends MyMouseListener {
+public class ColorChangerOnHover extends ColorChanger implements MyMouseListener {
 
-    private final Color backgroundWhileMouseEntered;
-    private final Color foregroundWhileMouseEntered;
+    private ColorChangerOnHover(final Optional<Component> componentToChange, final Color colorAfterClick, final ColorType colorType) {
+	super(componentToChange, colorAfterClick, colorType);
+    }
 
-    private Optional<Color> normalBackground = Optional.empty();
-    private Optional<Color> normalForeground = Optional.empty();
+    public ColorChangerOnHover(final Component componentToChange, final Color colorWhileFocused, final ColorType colorType) {
+	this(Optional.of(componentToChange), colorWhileFocused, colorType);
+    }
 
-    public ColorChangerOnHover(final Color backgroundWhileMouseEntered, final Color foregroundWhileMouseEntered) {
-	super();
-	this.backgroundWhileMouseEntered = backgroundWhileMouseEntered;
-	this.foregroundWhileMouseEntered = foregroundWhileMouseEntered;
-
+    public ColorChangerOnHover(final Color colorWhileFocused, final ColorType colorType) {
+	this(Optional.empty(), colorWhileFocused, colorType);
     }
 
     @Override
-    public void mouseEntered(final MouseEvent mouseEvent) {
-	final Component whoGotHoveredOn = mouseEvent.getComponent();
-	normalBackground = Optional.of(whoGotHoveredOn.getBackground());
-	normalForeground = Optional.of(whoGotHoveredOn.getForeground());
-	whoGotHoveredOn.setBackground(backgroundWhileMouseEntered);
-	whoGotHoveredOn.setForeground(foregroundWhileMouseEntered);
+    public void mouseEntered(final MouseEvent mouseEnterEvent) {
+	changeColor(mouseEnterEvent.getComponent());
     }
 
     @Override
-    public void mouseExited(final MouseEvent mouseEvent) {
-	final Component whoLostHover = mouseEvent.getComponent();
-	whoLostHover.setBackground(normalBackground.get());
-	whoLostHover.setForeground(normalForeground.get());
-    }
+    public void mouseExited(final MouseEvent mouseExitEvent) {
 
-    public ColorChangerOnHover getInstanceWithDifferentBackground(final Color newBackground) {
-	return new ColorChangerOnHover(newBackground, foregroundWhileMouseEntered);
-    }
-
-    public ColorChangerOnHover getInstanceWithDifferentForeground(final Color newForeground) {
-	return new ColorChangerOnHover(backgroundWhileMouseEntered, newForeground);
+	changeColorBack(mouseExitEvent.getComponent());
     }
 
 }

@@ -4,52 +4,40 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.util.Optional;
+import entity.ColorType;
 import eventListener.emptyImplementation.MyFocusListener;
 
 /**
- * This FocusListener changes the background and foreground of the component
- * this is added to while it has focus and changes it back if the component
- * loses focus.
+ * This FocusListener changes either the background or the foreground of the
+ * given Component when the Component this is added to is focused. The
+ * Component, which gets its color changed, can be given at the constructor or
+ * else is the source of the event.
  *
  * @author Gabriel Glaser
- * @version 23.12.2021
+ * @version 29.12.2021
  */
-public class ColorChangerOnFocus extends MyFocusListener {
+public class ColorChangerOnFocus extends ColorChanger implements MyFocusListener {
 
-    private final Color backgroundWhileFocused;
-    private final Color foregroundWhileFocused;
+    private ColorChangerOnFocus(final Optional<Component> componentToChange, final Color colorAfterClick, final ColorType colorType) {
+	super(componentToChange, colorAfterClick, colorType);
+    }
 
-    private Optional<Color> normalBackground = Optional.empty();
-    private Optional<Color> normalForeground = Optional.empty();
+    public ColorChangerOnFocus(final Component componentToChange, final Color colorWhileFocused, final ColorType colorType) {
+	this(Optional.of(componentToChange), colorWhileFocused, colorType);
+    }
 
-    public ColorChangerOnFocus(final Color backgroundWhileFocused, final Color foregroundWhileFocused) {
-	super();
-	this.backgroundWhileFocused = backgroundWhileFocused;
-	this.foregroundWhileFocused = foregroundWhileFocused;
+    public ColorChangerOnFocus(final Color colorWhileFocused, final ColorType colorType) {
+	this(Optional.empty(), colorWhileFocused, colorType);
     }
 
     @Override
-    public void focusGained(final FocusEvent focusEvent) {
-	final Component whoGotHoveredOn = focusEvent.getComponent();
-	normalBackground = Optional.of(whoGotHoveredOn.getBackground());
-	normalForeground = Optional.of(whoGotHoveredOn.getForeground());
-	whoGotHoveredOn.setBackground(backgroundWhileFocused);
-	whoGotHoveredOn.setForeground(foregroundWhileFocused);
+    public void focusGained(final FocusEvent focusGainEvent) {
+	changeColor(focusGainEvent.getComponent());
     }
 
     @Override
-    public void focusLost(final FocusEvent focusEvent) {
-	final Component whoLostHover = focusEvent.getComponent();
-	whoLostHover.setBackground(normalBackground.get());
-	whoLostHover.setForeground(normalForeground.get());
-    }
-
-    public ColorChangerOnFocus getInstanceWithDifferentBackground(final Color newBackground) {
-	return new ColorChangerOnFocus(newBackground, foregroundWhileFocused);
-    }
-
-    public ColorChangerOnFocus getInstanceWithDifferentForeground(final Color newForeground) {
-	return new ColorChangerOnFocus(backgroundWhileFocused, newForeground);
+    public void focusLost(final FocusEvent focusLostEvent) {
+	changeColorBack(focusLostEvent.getComponent());
     }
 
 }

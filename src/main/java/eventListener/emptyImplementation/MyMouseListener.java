@@ -4,31 +4,56 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Empty implementation of MouseListener.
+ * Interface extension of MouseListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 29.12.2021
  */
-public class MyMouseListener implements MouseListener {
+public interface MyMouseListener extends MouseListener {
 
+    /**
+     * Does nothing.
+     * 
+     * @param mouseClickEvent
+     */
     @Override
-    public void mouseClicked(final MouseEvent mouseEvent) {
+    public default void mouseClicked(final MouseEvent mouseClickEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param mousePressEvent
+     */
     @Override
-    public void mousePressed(final MouseEvent mouseEvent) {
+    public default void mousePressed(final MouseEvent mousePressEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param mouseReleaseEvent
+     */
     @Override
-    public void mouseReleased(final MouseEvent mouseEvent) {
+    public default void mouseReleased(final MouseEvent mouseReleaseEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param mouseEnterEvent
+     */
     @Override
-    public void mouseEntered(final MouseEvent mouseEvent) {
+    public default void mouseEntered(final MouseEvent mouseEnterEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param mouseExitEvent
+     */
     @Override
-    public void mouseExited(final MouseEvent mouseEvent) {
+    public default void mouseExited(final MouseEvent mouseExitEvent) {
     }
 
 }

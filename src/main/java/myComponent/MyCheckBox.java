@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
@@ -130,7 +131,7 @@ public class MyCheckBox extends JPanel {
 	add(title, BorderLayout.EAST);
     }
 
-    private final class CheckBoxController extends MyMouseListener {
+    private final class CheckBoxController implements MyMouseListener {
 	@Override
 	public void mouseClicked(final MouseEvent mouseEvent) {
 	    isSelected = !isSelected;

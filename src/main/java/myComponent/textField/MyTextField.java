@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
+
 import eventListener.BorderChangerOnFocus;
 import eventListener.emptyImplementation.MyDocumentListener;
 import myComponent.MyTextButton;

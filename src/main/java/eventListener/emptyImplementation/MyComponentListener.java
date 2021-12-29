@@ -4,27 +4,47 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 /**
- * Empty implementation of ComponentListener.
+ * Interface extension of ComponentListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 29.12.2021
  */
-public class MyComponentListener implements ComponentListener {
+public interface MyComponentListener extends ComponentListener {
 
+    /**
+     * Does nothing.
+     * 
+     * @param resizeEvent
+     */
     @Override
-    public void componentResized(final ComponentEvent componentEvent) {
+    public default void componentResized(final ComponentEvent resizeEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param moveEvent
+     */
     @Override
-    public void componentMoved(final ComponentEvent componentEvent) {
+    public default void componentMoved(final ComponentEvent moveEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param shownEvent
+     */
     @Override
-    public void componentShown(final ComponentEvent componentEvent) {
+    public default void componentShown(final ComponentEvent shownEvent) {
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param hiddenEvent
+     */
     @Override
-    public void componentHidden(final ComponentEvent componentEvent) {
+    public default void componentHidden(final ComponentEvent hiddenEvent) {
     }
 
 }

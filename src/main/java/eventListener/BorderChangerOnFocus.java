@@ -7,22 +7,23 @@ import javax.swing.border.Border;
 import eventListener.emptyImplementation.MyFocusListener;
 
 /**
- * FocusListener which changes the Border of the JComponent it's added to while
- * it has focus and changes it back if the JComponent loses focus.
+ * FocusListener which changes the Border on focus of either the JComponent
+ * given at constructor time, else the one it's added to. Automatically changes
+ * it back when focus is lost.
  *
  * @author Gabriel Glaser
  * @version 29.12.2021
  */
-public class BorderChangerOnFocus extends MyFocusListener {
+public class BorderChangerOnFocus implements MyFocusListener {
 
     private final Border borderWhileFocused;
-    private final Optional<JComponent> jComponent;
+    private final Optional<JComponent> jComponentToChange;
 
     private Optional<Border> oldBorder = Optional.empty();
 
     private BorderChangerOnFocus(final Optional<JComponent> jComponent, final Border borderWhileFocused) {
 	super();
-	this.jComponent = jComponent;
+	this.jComponentToChange = jComponent;
 	this.borderWhileFocused = borderWhileFocused;
     }
 
@@ -36,23 +37,23 @@ public class BorderChangerOnFocus extends MyFocusListener {
 
     @Override
     public void focusGained(final FocusEvent focusGainedEvent) {
-	final JComponent toChangeBorderOf;
-	if (this.jComponent.isPresent()) {
-	    toChangeBorderOf = this.jComponent.get();
-	} else {
-	    toChangeBorderOf = (JComponent) focusGainedEvent.getComponent();
-	}
+	final JComponent toChangeBorderOf = getCorrectJComponentToChange(focusGainedEvent);
 	oldBorder = Optional.of(toChangeBorderOf.getBorder());
 	toChangeBorderOf.setBorder(borderWhileFocused);
     }
 
     @Override
     public void focusLost(final FocusEvent focusLostEvent) {
-	if (jComponent.isPresent()) {
-	    jComponent.get().setBorder(oldBorder.get());
+	final JComponent toChangeBorderOf = getCorrectJComponentToChange(focusLostEvent);
+	toChangeBorderOf.setBorder(oldBorder.get());
+	oldBorder = Optional.empty();
+    }
+
+    private JComponent getCorrectJComponentToChange(final FocusEvent focusEvent) {
+	if (jComponentToChange.isPresent()) {
+	    return jComponentToChange.get();
 	} else {
-	    final JComponent jComponent = (JComponent) focusLostEvent.getComponent();
-	    jComponent.setBorder(oldBorder.get());
+	    return (JComponent) focusEvent.getComponent();
 	}
     }
 
