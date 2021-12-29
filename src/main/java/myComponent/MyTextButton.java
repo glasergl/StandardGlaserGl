@@ -72,7 +72,7 @@ public class MyTextButton extends JLabel {
 	addMouseListener(mouseListenerForColors);
     }
 
-    public void setTextColorWhileMouseHovered(final Color textColorWhileMouseHovered) {
+    public void setForegroundWhileMouseHovered(final Color textColorWhileMouseHovered) {
 	this.textColorWhileMouseHovered = textColorWhileMouseHovered;
 	removeMouseListener(mouseListenerForColors);
 	mouseListenerForColors = mouseListenerForColors.getInstanceWithDifferentForeground(textColorWhileMouseHovered);

@@ -17,7 +17,7 @@ public class TestButton {
 	    MyTextButton textButton1 = new MyTextButton("Click me with other colors!");
 	    textButton1.setBackground(Color.RED);
 	    textButton1.setBackgroundWhileMouseHovered(Color.GREEN);
-	    textButton1.setTextColorWhileMouseHovered(Color.WHITE);
+	    textButton1.setForegroundWhileMouseHovered(Color.WHITE);
 	    TestFrame.showFrameWithComponents(textButton, textButton1, iconButton);
 	});
     }

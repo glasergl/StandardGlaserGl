@@ -1,4 +1,4 @@
-package myComponent;
+package myComponent.textField;
 
 import java.awt.Color;
 import java.util.Optional;
@@ -17,13 +17,13 @@ import javax.swing.event.DocumentListener;
 public class MyNumberField extends MyTextField {
     // TODO prevent reading non numbers.
     // TODO fix border bug
-    public MyNumberField(final String hint, final int initialValue) {
-	super(hint, String.valueOf(initialValue));
+    public MyNumberField(final int initialValue) {
+	super(String.valueOf(initialValue));
 	addDocumentListener(new NumberValidator());
     }
 
-    public MyNumberField(final String hint) {
-	super(hint, "");
+    public MyNumberField() {
+	super();
 	addDocumentListener(new NumberValidator());
     }
 
