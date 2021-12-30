@@ -13,16 +13,16 @@ import settings.Colors;
  * easier.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 30.12.2021
  */
-public class JPanelFactory {
+public final class JPanelFactory {
 
     private static final Color STANDARD_BACKGROUND = Colors.getGray(0);
     private static final LayoutManager STANDARD_LAYOUT_MANAGER = new FlowLayout(FlowLayout.LEFT, 5, 5);
 
     /**
      * Creates a JPanel with the given LayoutManager and background and adds the
-     * given JComponents in their order to it.
+     * given JComponents to it.
      * 
      * @param layout
      * @param background
@@ -39,8 +39,8 @@ public class JPanelFactory {
     }
 
     /**
-     * Creates a JPanel with the given LayoutManager and adds the given JComponent
-     * in their order to it.
+     * Creates a JPanel with the given LayoutManager and the default background
+     * Colors.getGray(0).After that, adds the given JComponent to it.
      * 
      * @param layout
      * @param jComponents
@@ -51,7 +51,20 @@ public class JPanelFactory {
     }
 
     /**
-     * Creates a JPanel and adds the given JComponent in their order to it.
+     * Creates a JPanel with the default FlowLayout and the given background and
+     * adds the given jComponents to it.
+     * 
+     * @param background
+     * @param jComponents
+     * @return The created JPanel.
+     */
+    public static JPanel create(final Color background, final JComponent... jComponents) {
+	return create(STANDARD_LAYOUT_MANAGER, background, jComponents);
+    }
+
+    /**
+     * Creates a JPanel with the default FlowLayout and Colors.getGray(0) as
+     * background. After that, adds the given JComponent to it.
      * 
      * @param jComponents
      * @return The created JPanel.

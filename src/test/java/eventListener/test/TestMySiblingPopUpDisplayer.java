@@ -1,11 +1,11 @@
-package myComponent.test;
+package eventListener.test;
 
 import container.test.TestFrame;
 import eventListener.SiblingPopUpDisplayerOnClick;
 import eventListener.SiblingPopUpDisplayerOnHover;
 import myComponent.MyLabel;
 
-public class TestMySiblingPopUp {
+public class TestMySiblingPopUpDisplayer {
 
     public static void main(String[] args) {
 	MyLabel hoverTest = new MyLabel("hover");

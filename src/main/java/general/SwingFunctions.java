@@ -20,14 +20,14 @@ import container.MyFrame;
  * programs.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 30.12.2021
  */
 public final class SwingFunctions {
 
     /**
-     * Function which Loads an Image.
+     * Function which loads an Image.
      * 
-     * The function works while the programm is packed in a .jar, too.
+     * The function works while the program is packed in a .jar, too.
      * 
      * @param imageFileName
      * @return The desired Image.
@@ -55,8 +55,6 @@ public final class SwingFunctions {
     }
 
     /**
-     * <<<<<<< HEAD Activates or deactivates Anti-Aliasing on a graphics context.
-     * 
      * If Anti-Aliasing isn't supported on the Graphics instance, nothing happens.
      * 
      * @param context
@@ -98,6 +96,8 @@ public final class SwingFunctions {
      * @return The scaled ImageIcon.
      */
     public static ImageIcon scale(final ImageIcon toScale, final int newWidth, final int newHeight) {
-	return new ImageIcon(toScale.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH));
+	final Image image = toScale.getImage();
+	final Image scaled = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+	return new ImageIcon(scaled);
     }
 }
