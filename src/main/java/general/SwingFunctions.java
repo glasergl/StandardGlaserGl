@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.Window;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import container.MyFrame;
@@ -46,5 +47,15 @@ public final class SwingFunctions {
 	} else {
 	    return (MyFrame) window;
 	}
+    }
+
+    /**
+     * @param toScale
+     * @param newWidth
+     * @param newHeight
+     * @return The scaled ImageIcon.
+     */
+    public static ImageIcon scale(final ImageIcon toScale, final int newWidth, final int newHeight) {
+	return new ImageIcon(toScale.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH));
     }
 }
