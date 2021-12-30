@@ -100,7 +100,7 @@ public class MyHintTextField extends JPanel {
     @Override
     public Dimension getPreferredSize() {
 	final JLabel toCalculatePreferredSize = new JLabel("do not remove this text");
-	toCalculatePreferredSize.setFont(getHintFont());
+	toCalculatePreferredSize.setFont(getReducedHintFont());
 	final Dimension preferredSizeOfTextField = textField.getPreferredSize();
 	final Dimension preferredSizeOfHintDisplay = toCalculatePreferredSize.getPreferredSize();
 	return new Dimension(preferredSizeOfTextField.width, preferredSizeOfTextField.height + preferredSizeOfHintDisplay.height);
@@ -110,13 +110,36 @@ public class MyHintTextField extends JPanel {
 	setLayout(new BorderLayout());
 	setBackground(textField.getBackground());
 
-	setupTextField();
 	setupHintDisplay();
+	setupTextField();
 
 	add(hintDisplay, BorderLayout.CENTER);
 	add(textField, BorderLayout.SOUTH);
 
 	showInitialState();
+    }
+
+    private void showInitialState() {
+	if (!textField.hasText()) {
+	    setBorder(TextFieldAttributes.BORDER_WHILE_UNFOCUSED);
+	    hintDisplay.setFont(textField.getFont());
+	    textField.setVisible(false);
+	} else {
+	    hintDisplay.setFont(getReducedHintFont());
+	}
+    }
+
+    private void setupHintDisplay() {
+	hintDisplay.setForeground(TextFieldAttributes.HINT_TEXT_COLOR);
+	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
+	hintDisplay.addMouseListener(new MyMouseListener() {
+	    public void mouseClicked(MouseEvent mouseEvent) {
+		textField.setVisible(true);
+		new HintAnimationTransitioner(true);
+		setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField.requestFocus();
+	    }
+	});
     }
 
     private void setupTextField() {
@@ -125,36 +148,13 @@ public class MyHintTextField extends JPanel {
 		if (!textField.hasText()) {
 		    textField.setVisible(false);
 		    new HintAnimationTransitioner(false);
-		    setBorder(TextFieldAttributes.UNFOCUSED_BORDER);
+		    setBorder(TextFieldAttributes.BORDER_WHILE_UNFOCUSED);
 		}
 	    }
 	});
     }
 
-    private void setupHintDisplay() {
-	hintDisplay.setForeground(TextFieldAttributes.HINT_TEXT_COLOR);
-	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
-	hintDisplay.addMouseListener(new MyMouseListener() {
-	    public void mouseClicked(MouseEvent mouseEvent) {
-		new HintAnimationTransitioner(true);
-		setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField.setVisible(true);
-		textField.requestFocus();
-	    }
-	});
-    }
-
-    private void showInitialState() {
-	if (!textField.hasText()) {
-	    setBorder(TextFieldAttributes.UNFOCUSED_BORDER);
-	    hintDisplay.setFont(textField.getFont());
-	    textField.setVisible(false);
-	} else {
-	    hintDisplay.setFont(getHintFont());
-	}
-    }
-
-    private Font getHintFont() {
+    private Font getReducedHintFont() {
 	final Font fontOfTextField = textField.getFont();
 	final float smallerSize = TextFieldAttributes.HINT_SIZE_FACTOR * fontOfTextField.getSize2D();
 	return fontOfTextField.deriveFont(smallerSize);
@@ -162,7 +162,10 @@ public class MyHintTextField extends JPanel {
 
     private final class HintAnimationTransitioner implements ActionListener {
 
-	private final Timer timer = new Timer(TextFieldAttributes.LENGTH_OF_STEP_MS, this);
+	private static final int NUMBER_OF_HINT_TRANSITION_STEPS = 10;
+	private static final int TIME_BETWEEN_STEP = 10;
+
+	private final Timer timer = new Timer(TIME_BETWEEN_STEP, this);
 	private final Font startFont;
 	private final Font endFont;
 	private final float startFontSize;
@@ -173,20 +176,17 @@ public class MyHintTextField extends JPanel {
 	public HintAnimationTransitioner(final boolean fromFocusedToUnfocused) {
 	    super();
 	    startFont = hintDisplay.getFont();
-	    if (fromFocusedToUnfocused) {
-		endFont = textField.getFont().deriveFont(TextFieldAttributes.HINT_SIZE_FACTOR * textField.getFont().getSize2D());
-	    } else {
-		endFont = textField.getFont();
-	    }
+	    endFont = fromFocusedToUnfocused ? getReducedHintFont() : textField.getFont();
 	    startFontSize = startFont.getSize2D();
 	    endFontSize = endFont.getSize2D();
+	    timer.setInitialDelay(0);
 	    timer.start();
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-	    if (currentTransitionIndex <= TextFieldAttributes.NUMBER_OF_HINT_TRANSITION_STEPS) {
-		final float alpha = (float) currentTransitionIndex / TextFieldAttributes.NUMBER_OF_HINT_TRANSITION_STEPS;
+	public void actionPerformed(final ActionEvent nextStep) {
+	    if (currentTransitionIndex <= NUMBER_OF_HINT_TRANSITION_STEPS) {
+		final float alpha = (float) currentTransitionIndex / NUMBER_OF_HINT_TRANSITION_STEPS;
 		final float newSize = (1 - alpha) * startFontSize + alpha * endFontSize;
 		final Font newFont = startFont.deriveFont(newSize);
 		hintDisplay.setFont(newFont);

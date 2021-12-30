@@ -112,8 +112,8 @@ public class MyTextField extends JPanel {
 	setBackground(Colors.getGray(2));
 	setForeground(Colors.ofText());
 	setFont(Fonts.standard());
-	setBorder(TextFieldAttributes.UNFOCUSED_BORDER);
-	addFocusListener(new BorderChangerOnFocus(this, TextFieldAttributes.FOCUSED_BORDER));
+	setBorder(TextFieldAttributes.BORDER_WHILE_UNFOCUSED);
+	addFocusListener(new BorderChangerOnFocus(this, TextFieldAttributes.BORDER_WHILE_FOCUSED));
 	setFocusable(true);
 
 	setupTextField();
