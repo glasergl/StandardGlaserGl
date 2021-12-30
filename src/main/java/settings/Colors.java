@@ -26,12 +26,12 @@ public final class Colors {
      * brightness.
      * 
      * @param brightness of the returned gray (depends on darkmode or lightmode),
-     *                   has to be in [0,4]
+     *                   has to be in [0,10]
      * @return Gray with the given brightness.
      */
     public static Color getGray(final int brightness) {
-	if (brightness < 0 || brightness > 5) {
-	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2, 3, 4}, but is " + brightness);
+	if (brightness < 0 || brightness > 10) {
+	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, but is " + brightness);
 	}
 	final int rgbEntry = darkMode ? 35 + brightness * 20 : 255 - 20 - 15 * brightness;
 	return new Color(rgbEntry, rgbEntry, rgbEntry);

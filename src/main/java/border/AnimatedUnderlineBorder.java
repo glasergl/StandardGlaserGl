@@ -44,7 +44,7 @@ public class AnimatedUnderlineBorder extends AbstractBorder {
     }
 
     public AnimatedUnderlineBorder(final Color color) {
-	this(color, color);
+	this(color, new Color(0, 0, 0, 0));
     }
 
     @Override

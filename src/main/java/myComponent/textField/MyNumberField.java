@@ -35,12 +35,12 @@ public class MyNumberField extends MyTextField {
     }
 
     private void setup() {
-	addDocumentListener(new MyDocumentListener() {
+	baseImplementation.getDocument().addDocumentListener(new MyDocumentListener() {
 	    private Optional<Border> old = Optional.empty();
 
 	    @Override
 	    public void update() {
-		final String currentContent = textField.getText();
+		final String currentContent = getText();
 		if (!currentContent.matches("[0-9]*")) {
 		    old = Optional.of(getBorder());
 		    setBorder(new LineBorder(Color.RED, 2));

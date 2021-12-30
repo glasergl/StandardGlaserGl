@@ -2,74 +2,103 @@ package myComponent.textField;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
-
 import eventListener.BorderChangerOnFocus;
-import eventListener.emptyImplementation.MyDocumentListener;
-import myComponent.MyTextButton;
-import settings.Colors;
-import settings.Fonts;
+import eventListener.CursorChangerOnHover;
+import eventListener.emptyImplementation.MyFocusListener;
+import eventListener.emptyImplementation.MyMouseListener;
 
 /**
- * Modern implementation of a TextField with a X-Button to clear the content.
+ * An implementation of a TextField which displays a hint-text and a X-Button to
+ * clear the text.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
+ * @version 30.12.2021
  */
 public class MyTextField extends JPanel {
 
-    protected final JTextField textField = new JTextField();
-    private final MyTextButton deleteButton = new MyTextButton("X");
+    protected final String hint;
+    protected final MyTextFieldWithXButton textField;
+    protected final JTextField baseImplementation;
+    protected final JLabel hintDisplay;
 
-    public MyTextField(final String initialContent) {
+    public MyTextField(final String hint, final String initialText, final int columns) {
 	super();
+	this.textField = new MyTextFieldWithXButton(initialText);
+	this.baseImplementation = textField.getBaseImplementation();
+	this.hint = hint;
+	this.hintDisplay = new JLabel(hint);
+	setColumns(columns);
 	setup();
-	setText(initialContent);
+    }
+
+    public MyTextField(final String hint, final int columns) {
+	this(hint, "", columns);
+    }
+
+    public MyTextField(final int columns) {
+	this("", columns);
+    }
+
+    public MyTextField(final String hint, final String initialText) {
+	this(hint, initialText, TextFieldAttributes.getStandardNumberOfColumns());
+    }
+
+    public MyTextField(final String hint) {
+	this(hint, "");
     }
 
     public MyTextField() {
 	this("");
     }
 
-    public String getText() {
-	return textField.getText();
+    public void setText(final String newText) {
+	baseImplementation.setText(newText);
+	if (newText.length() > 0) {
+	    textField.setVisible(true);
+	    hintDisplay.setFont(getReducedHintFont());
+	    setBorder(TextFieldAttributes.getBorder());
+	} else {
+	    textField.setVisible(false);
+	    hintDisplay.setFont(getFont());
+	    setBorder(TextFieldAttributes.getBorder());
+	}
     }
 
-    public void setText(final String newText) {
-	textField.setText(newText);
+    public String getText() {
+	return baseImplementation.getText();
     }
 
     public boolean hasText() {
-	final String currentText = textField.getText();
+	final String currentText = baseImplementation.getText();
 	return currentText.length() > 0;
     }
 
     public void setColumns(final int newColumns) {
-	textField.setColumns(newColumns);
+	baseImplementation.setColumns(newColumns);
     }
 
     public int getColumns() {
-	return textField.getColumns();
+	return baseImplementation.getColumns();
     }
 
-    public void addDocumentListener(final DocumentListener toAdd) {
-	final Document document = textField.getDocument();
-	document.addDocumentListener(toAdd);
+    public JTextField getBaseImplementation() {
+	return baseImplementation;
     }
 
     @Override
     public void setBackground(final Color newBackground) {
 	super.setBackground(newBackground);
-	if (textField != null && deleteButton != null) {
+	if (textField != null && hintDisplay != null) {
 	    textField.setBackground(newBackground);
-	    deleteButton.setBackground(newBackground);
+	    hintDisplay.setBackground(newBackground);
 	}
     }
 
@@ -84,66 +113,74 @@ public class MyTextField extends JPanel {
     @Override
     public void setFont(final Font newFont) {
 	super.setFont(newFont);
-	if (textField != null && deleteButton != null) {
+	if (textField != null) {
 	    textField.setFont(newFont);
-	    deleteButton.setFont(newFont);
 	}
     }
 
     @Override
     public Dimension getPreferredSize() {
+	final JLabel toCalculatePreferredSize = new JLabel(hint);
+	toCalculatePreferredSize.setFont(getReducedHintFont());
 	final Dimension preferredSizeOfTextField = textField.getPreferredSize();
-	final Dimension preferredSizeOfXButton = deleteButton.getPreferredSize();
-	return new Dimension(preferredSizeOfTextField.width + preferredSizeOfXButton.width, preferredSizeOfTextField.height);
-    }
-
-    @Override
-    public void requestFocus() {
-	textField.requestFocus();
-    }
-
-    @Override
-    public void addFocusListener(final FocusListener focusListener) {
-	textField.addFocusListener(focusListener);
+	final Dimension preferredSizeOfHintDisplay = toCalculatePreferredSize.getPreferredSize();
+	return new Dimension(Math.max(preferredSizeOfTextField.width, preferredSizeOfHintDisplay.width), preferredSizeOfTextField.height + preferredSizeOfHintDisplay.height);
     }
 
     private void setup() {
 	setLayout(new BorderLayout());
-	setBackground(Colors.getGray(2));
-	setForeground(Colors.ofText());
-	setFont(Fonts.standard());
-	setBorder(TextFieldAttributes.BORDER_WHILE_UNFOCUSED);
-	addFocusListener(new BorderChangerOnFocus(this, TextFieldAttributes.BORDER_WHILE_FOCUSED));
-	setFocusable(true);
+	setBackground(TextFieldAttributes.getBackgroundColor());
+	setForeground(TextFieldAttributes.getForegroundColor());
+	setFont(TextFieldAttributes.getFont());
+	setBorder(TextFieldAttributes.getBorder());
+	baseImplementation.addFocusListener(new BorderChangerOnFocus(this, TextFieldAttributes.getBorderWhileFocused()));
 
+	setupHintDisplay();
 	setupTextField();
-	setupDeleteButton();
 
-	add(textField, BorderLayout.CENTER);
-	add(deleteButton, BorderLayout.EAST);
+	add(hintDisplay, BorderLayout.CENTER);
+	add(textField, BorderLayout.SOUTH);
+
+	showInitialHintState();
     }
 
-    private void setupTextField() {
-	textField.setBorder(new EmptyBorder(0, 0, 0, 0));
-	addDocumentListener(new MyDocumentListener() {
-	    @Override
-	    public void update() {
-		final String currentText = textField.getText();
-		deleteButton.setVisible(currentText.length() > 0);
+    private void showInitialHintState() {
+	if (!hasText()) {
+	    hintDisplay.setFont(getFont());
+	    textField.setVisible(false);
+	} else {
+	    hintDisplay.setFont(getReducedHintFont());
+	}
+    }
+
+    private void setupHintDisplay() {
+	hintDisplay.setForeground(TextFieldAttributes.getHintTextColor());
+	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
+	hintDisplay.addMouseListener(new MyMouseListener() {
+	    public void mouseClicked(MouseEvent mouseEvent) {
+		textField.setVisible(true);
+		hintDisplay.setFont(getReducedHintFont());
+		baseImplementation.requestFocus();
 	    }
 	});
     }
 
-    private void setupDeleteButton() {
-	deleteButton.setBackgroundWhileMouseHovered(getBackground());
-	deleteButton.setForeground(TextFieldAttributes.HINT_TEXT_COLOR);
-	deleteButton.setForegroundWhileMouseHovered(TextFieldAttributes.HINT_TEXT_COLOR.darker());
-	deleteButton.setBorder(new EmptyBorder(0, 0, 0, 5));
-	deleteButton.setFocusable(false);
-	deleteButton.setVisible(false);
-	deleteButton.addActionListener((click) -> {
-	    textField.setText("");
+    private void setupTextField() {
+	baseImplementation.addFocusListener(new MyFocusListener() {
+	    public void focusLost(FocusEvent focusEvent) {
+		if (!hasText()) {
+		    textField.setVisible(false);
+		    hintDisplay.setFont(getFont());
+		    setBorder(TextFieldAttributes.getBorder());
+		}
+	    }
 	});
+    }
+
+    private Font getReducedHintFont() {
+	final Font fontOfTextField = getFont();
+	final float smallerSize = TextFieldAttributes.getHintSizeFactor() * fontOfTextField.getSize2D();
+	return fontOfTextField.deriveFont(smallerSize);
     }
 
 }
