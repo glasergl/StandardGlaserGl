@@ -97,12 +97,13 @@ public final class AnimatedUnderlineBorder extends AbstractBorder {
 
     @Override
     public Insets getBorderInsets(final Component component) {
-	return getBorderInsets(component, new Insets(0, 0, 0, 0));
+	return new Insets(0, 0, thickness, 0);
     }
 
     @Override
-    public Insets getBorderInsets(final Component component, Insets insets) {
-	insets.set(0, 0, thickness, 0);
+    public Insets getBorderInsets(final Component component, final Insets insets) {
+	final Insets correctInsets = getBorderInsets(component);
+	insets.set(correctInsets.top, correctInsets.left, correctInsets.bottom, correctInsets.right);
 	return insets;
     }
 
