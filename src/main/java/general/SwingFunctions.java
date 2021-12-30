@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.Window;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -54,7 +55,7 @@ public final class SwingFunctions {
     }
 
     /**
-     * Activates or deactivates Anti-Aliasing on a graphics context.
+     * <<<<<<< HEAD Activates or deactivates Anti-Aliasing on a graphics context.
      * 
      * If Anti-Aliasing isn't supported on the Graphics instance, nothing happens.
      * 
@@ -88,5 +89,15 @@ public final class SwingFunctions {
     public static void updateJComponent(final JComponent toUpdate) {
 	toUpdate.revalidate();
 	toUpdate.repaint();
+    }
+
+    /**
+     * @param toScale
+     * @param newWidth
+     * @param newHeight
+     * @return The scaled ImageIcon.
+     */
+    public static ImageIcon scale(final ImageIcon toScale, final int newWidth, final int newHeight) {
+	return new ImageIcon(toScale.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH));
     }
 }
