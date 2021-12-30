@@ -48,7 +48,7 @@ public class MyTextField extends JPanel {
     }
 
     public MyTextField(final String hint, final String initialText) {
-	this(hint, initialText, TextFieldAttributes.getStandardNumberOfColumns());
+	this(hint, initialText, MyTextFieldAttributes.getStandardNumberOfColumns());
     }
 
     public MyTextField(final String hint) {
@@ -64,11 +64,11 @@ public class MyTextField extends JPanel {
 	if (newText.length() > 0) {
 	    textField.setVisible(true);
 	    hintDisplay.setFont(getReducedHintFont());
-	    setBorder(TextFieldAttributes.getBorder());
+	    setBorder(MyTextFieldAttributes.getBorder());
 	} else {
 	    textField.setVisible(false);
 	    hintDisplay.setFont(getFont());
-	    setBorder(TextFieldAttributes.getBorder());
+	    setBorder(MyTextFieldAttributes.getBorder());
 	}
     }
 
@@ -129,11 +129,11 @@ public class MyTextField extends JPanel {
 
     private void setup() {
 	setLayout(new BorderLayout());
-	setBackground(TextFieldAttributes.getBackgroundColor());
-	setForeground(TextFieldAttributes.getForegroundColor());
-	setFont(TextFieldAttributes.getFont());
-	setBorder(TextFieldAttributes.getBorder());
-	baseImplementation.addFocusListener(new BorderChangerOnFocus(this, TextFieldAttributes.getBorderWhileFocused()));
+	setBackground(MyTextFieldAttributes.getBackgroundColor());
+	setForeground(MyTextFieldAttributes.getForegroundColor());
+	setFont(MyTextFieldAttributes.getFont());
+	setBorder(MyTextFieldAttributes.getBorder());
+	baseImplementation.addFocusListener(new BorderChangerOnFocus(this, MyTextFieldAttributes.getBorderWhileFocused()));
 
 	setupHintDisplay();
 	setupTextField();
@@ -145,7 +145,7 @@ public class MyTextField extends JPanel {
     }
 
     private void setupHintDisplay() {
-	hintDisplay.setForeground(TextFieldAttributes.getHintTextColor());
+	hintDisplay.setForeground(MyTextFieldAttributes.getHintTextColor());
 	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
 	hintDisplay.addMouseListener(new MyMouseListener() {
 	    public void mouseClicked(MouseEvent mouseEvent) {
@@ -162,7 +162,7 @@ public class MyTextField extends JPanel {
 		if (!hasText()) {
 		    textField.setVisible(false);
 		    hintDisplay.setFont(getFont());
-		    setBorder(TextFieldAttributes.getBorder());
+		    setBorder(MyTextFieldAttributes.getBorder());
 		}
 	    }
 	});
@@ -179,7 +179,7 @@ public class MyTextField extends JPanel {
 
     private Font getReducedHintFont() {
 	final Font fontOfTextField = getFont();
-	final float smallerSize = TextFieldAttributes.getHintSizeFactor() * fontOfTextField.getSize2D();
+	final float smallerSize = MyTextFieldAttributes.getHintSizeFactor() * fontOfTextField.getSize2D();
 	return fontOfTextField.deriveFont(smallerSize);
     }
 

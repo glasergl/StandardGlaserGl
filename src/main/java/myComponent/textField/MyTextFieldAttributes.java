@@ -16,7 +16,7 @@ import settings.Fonts;
  * @author Gabriel Glaser
  * @version 30.12.2021
  */
-public final class TextFieldAttributes {
+public final class MyTextFieldAttributes {
 
     private static Color backgroundColor = Colors.getGray(2);
     private static Color foregroundColor = Colors.ofText();
@@ -74,43 +74,43 @@ public final class TextFieldAttributes {
     }
 
     public static void setBackgroundColor(final Color backgroundColor) {
-	TextFieldAttributes.backgroundColor = backgroundColor;
+	MyTextFieldAttributes.backgroundColor = backgroundColor;
     }
 
     public static void setForegroundColor(final Color foregroundColor) {
-	TextFieldAttributes.foregroundColor = foregroundColor;
+	MyTextFieldAttributes.foregroundColor = foregroundColor;
     }
 
     public static void setHintTextColor(final Color hintTextColor) {
-	TextFieldAttributes.hintTextColor = hintTextColor;
+	MyTextFieldAttributes.hintTextColor = hintTextColor;
     }
 
     public static void setxForegroundButtonColor(final Color xButtonForegroundColor) {
-	TextFieldAttributes.xButtonForegroundColor = xButtonForegroundColor;
+	MyTextFieldAttributes.xButtonForegroundColor = xButtonForegroundColor;
     }
 
     public static void setxButtonForegroundColorWhileHovered(final Color xButtonForegroundColorWhileHovered) {
-	TextFieldAttributes.xButtonForegroundColorWhileHovered = xButtonForegroundColorWhileHovered;
+	MyTextFieldAttributes.xButtonForegroundColorWhileHovered = xButtonForegroundColorWhileHovered;
     }
 
     public static void setFont(final Font font) {
-	TextFieldAttributes.font = font;
+	MyTextFieldAttributes.font = font;
     }
 
     public static void setBorder(final Border border) {
-	TextFieldAttributes.border = border;
+	MyTextFieldAttributes.border = border;
     }
 
     public static void setBorderWhileFocused(final Border borderWhileFocused) {
-	TextFieldAttributes.borderWhileFocused = borderWhileFocused;
+	MyTextFieldAttributes.borderWhileFocused = borderWhileFocused;
     }
 
     public static void setHintSizeFactor(final float hintSizeFactor) {
-	TextFieldAttributes.hintSizeFactor = hintSizeFactor;
+	MyTextFieldAttributes.hintSizeFactor = hintSizeFactor;
     }
 
     public static void setStandardNumberOfColumns(final int standardNumberOfColumns) {
-	TextFieldAttributes.standardNumberOfColumns = standardNumberOfColumns;
+	MyTextFieldAttributes.standardNumberOfColumns = standardNumberOfColumns;
     }
 
 }

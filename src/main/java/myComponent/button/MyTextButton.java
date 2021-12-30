@@ -1,4 +1,4 @@
-package myComponent;
+package myComponent.button;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -28,7 +28,7 @@ public class MyTextButton extends JLabel {
     private static final Color STANDARD_COLOR_OF_TEXT = Colors.ofText();
     private static final int ADDITIONAL_WIDTH = 25;
     private static final int ADDITIONAL_HEIGHT = 8;
-    private static final Border STANDARD_BORDER = new CompoundBorder(new LineBorder(Colors.getBlue(1), 2), new EmptyBorder(ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH, ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH));
+    private static final Border STANDARD_BORDER = new CompoundBorder(new LineBorder(Colors.getGray(7), 2), new EmptyBorder(ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH, ADDITIONAL_HEIGHT, ADDITIONAL_WIDTH));
     private static final boolean STANDARD_WITH_BORDER = true;
 
     private final List<ActionListener> actionListeners = new ArrayList<>();

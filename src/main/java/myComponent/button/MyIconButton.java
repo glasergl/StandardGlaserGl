@@ -1,4 +1,4 @@
-package myComponent;
+package myComponent.button;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

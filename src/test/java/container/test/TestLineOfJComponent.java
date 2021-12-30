@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 import container.LineOfJComponent;
 import entity.Alignment;
 import myComponent.MyLabel;
-import myComponent.MyTextButton;
+import myComponent.button.MyTextButton;
 
 public class TestLineOfJComponent {
 

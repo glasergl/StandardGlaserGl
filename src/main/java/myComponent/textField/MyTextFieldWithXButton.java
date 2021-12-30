@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import eventListener.emptyImplementation.MyDocumentListener;
 import eventListener.emptyImplementation.MyMouseListener;
-import myComponent.MyTextButton;
+import myComponent.button.MyTextButton;
 
 /**
  * Simple implementation of a TextField with a X-Button to clear the text.
@@ -87,9 +87,9 @@ public final class MyTextFieldWithXButton extends JPanel {
     }
 
     private void setupDeleteButton() {
-	deleteButton.setBackgroundWhileMouseHovered(TextFieldAttributes.getBackgroundColor());
-	deleteButton.setForeground(TextFieldAttributes.getxButtonForegroundColor());
-	deleteButton.setForegroundWhileMouseHovered(TextFieldAttributes.getxButtonForegroundColorWhileHovered());
+	deleteButton.setBackgroundWhileMouseHovered(MyTextFieldAttributes.getBackgroundColor());
+	deleteButton.setForeground(MyTextFieldAttributes.getxButtonForegroundColor());
+	deleteButton.setForegroundWhileMouseHovered(MyTextFieldAttributes.getxButtonForegroundColorWhileHovered());
 	deleteButton.setBorder(new EmptyBorder(0, MARGIN_OF_X_BUTTON, 0, MARGIN_OF_X_BUTTON));
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);

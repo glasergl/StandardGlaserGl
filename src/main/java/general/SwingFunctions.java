@@ -24,10 +24,21 @@ import container.MyFrame;
  */
 public final class SwingFunctions {
 
+    private static final int STANDARD_SCALE_TYPE = Image.SCALE_SMOOTH;
+
+    /**
+     * Function which loads and scales an Image.
+     * 
+     * @param imageFileName
+     * @return The desired Image.
+     */
+    public static <T> Image getImage(final String imageFileName, final Class<T> relative, final int width, final int height) {
+	final Image image = getImage(imageFileName, relative);
+	return image.getScaledInstance(width, height, STANDARD_SCALE_TYPE);
+    }
+
     /**
      * Function which loads an Image.
-     * 
-     * The function works while the program is packed in a .jar, too.
      * 
      * @param imageFileName
      * @return The desired Image.
@@ -37,7 +48,7 @@ public final class SwingFunctions {
 	    return ImageIO.read(relative.getClassLoader().getResourceAsStream(imageFileName));
 	} catch (IOException e) {
 	    e.printStackTrace();
-	    throw new RuntimeException("Couldn't get image from jar with name " + imageFileName);
+	    throw new RuntimeException("Couldn't get image with name " + imageFileName);
 	}
     }
 
@@ -97,7 +108,8 @@ public final class SwingFunctions {
      */
     public static ImageIcon scale(final ImageIcon toScale, final int newWidth, final int newHeight) {
 	final Image image = toScale.getImage();
-	final Image scaled = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+	final Image scaled = image.getScaledInstance(newWidth, newHeight, STANDARD_SCALE_TYPE);
 	return new ImageIcon(scaled);
     }
+
 }
