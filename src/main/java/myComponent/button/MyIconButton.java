@@ -15,6 +15,12 @@ import eventListener.emptyImplementation.MyMouseListener;
 import general.SwingFunctions;
 import settings.Colors;
 
+/**
+ * Button that displays an icon.
+ *
+ * @author Gabriel Glaser
+ * @version 30.12.2021
+ */
 public class MyIconButton extends JLabel {
 
     private final List<ActionListener> actionListeners = new ArrayList<>();
@@ -38,7 +44,6 @@ public class MyIconButton extends JLabel {
 
     private void setup() {
 	setOpaque(true);
-	setFocusable(true);
 	addMouseListener(new ColorChangerOnHover(Colors.ofFocus(), ColorType.BACKGROUND));
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	addMouseListener(new ActionActivater());

@@ -15,6 +15,12 @@ import eventListener.CursorChangerOnHover;
 import eventListener.emptyImplementation.MyMouseListener;
 import settings.Fonts;
 
+/**
+ * Button that displays text.
+ *
+ * @author Gabriel Glaser
+ * @version 30.12.2021
+ */
 public class MyTextButton extends JLabel {
 
     private static final boolean STANDARD_WITH_BORDER = true;
@@ -49,11 +55,15 @@ public class MyTextButton extends JLabel {
 	}
 	addMouseListener(mouseListenerForBackground);
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
-	addMouseListener(new ButtonController());
+	addMouseListener(new ActionActivater());
     }
 
     public void addActionListener(final ActionListener toAdd) {
 	actionListeners.add(toAdd);
+    }
+
+    public void removeActionListener(final ActionListener toRemove) {
+	actionListeners.remove(toRemove);
     }
 
     public void setBackgroundWhileMouseHovered(final Color backgroundWhileMouseHovered) {
@@ -78,10 +88,9 @@ public class MyTextButton extends JLabel {
 	return foregroundWhileMouseHovered;
     }
 
-    private final class ButtonController implements MyMouseListener {
-
+    private final class ActionActivater implements MyMouseListener {
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(final MouseEvent mouseClickEvent) {
 	    final ActionEvent click = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "");
 	    for (final ActionListener actionListener : actionListeners) {
 		actionListener.actionPerformed(click);
