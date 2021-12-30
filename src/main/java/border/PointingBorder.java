@@ -256,13 +256,13 @@ public final class PointingBorder extends AbstractBorder {
     @Override
     public Insets getBorderInsets(final Component component) {
 	if (pointerDirection == CelestialDirection.NORTH) {
-	    return new Insets(pointerHeight, 1, 1, 1);
+	    return new Insets(pointerHeight + 1, 1, 1, 1);
 	} else if (pointerDirection == CelestialDirection.WEST) {
-	    return new Insets(1, pointerHeight, 1, 1);
+	    return new Insets(1, pointerHeight + 1, 1, 1);
 	} else if (pointerDirection == CelestialDirection.SOUTH) {
-	    return new Insets(1, 1, pointerHeight, 1);
+	    return new Insets(1, 1, pointerHeight + 1, 1);
 	} else {
-	    return new Insets(1, 1, 1, pointerHeight);
+	    return new Insets(1, 1, 1, pointerHeight + 1);
 	}
     }
 
