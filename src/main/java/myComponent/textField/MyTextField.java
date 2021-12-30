@@ -144,15 +144,6 @@ public class MyTextField extends JPanel {
 	showInitialHintState();
     }
 
-    private void showInitialHintState() {
-	if (!hasText()) {
-	    hintDisplay.setFont(getFont());
-	    textField.setVisible(false);
-	} else {
-	    hintDisplay.setFont(getReducedHintFont());
-	}
-    }
-
     private void setupHintDisplay() {
 	hintDisplay.setForeground(TextFieldAttributes.getHintTextColor());
 	hintDisplay.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.TEXT_CURSOR)));
@@ -175,6 +166,15 @@ public class MyTextField extends JPanel {
 		}
 	    }
 	});
+    }
+
+    private void showInitialHintState() {
+	if (!hasText()) {
+	    hintDisplay.setFont(getFont());
+	    textField.setVisible(false);
+	} else {
+	    hintDisplay.setFont(getReducedHintFont());
+	}
     }
 
     private Font getReducedHintFont() {
