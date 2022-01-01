@@ -40,8 +40,16 @@ public final class LineOfJComponent extends JPanel {
 	this(ofTheList, toDepict, STANDARD_DISTANCE_BETWEEN);
     }
 
-    public LineOfJComponent(final Alignment ofTheList, final int distance, final JComponent... toDepict) {
-	this(ofTheList, List.of(toDepict), distance);
+    public LineOfJComponent(final Alignment ofTheList, final int distanceBetween) {
+	this(ofTheList, List.of(), distanceBetween);
+    }
+
+    public LineOfJComponent(final Alignment ofTheList) {
+	this(ofTheList, STANDARD_DISTANCE_BETWEEN);
+    }
+
+    public LineOfJComponent(final Alignment ofTheList, final int distanceBetween, final JComponent... toDepict) {
+	this(ofTheList, List.of(toDepict), distanceBetween);
     }
 
     public LineOfJComponent(final Alignment ofTheList, final JComponent... toDepict) {
