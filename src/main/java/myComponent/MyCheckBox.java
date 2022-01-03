@@ -102,6 +102,14 @@ public class MyCheckBox extends JPanel {
     }
 
     @Override
+    public void setForeground(final Color newForeground) {
+	super.setForeground(newForeground);
+	if (title != null) {
+	    title.setForeground(newForeground);
+	}
+    }
+
+    @Override
     public void setFont(final Font newFont) {
 	super.setFont(newFont);
 	if (title != null) {
@@ -123,6 +131,8 @@ public class MyCheckBox extends JPanel {
     }
 
     private void setup() {
+	setBackground(Colors.getGray(2));
+	setForeground(Colors.ofText());
 	setFont(Fonts.standard());
 	check.setBackground(checkBackground);
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
