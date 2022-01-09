@@ -18,7 +18,7 @@ import settings.Fonts;
  */
 public final class MyTextFieldAttributes {
 
-    private static Color backgroundColor = Colors.getGray(2);
+    private static Color backgroundColor = Colors.isDarkMode() ? Color.BLACK : Color.WHITE;
     private static Color foregroundColor = Colors.ofText();
     private static Color hintTextColor = new Color(127, 127, 127);
     private static Color xButtonForegroundColor = Colors.getGray(5);
