@@ -16,7 +16,7 @@ import myComponent.button.MyTextButton;
  * Simple implementation of a TextField with a X-Button to clear the text.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
+ * @version 20.1.2022
  */
 public final class MyTextFieldWithXButton extends JPanel {
 
@@ -72,6 +72,7 @@ public final class MyTextFieldWithXButton extends JPanel {
 	setLayout(new BorderLayout());
 	setupTextField();
 	setupDeleteButton();
+	setBorder(new EmptyBorder(0, 3, 0, 0));
 	add(baseImplementation, BorderLayout.CENTER);
 	add(deleteButton, BorderLayout.EAST);
     }
