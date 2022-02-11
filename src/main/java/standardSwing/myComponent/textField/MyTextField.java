@@ -7,9 +7,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentListener;
 
 import standardSwing.eventListener.BorderChangerOnFocus;
 import standardSwing.eventListener.CursorChangerOnHover;
@@ -92,6 +95,14 @@ public class MyTextField extends JPanel {
 
     public JTextField getBaseImplementation() {
 	return baseImplementation;
+    }
+
+    public void addMouseListener(final MouseListener toAdd) {
+	textField.addMouseListener(toAdd);
+    }
+
+    public void addDocumentListener(final DocumentListener toAdd) {
+	textField.addDocumentListener(toAdd);
     }
 
     @Override

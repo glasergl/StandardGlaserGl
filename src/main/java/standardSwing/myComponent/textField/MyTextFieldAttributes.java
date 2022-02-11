@@ -46,7 +46,7 @@ public final class MyTextFieldAttributes {
 	return hintTextColor;
     }
 
-    public static Color getxButtonForegroundColor() {
+    public static Color getXButtonForegroundColor() {
 	return xButtonForegroundColor;
     }
 

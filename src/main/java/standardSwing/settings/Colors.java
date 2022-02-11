@@ -7,7 +7,7 @@ import java.awt.Color;
  * supported.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
+ * @version 11.2.2022
  */
 public final class Colors {
 
@@ -66,6 +66,45 @@ public final class Colors {
 
     public static Color ofFocus() {
 	return new Color(57, 176, 227);
+    }
+
+    public static Color deriveWithAverage(final Color color, final float factor, final int offset) {
+	final float average = (color.getRed() + color.getGreen() + color.getBlue()) / 3.0f;
+	if (average > 127) {
+	    return Colors.derive(color, 1 - factor, -offset);
+	} else {
+	    return Colors.derive(color, 1 + factor, offset);
+	}
+    }
+
+    /**
+     * @param rgbEntry
+     * @return The given rgbEntry clamped to [0, 255].
+     */
+    public static int colorEntryInCorrectArea(final int rgbEntry) {
+	if (rgbEntry < 0) {
+	    return 0;
+	} else if (rgbEntry > 255) {
+	    return 255;
+	} else {
+	    return rgbEntry;
+	}
+    }
+
+    /**
+     * Multiplies R -, G - and B entry of the given Color with the given factor and
+     * adds the offset to it.
+     * 
+     * @param toDerive
+     * @param factor
+     * @param offset
+     * @return The calculated Color.
+     */
+    public static Color derive(final Color toDerive, final float factor, final int offset) {
+	final int newR = colorEntryInCorrectArea((int) (factor * toDerive.getRed() + offset));
+	final int newG = colorEntryInCorrectArea((int) (factor * toDerive.getGreen() + offset));
+	final int newB = colorEntryInCorrectArea((int) (factor * toDerive.getBlue() + offset));
+	return new Color(newR, newG, newB);
     }
 
 }

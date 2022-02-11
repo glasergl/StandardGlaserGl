@@ -5,9 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentListener;
 
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyMouseListener;
@@ -17,19 +20,28 @@ import standardSwing.myComponent.button.MyTextButton;
  * Simple implementation of a TextField with a X-Button to clear the text.
  *
  * @author Gabriel Glaser
- * @version 20.1.2022
+ * @version 11.2.2022
  */
 public final class MyTextFieldWithXButton extends JPanel {
 
     private static final int MARGIN_OF_X_BUTTON = 5;
 
     private final JTextField baseImplementation = new JTextField();
-    private final MyTextButton deleteButton = new MyTextButton("X");
+    private final MyTextButton deleteButton = new MyTextButton("X", false, MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getxButtonForegroundColorWhileHovered());
 
     protected MyTextFieldWithXButton(final String initialContent) {
 	super();
 	setup();
 	baseImplementation.setText(initialContent);
+    }
+
+    @Override
+    public void addMouseListener(final MouseListener toAdd) {
+	baseImplementation.addMouseListener(toAdd);
+    }
+
+    public void addDocumentListener(final DocumentListener toAdd) {
+	baseImplementation.getDocument().addDocumentListener(toAdd);
     }
 
     public JTextField getBaseImplementation() {
@@ -89,9 +101,7 @@ public final class MyTextFieldWithXButton extends JPanel {
     }
 
     private void setupDeleteButton() {
-	deleteButton.setBackgroundWhileMouseHovered(MyTextFieldAttributes.getBackgroundColor());
-	deleteButton.setForeground(MyTextFieldAttributes.getxButtonForegroundColor());
-	deleteButton.setForegroundWhileMouseHovered(MyTextFieldAttributes.getxButtonForegroundColorWhileHovered());
+	deleteButton.setForeground(MyTextFieldAttributes.getXButtonForegroundColor());
 	deleteButton.setBorder(new EmptyBorder(0, MARGIN_OF_X_BUTTON, 0, MARGIN_OF_X_BUTTON));
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);

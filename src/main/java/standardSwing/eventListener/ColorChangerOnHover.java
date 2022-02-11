@@ -38,7 +38,6 @@ public class ColorChangerOnHover extends ColorChanger implements MyMouseListener
 
     @Override
     public void mouseExited(final MouseEvent mouseExitEvent) {
-
 	changeColorBack(mouseExitEvent.getComponent());
     }
 

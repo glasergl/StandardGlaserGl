@@ -13,7 +13,7 @@ import standardSwing.entity.ColorType;
  * changeColorBack() methods.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
+ * @version 11.2.2021
  */
 public class ColorChanger {
 
