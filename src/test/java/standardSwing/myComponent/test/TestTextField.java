@@ -3,7 +3,7 @@ package standardSwing.myComponent.test;
 import javax.swing.SwingUtilities;
 
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.textField.MyTextField;
+import standardSwing.myComponent.textFieldD.MyTextField;
 
 public class TestTextField {
 

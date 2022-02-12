@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 import standardSwing.container.LineOfJComponent;
 import standardSwing.entity.Alignment;
 import standardSwing.myComponent.MyLabel;
-import standardSwing.myComponent.button.MyTextButton;
+import standardSwing.myComponent.textFieldD.MyTextButton;
 
 public class TestLineOfJComponent {
 
