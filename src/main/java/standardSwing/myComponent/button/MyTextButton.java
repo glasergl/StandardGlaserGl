@@ -1,4 +1,4 @@
-package standardSwing.myComponent.textFieldD;
+package standardSwing.myComponent.button;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,6 +14,7 @@ import standardSwing.entity.ColorType;
 import standardSwing.eventListener.ColorChangerOnHover;
 import standardSwing.eventListener.CursorChangerOnHover;
 import standardSwing.eventListener.emptyImplementation.MyMouseListener;
+import standardSwing.myComponent.textFieldD.MyTextButtonAttributes;
 import standardSwing.settings.Colors;
 import standardSwing.settings.Fonts;
 
@@ -30,10 +31,6 @@ import standardSwing.settings.Fonts;
 public class MyTextButton extends JLabel {
 
     private static final boolean STANDARD_WITH_BORDER = true;
-    private static final float STANDARD_BACKGROUND_COLOR_CHANGE_FACTOR = 0.1f;
-    private static final float STANDARD_FOREGROUND_COLOR_CHANGE_FACTOR = 0.1f;
-    private static final int STANDARD_BACKGROUND_COLOR_CHANGE_OFFSET = 10;
-    private static final int STANDARD_FOREGROUND_COLOR_CHANGE_OFFSET = 60;
     private static final boolean STANDARD_CHANGE_BACKGROUND_ON_HOVER = true;
     private static final boolean STANDARD_CHANGE_FOREGROUND_ON_HOVER = false;
 
@@ -137,7 +134,7 @@ public class MyTextButton extends JLabel {
 	    if (backgroundWhileMouseHovers.isPresent()) {
 		background = backgroundWhileMouseHovers.get();
 	    } else {
-		background = Colors.deriveWithAverage(getBackground(), STANDARD_BACKGROUND_COLOR_CHANGE_FACTOR, STANDARD_BACKGROUND_COLOR_CHANGE_OFFSET);
+		background = Colors.deriveStandOutColor(getBackground());
 	    }
 	    final ColorChangerOnHover forBackground = new ColorChangerOnHover(background, ColorType.BACKGROUND);
 	    oldBackgroundMouseListener = Optional.of(forBackground);
@@ -151,7 +148,7 @@ public class MyTextButton extends JLabel {
 	    if (foregroundWhileMouseHovers.isPresent()) {
 		foreground = foregroundWhileMouseHovers.get();
 	    } else {
-		foreground = Colors.deriveWithAverage(getForeground(), STANDARD_FOREGROUND_COLOR_CHANGE_FACTOR, STANDARD_FOREGROUND_COLOR_CHANGE_OFFSET);
+		foreground = Colors.deriveStandOutColor(getForeground());
 	    }
 	    final ColorChangerOnHover forForeground = new ColorChangerOnHover(foreground, ColorType.FOREGROUND);
 	    oldForegroundMouseListener = Optional.of(forForeground);

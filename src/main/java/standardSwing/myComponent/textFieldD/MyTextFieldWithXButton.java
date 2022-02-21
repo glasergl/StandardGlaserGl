@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyMouseListener;
+import standardSwing.myComponent.button.MyTextButton;
 
 /**
  * Simple implementation of a TextField with a X-Button to clear the text.

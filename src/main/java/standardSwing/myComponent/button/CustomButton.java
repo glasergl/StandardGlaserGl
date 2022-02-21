@@ -3,17 +3,15 @@ package standardSwing.myComponent.button;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
 import javax.swing.AbstractButton;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import standardSwing.entity.ColorType;
 import standardSwing.eventListener.ColorChangerOnHover;
 import standardSwing.eventListener.CursorChangerOnHover;
@@ -26,63 +24,43 @@ import standardSwing.settings.Fonts;
  * Fully customizable button which displays text.
  *
  * @author Gabriel Glaser
- * @version 12.02.2022
+ * @version 21.02.2022
  */
 public class CustomButton extends AbstractButton {
 
-    private static final Border DEFAULT_BORDER = new EmptyBorder(0, 0, 0, 0);
-    private static final float STANDARD_BACKGROUND_COLOR_CHANGE_FACTOR = 0.1f;
-    private static final float STANDARD_FOREGROUND_COLOR_CHANGE_FACTOR = 0.1f;
-    private static final int STANDARD_BACKGROUND_COLOR_CHANGE_OFFSET = 10;
-    private static final int STANDARD_FOREGROUND_COLOR_CHANGE_OFFSET = 60;
-    private static final boolean STANDARD_CHANGE_BACKGROUND_ON_HOVER = true;
-    private static final boolean STANDARD_CHANGE_FOREGROUND_ON_HOVER = false;
-
-    private static Font defaultFont = Fonts.standard();
-
-    private final boolean changeBackground;
-    private final boolean changeTextColor;
-    private final Optional<Color> mouseBackground;
-    private final Optional<Color> mouseTextColor;
-
     private String currentText;
+    private Optional<ColorChangerOnHover> currentBackgroundChanger = Optional.empty();
+    private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();;
 
-    private CustomButton(final String initialText, final Color background, final Color textColor, final Border border, final Optional<Color> mouseBackground, final Optional<Color> mouseTextColor, final boolean changeBackground,
-	    final boolean changeTextColor) {
+    public CustomButton(final String initialText, final Color background, final Color textColor) {
 	super();
-	this.mouseBackground = mouseBackground;
-	this.mouseTextColor = mouseTextColor;
-	this.changeBackground = changeBackground;
-	this.changeTextColor = changeTextColor;
 	this.currentText = initialText;
 	setBackground(background);
 	setForeground(textColor);
-	setBorder(border);
-	setDefaultValues();
+	setFont(Fonts.standard());
 	addMouseListener(new ActionListenerNotifier());
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
-	addCorrectMouseListenerForBackground();
-	addCorrectMouseListenerForForeground();
+	setBackgroundWhileHovered(Colors.deriveStandOutColor(background));
+	setPreferredSize(getDefaultPreferredSize());
     }
 
-    public CustomButton(final String initialText, final Color background, final Color textColor, final Border border, final Color backgrundWhileMouseHovers, final Color foregroundWhileMouseHovers) {
-	this(initialText, background, textColor, border, Optional.of(backgrundWhileMouseHovers), Optional.of(foregroundWhileMouseHovers), true, true);
+    public void setBackgroundWhileHovered(final Color backgroundWhileHovered) {
+	if (currentBackgroundChanger.isPresent()) {
+	    removeMouseListener(currentBackgroundChanger.get());
+	}
+	final ColorChangerOnHover newColorChangerForBackground = new ColorChangerOnHover(backgroundWhileHovered, ColorType.BACKGROUND);
+	addMouseListener(newColorChangerForBackground);
+	currentBackgroundChanger = Optional.of(newColorChangerForBackground);
+
     }
 
-    public CustomButton(final String initialText, final Color background, final Color textColor, final Border border, final Color backgrundWhileMouseHovers) {
-	this(initialText, background, textColor, border, Optional.of(backgrundWhileMouseHovers), Optional.empty(), true, STANDARD_CHANGE_FOREGROUND_ON_HOVER);
-    }
-
-    public CustomButton(final String initialText, final Color background, final Color textColor, final Border border) {
-	this(initialText, background, textColor, border, Optional.empty(), Optional.empty(), STANDARD_CHANGE_BACKGROUND_ON_HOVER, STANDARD_CHANGE_FOREGROUND_ON_HOVER);
-    }
-
-    public CustomButton(final Color background, final Color textColor, final Border border) {
-	this("", background, textColor, border);
-    }
-
-    public CustomButton(final Color background, final Color textColor) {
-	this(background, textColor, DEFAULT_BORDER);
+    public void setForegroundWhileHovered(final Color foregroundWhileHovered) {
+	if (currentForegroundChanger.isPresent()) {
+	    removeMouseListener(currentForegroundChanger.get());
+	}
+	final ColorChangerOnHover newColorChangerForForeground = new ColorChangerOnHover(foregroundWhileHovered, ColorType.FOREGROUND);
+	addMouseListener(newColorChangerForForeground);
+	currentForegroundChanger = Optional.of(newColorChangerForForeground);
     }
 
     @Override
@@ -90,21 +68,27 @@ public class CustomButton extends AbstractButton {
 	SwingFunctions.setAntialiasing(drawContext, true);
 	drawContext.setColor(getBackground());
 	final Dimension size = getSize();
-	drawContext.fillRect((int) 0, (int) 0, size.width, size.height);
+	drawContext.fillRect(0, 0, size.width, size.height);
 	drawContext.setColor(getForeground());
 	drawContext.setFont(getFont());
 	drawCenteredString(drawContext, currentText, new Rectangle(0, 0, size.width, size.height));
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-	final Graphics drawContext = getGraphics();
-	FontMetrics fontMetrics = drawContext.getFontMetrics();
-	return new Dimension(fontMetrics.stringWidth(currentText), fontMetrics.getHeight());
+    public Dimension getDefaultPreferredSize() {
+	final FontMetrics fontMetrics = getFontMetrics(getFont());
+	final Insets currentInsets = getInsets();
+	final int preferredWidth = fontMetrics.stringWidth(currentText) + currentInsets.left + currentInsets.right;
+	final int preferredHeight = fontMetrics.getHeight() + currentInsets.top + currentInsets.bottom;
+	return new Dimension(preferredWidth, preferredHeight);
     }
 
-    private void setDefaultValues() {
-	setFont(defaultFont);
+    public void setText(final String newText) {
+	currentText = newText;
+	repaint();
+    }
+
+    public String getText() {
+	return currentText;
     }
 
     /**
@@ -119,30 +103,6 @@ public class CustomButton extends AbstractButton {
 	final int x = boundsToCenterIn.x + (boundsToCenterIn.width - metrics.stringWidth(textToDraw)) / 2;
 	final int y = boundsToCenterIn.y + ((boundsToCenterIn.height - metrics.getHeight()) / 2) + metrics.getAscent();
 	drawContext.drawString(textToDraw, x, y);
-    }
-
-    private void addCorrectMouseListenerForBackground() {
-	if (changeBackground) {
-	    final Color background;
-	    if (mouseBackground.isPresent()) {
-		background = mouseBackground.get();
-	    } else {
-		background = Colors.deriveWithAverage(getBackground(), STANDARD_BACKGROUND_COLOR_CHANGE_FACTOR, STANDARD_BACKGROUND_COLOR_CHANGE_OFFSET);
-	    }
-	    addMouseListener(new ColorChangerOnHover(background, ColorType.BACKGROUND));
-	}
-    }
-
-    private void addCorrectMouseListenerForForeground() {
-	if (changeTextColor) {
-	    final Color foreground;
-	    if (mouseTextColor.isPresent()) {
-		foreground = mouseTextColor.get();
-	    } else {
-		foreground = Colors.deriveWithAverage(getForeground(), STANDARD_FOREGROUND_COLOR_CHANGE_FACTOR, STANDARD_FOREGROUND_COLOR_CHANGE_OFFSET);
-	    }
-	    addMouseListener(new ColorChangerOnHover(foreground, ColorType.FOREGROUND));
-	}
     }
 
     /**

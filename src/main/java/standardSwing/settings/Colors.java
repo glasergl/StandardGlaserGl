@@ -68,20 +68,56 @@ public final class Colors {
 	return new Color(57, 176, 227);
     }
 
-    public static Color deriveWithAverage(final Color color, final float factor, final int offset) {
-	final float average = (color.getRed() + color.getGreen() + color.getBlue()) / 3.0f;
+    /**
+     * Calculates a color which will stand out in relation to the given color.
+     * 
+     * @param color
+     * @return A relative color which will stand out in contact with the given
+     *         color.
+     */
+    public static Color deriveStandOutColor(final Color color) {
+	final int average = averageOf(color);
+	final float factor = 0.15f;
 	if (average > 127) {
-	    return Colors.derive(color, 1 - factor, -offset);
+	    return Colors.derive(color, 1 - factor, 0);
 	} else {
+	    final int offset = average < 50 ? 50 - average / 2 : 0;
 	    return Colors.derive(color, 1 + factor, offset);
 	}
     }
 
     /**
-     * @param rgbEntry
+     * Multiplies R -, G - and B entry of the given Color with the given factor and
+     * adds the offset to it. Also clamps the results in [0, 255]
+     * 
+     * @param toDerive
+     * @param factor
+     * @param offset
+     * @return The deriven Color.
+     */
+    public static Color derive(final Color toDerive, final float factor, final int offset) {
+	final int newR = clampRGBEntry((int) (factor * toDerive.getRed() + offset));
+	final int newG = clampRGBEntry((int) (factor * toDerive.getGreen() + offset));
+	final int newB = clampRGBEntry((int) (factor * toDerive.getBlue() + offset));
+	return new Color(newR, newG, newB);
+    }
+
+    /**
+     * @param color
+     * @return Average value of the rgb-entries.
+     */
+    public static int averageOf(final Color color) {
+	return (int) ((color.getRed() + color.getGreen() + color.getBlue()) / 3.0f);
+    }
+
+    /**
+     * Every value inside [0, 255] will just be returned again, if it's outside,
+     * this function will return the closest edge of the interval.
+     * 
+     * @param rgbEntry - any number
      * @return The given rgbEntry clamped to [0, 255].
      */
-    public static int colorEntryInCorrectArea(final int rgbEntry) {
+    public static int clampRGBEntry(final int rgbEntry) {
 	if (rgbEntry < 0) {
 	    return 0;
 	} else if (rgbEntry > 255) {
@@ -89,22 +125,6 @@ public final class Colors {
 	} else {
 	    return rgbEntry;
 	}
-    }
-
-    /**
-     * Multiplies R -, G - and B entry of the given Color with the given factor and
-     * adds the offset to it.
-     * 
-     * @param toDerive
-     * @param factor
-     * @param offset
-     * @return The calculated Color.
-     */
-    public static Color derive(final Color toDerive, final float factor, final int offset) {
-	final int newR = colorEntryInCorrectArea((int) (factor * toDerive.getRed() + offset));
-	final int newG = colorEntryInCorrectArea((int) (factor * toDerive.getGreen() + offset));
-	final int newB = colorEntryInCorrectArea((int) (factor * toDerive.getBlue() + offset));
-	return new Color(newR, newG, newB);
     }
 
 }
