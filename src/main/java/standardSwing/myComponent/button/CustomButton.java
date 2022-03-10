@@ -29,7 +29,7 @@ import standardSwing.settings.Fonts;
 public class CustomButton extends AbstractButton {
 
     private static final boolean STANDARD_BACKGROUND_CHANGE = true;
-    
+
     private String currentText;
     private Optional<ColorChangerOnHover> currentBackgroundChanger = Optional.empty();
     private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();;
@@ -42,10 +42,12 @@ public class CustomButton extends AbstractButton {
 	setFont(Fonts.standard());
 	addMouseListener(new ActionListenerNotifier());
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
-	setBackgroundWhileHovered(Colors.deriveStandOutColor(background));
+	if (standardBackgroundChange) {
+	    setBackgroundWhileHovered(Colors.deriveStandOutColor(background));
+	}
 	setPreferredSize(getDefaultPreferredSize());
     }
-    
+
     public CustomButton(final String initialText, final Color background, final Color textColor) {
 	this(initialText, background, textColor, STANDARD_BACKGROUND_CHANGE);
     }
