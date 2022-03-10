@@ -24,15 +24,17 @@ import standardSwing.settings.Fonts;
  * Fully customizable button which displays text.
  *
  * @author Gabriel Glaser
- * @version 21.02.2022
+ * @version 10.03.2022
  */
 public class CustomButton extends AbstractButton {
 
+    private static final boolean STANDARD_BACKGROUND_CHANGE = true;
+    
     private String currentText;
     private Optional<ColorChangerOnHover> currentBackgroundChanger = Optional.empty();
     private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();;
 
-    public CustomButton(final String initialText, final Color background, final Color textColor) {
+    public CustomButton(final String initialText, final Color background, final Color textColor, final boolean standardBackgroundChange) {
 	super();
 	this.currentText = initialText;
 	setBackground(background);
@@ -42,6 +44,10 @@ public class CustomButton extends AbstractButton {
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	setBackgroundWhileHovered(Colors.deriveStandOutColor(background));
 	setPreferredSize(getDefaultPreferredSize());
+    }
+    
+    public CustomButton(final String initialText, final Color background, final Color textColor) {
+	this(initialText, background, textColor, STANDARD_BACKGROUND_CHANGE);
     }
 
     public void setBackgroundWhileHovered(final Color backgroundWhileHovered) {
