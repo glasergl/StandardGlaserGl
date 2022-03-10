@@ -57,6 +57,17 @@ public class CustomTextButton extends AbstractButton {
     }
 
     /**
+     * CustomTextButton with standard text color.
+     * 
+     * @param initialText
+     * @param background
+     * @param standardBackgroundChange
+     */
+    public CustomTextButton(final String initialText, final Color background, final boolean standardBackgroundChange) {
+	this(initialText, background, STANDARD_TEXT_COLOR, standardBackgroundChange);
+    }
+
+    /**
      * CustomTextButton with default background change.
      * 
      * @param initialText
@@ -68,23 +79,33 @@ public class CustomTextButton extends AbstractButton {
     }
 
     /**
-     * CustomTextButton with default background change and standard text color.
+     * CustomTextButton with standard background color and standard text color.
+     * 
+     * @param initialText
+     * @param standardBackgroundChange
+     */
+    public CustomTextButton(final String initialText, final boolean standardBackgroundChange) {
+	this(initialText, STANDARD_BACKGROUND_COLOR, STANDARD_TEXT_COLOR, standardBackgroundChange);
+    }
+
+    /**
+     * CustomTextButton with standard text color and default background change.
      * 
      * @param initialText
      * @param background
      */
     public CustomTextButton(final String initialText, final Color background) {
-	this(initialText, background, STANDARD_TEXT_COLOR);
+	this(initialText, background, STANDARD_TEXT_COLOR, STANDARD_BACKGROUND_CHANGE);
     }
 
     /**
-     * CustomTextButton with default background change, a background of getGray(0)
-     * and standard text color.
+     * CustomTextButton with a standard background, standard text color default
+     * background change.
      * 
      * @param initialText
      */
     public CustomTextButton(final String initialText) {
-	this(initialText, STANDARD_BACKGROUND_COLOR);
+	this(initialText, STANDARD_BACKGROUND_COLOR, STANDARD_TEXT_COLOR, STANDARD_BACKGROUND_CHANGE);
     }
 
     /**
