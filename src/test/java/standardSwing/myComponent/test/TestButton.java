@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.SwingUtilities;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.button.CustomButton;
+import standardSwing.myComponent.button.CustomTextButton;
 import standardSwing.myComponent.button.MyJButton;
 
 public class TestButton {
@@ -12,10 +12,10 @@ public class TestButton {
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyJButton myJButton = new MyJButton("click1");
-	    CustomButton customButton = new CustomButton("click2", Color.GRAY, Color.WHITE);
-	    CustomButton withPreferredSize = new CustomButton("preferredSize", Color.BLACK, Color.WHITE);
-	    CustomButton withBackgroundChange = new CustomButton("custom background change", Color.CYAN, Color.WHITE);
-	    CustomButton withForegroundChange = new CustomButton("custom foreground change", Color.CYAN, Color.WHITE);
+	    CustomTextButton customButton = new CustomTextButton("click2", Color.GRAY, Color.WHITE);
+	    CustomTextButton withPreferredSize = new CustomTextButton("preferredSize", Color.BLACK, Color.WHITE);
+	    CustomTextButton withBackgroundChange = new CustomTextButton("custom background change", Color.CYAN, Color.WHITE);
+	    CustomTextButton withForegroundChange = new CustomTextButton("custom foreground change", Color.CYAN, Color.WHITE);
 
 	    myJButton.addActionListener(click -> {
 		System.out.println("click1");

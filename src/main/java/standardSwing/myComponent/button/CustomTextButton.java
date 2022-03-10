@@ -26,15 +26,23 @@ import standardSwing.settings.Fonts;
  * @author Gabriel Glaser
  * @version 10.03.2022
  */
-public class CustomButton extends AbstractButton {
+public class CustomTextButton extends AbstractButton {
 
     private static final boolean STANDARD_BACKGROUND_CHANGE = true;
+    private static final Color STANDARD_BACKGROUND_COLOR = Colors.getGray(0);
+    private static final Color STANDARD_TEXT_COLOR = Colors.ofText();
 
     private String currentText;
     private Optional<ColorChangerOnHover> currentBackgroundChanger = Optional.empty();
     private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();;
 
-    public CustomButton(final String initialText, final Color background, final Color textColor, final boolean standardBackgroundChange) {
+    /**
+     * @param initialText
+     * @param background
+     * @param textColor
+     * @param standardBackgroundChange
+     */
+    public CustomTextButton(final String initialText, final Color background, final Color textColor, final boolean standardBackgroundChange) {
 	super();
 	this.currentText = initialText;
 	setBackground(background);
@@ -43,15 +51,55 @@ public class CustomButton extends AbstractButton {
 	addMouseListener(new ActionListenerNotifier());
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	if (standardBackgroundChange) {
-	    setBackgroundWhileHovered(Colors.deriveStandOutColor(background));
+	    setDefaultBackgroundWhileHovered();
 	}
 	setPreferredSize(getDefaultPreferredSize());
     }
 
-    public CustomButton(final String initialText, final Color background, final Color textColor) {
+    /**
+     * CustomTextButton with default background change.
+     * 
+     * @param initialText
+     * @param background
+     * @param textColor
+     */
+    public CustomTextButton(final String initialText, final Color background, final Color textColor) {
 	this(initialText, background, textColor, STANDARD_BACKGROUND_CHANGE);
     }
 
+    /**
+     * CustomTextButton with default background change and standard text color.
+     * 
+     * @param initialText
+     * @param background
+     */
+    public CustomTextButton(final String initialText, final Color background) {
+	this(initialText, background, STANDARD_TEXT_COLOR);
+    }
+
+    /**
+     * CustomTextButton with default background change, a background of getGray(0)
+     * and standard text color.
+     * 
+     * @param initialText
+     */
+    public CustomTextButton(final String initialText) {
+	this(initialText, STANDARD_BACKGROUND_COLOR);
+    }
+
+    /**
+     * Calculates a color which stands out to the current background and sets it as
+     * the background while the mouse hovers over this.
+     */
+    public void setDefaultBackgroundWhileHovered() {
+	setBackgroundWhileHovered(Colors.deriveStandOutColor(getBackground()));
+    }
+
+    /**
+     * Sets the given color as the new background while the mouse hovers over this.
+     * 
+     * @param backgroundWhileHovered
+     */
     public void setBackgroundWhileHovered(final Color backgroundWhileHovered) {
 	if (currentBackgroundChanger.isPresent()) {
 	    removeMouseListener(currentBackgroundChanger.get());
@@ -62,6 +110,11 @@ public class CustomButton extends AbstractButton {
 
     }
 
+    /**
+     * Sets the given color as the new foreground while the mouse hovers over this.
+     * 
+     * @param foregroundWhileHovered
+     */
     public void setForegroundWhileHovered(final Color foregroundWhileHovered) {
 	if (currentForegroundChanger.isPresent()) {
 	    removeMouseListener(currentForegroundChanger.get());
@@ -71,17 +124,9 @@ public class CustomButton extends AbstractButton {
 	currentForegroundChanger = Optional.of(newColorChangerForForeground);
     }
 
-    @Override
-    public void paintComponent(final Graphics drawContext) {
-	SwingFunctions.setAntialiasing(drawContext, true);
-	drawContext.setColor(getBackground());
-	final Dimension size = getSize();
-	drawContext.fillRect(0, 0, size.width, size.height);
-	drawContext.setColor(getForeground());
-	drawContext.setFont(getFont());
-	drawCenteredString(drawContext, currentText, new Rectangle(0, 0, size.width, size.height));
-    }
-
+    /**
+     * @return The size which this needs to barely show the whole text.
+     */
     public Dimension getDefaultPreferredSize() {
 	final FontMetrics fontMetrics = getFontMetrics(getFont());
 	final Insets currentInsets = getInsets();
@@ -97,6 +142,17 @@ public class CustomButton extends AbstractButton {
 
     public String getText() {
 	return currentText;
+    }
+
+    @Override
+    protected void paintComponent(final Graphics drawContext) {
+	SwingFunctions.setAntialiasing(drawContext, true);
+	drawContext.setColor(getBackground());
+	final Dimension size = getSize();
+	drawContext.fillRect(0, 0, size.width, size.height);
+	drawContext.setColor(getForeground());
+	drawContext.setFont(getFont());
+	drawCenteredString(drawContext, currentText, new Rectangle(0, 0, size.width, size.height));
     }
 
     /**
@@ -122,7 +178,7 @@ public class CustomButton extends AbstractButton {
     private final class ActionListenerNotifier implements MyMouseListener {
 	@Override
 	public void mouseClicked(final MouseEvent mouseClickEvent) {
-	    final ActionEvent click = new ActionEvent(CustomButton.this, ActionEvent.ACTION_PERFORMED, "click");
+	    final ActionEvent click = new ActionEvent(CustomTextButton.this, ActionEvent.ACTION_PERFORMED, "click");
 	    for (final ActionListener toNotify : getActionListeners()) {
 		toNotify.actionPerformed(click);
 	    }

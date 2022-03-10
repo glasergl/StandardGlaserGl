@@ -6,14 +6,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyMouseListener;
-import standardSwing.myComponent.button.MyTextButton;
+import standardSwing.myComponent.button.CustomTextButton;
+import standardSwing.settings.Colors;
 
 /**
  * Simple implementation of a TextField with a X-Button to clear the text.
@@ -26,7 +26,7 @@ public final class MyTextFieldWithXButton extends JPanel {
     private static final int MARGIN_OF_X_BUTTON = 5;
 
     private final JTextField baseImplementation = new JTextField();
-    private final MyTextButton deleteButton = new MyTextButton("X", false, MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getxButtonForegroundColorWhileHovered());
+    private final CustomTextButton deleteButton = new CustomTextButton("X", MyTextFieldAttributes.getBackgroundColor(), Colors.ofText());
 
     protected MyTextFieldWithXButton(final String initialContent) {
 	super();
