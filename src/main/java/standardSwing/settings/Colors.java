@@ -11,6 +11,8 @@ import java.awt.Color;
  */
 public final class Colors {
 
+    public static final int NUMBER_OF_BLUE_COLORS = 11;
+
     private static boolean darkMode = false;
 
     public static void setDarkModeEnabled(final boolean shouldBeDarkMode) {
@@ -46,14 +48,32 @@ public final class Colors {
      * @return Blue with the given brightness.
      */
     public static Color getBlue(final int brightness) {
-	if (brightness == 0) {
-	    return darkMode ? new Color(0, 72, 255) : new Color(79, 129, 255);
-	} else if (brightness == 1) {
-	    return new Color(43, 103, 255);
-	} else if (brightness == 2) {
-	    return darkMode ? new Color(79, 129, 255) : new Color(0, 72, 255);
+	switch (brightness) {
+	case 0:
+	    return new Color(209, 224, 255);
+	case 1:
+	    return new Color(197, 209, 237);
+	case 2:
+	    return new Color(163, 178, 212);
+	case 3:
+	    return new Color(138, 154, 191);
+	case 4:
+	    return new Color(99, 121, 173);
+	case 5:
+	    return new Color(78, 106, 173);
+	case 6:
+	    return new Color(64, 96, 173);
+	case 7:
+	    return new Color(51, 85, 166);
+	case 8:
+	    return new Color(35, 82, 194);
+	case 9:
+	    return new Color(8, 64, 199);
+	case 10:
+	    return new Color(0, 63, 214);
+	default:
+	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2}, but is " + brightness);
 	}
-	throw new IllegalArgumentException("Brightness has to be in {0, 1, 2}, but is " + brightness);
     }
 
     public static Color ofText() {
