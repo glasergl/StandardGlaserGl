@@ -64,4 +64,8 @@ public class SiblingPopUpDisplayerOnClick implements MyMouseListener {
 	}
     }
 
+    public boolean popUpHasBeenCreated() {
+	return popUp.isPresent();
+    }
+
 }
