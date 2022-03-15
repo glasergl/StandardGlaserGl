@@ -1,4 +1,4 @@
-package standardSwing.myComponent.textFieldD;
+package standardSwing.myComponent.textField;
 
 import java.awt.Color;
 import javax.swing.border.Border;
