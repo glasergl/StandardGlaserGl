@@ -47,6 +47,22 @@ public final class MyTextField extends JPanel {
 	this("");
     }
 
+    public void setText(final String text) {
+	baseImplementation.setText(text);
+    }
+
+    public void setColumns(final int columns) {
+	baseImplementation.setColumns(columns);
+    }
+
+    public String getText() {
+	return baseImplementation.getText();
+    }
+
+    public int getColumns() {
+	return baseImplementation.getColumns();
+    }
+
     @Override
     public void addMouseListener(final MouseListener toAdd) {
 	baseImplementation.addMouseListener(toAdd);
