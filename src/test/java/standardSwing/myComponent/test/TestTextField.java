@@ -3,8 +3,8 @@ package standardSwing.myComponent.test;
 import javax.swing.SwingUtilities;
 
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.textField_Old.MyHintTextField;
-import standardSwing.myComponent.textField_Old.MyTextField;
+import standardSwing.myComponent.textField.MyHintTextField;
+import standardSwing.myComponent.textField.MyTextField;
 
 public class TestTextField {
 
