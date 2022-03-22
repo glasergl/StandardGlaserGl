@@ -4,34 +4,47 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
-import standardSwing.eventListener.emptyImplementation.MyMouseListener;
+import standardSwing.eventListener.emptyImplementation.MyFocusListener;
 import standardSwing.myComponent.button.CustomTextButton;
-import standardSwing.settings.Colors;
 
 /**
- * Simple implementation of a TextField with a X-Button to clear the text.
+ * Implementation of a TextField with a X-Button to clear the text and an
+ * animated Border if the TextField gets focused.
  *
  * @author Gabriel Glaser
- * @version 11.2.2022
+ * @version 22.3.2022
  */
 public final class MyTextField extends JPanel {
 
-    private static final int MARGIN_OF_X_BUTTON = 5;
+    private static final int MARGIN_OF_X_BUTTON = 10;
 
     private final JTextField baseImplementation = new JTextField();
-    private final CustomTextButton deleteButton = new CustomTextButton("X", MyTextFieldAttributes.getBackgroundColor(), Colors.ofText());
+    private final CustomTextButton deleteButton = new CustomTextButton("X", MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getXButtonForegroundColor(), false);
 
-    protected MyTextField(final String initialContent) {
+    public MyTextField(final String initialContent, final int columns) {
 	super();
 	setup();
 	baseImplementation.setText(initialContent);
+	baseImplementation.setColumns(columns);
+    }
+
+    public MyTextField(final String initialContent) {
+	this(initialContent, MyTextFieldAttributes.getStandardNumberOfColumns());
+    }
+
+    public MyTextField(final int columns) {
+	this("", columns);
+    }
+
+    public MyTextField() {
+	this("");
     }
 
     @Override
@@ -81,37 +94,46 @@ public final class MyTextField extends JPanel {
     }
 
     private void setup() {
-	setLayout(new BorderLayout());
+	setLayout(new BorderLayout(MARGIN_OF_X_BUTTON, MARGIN_OF_X_BUTTON));
+	setBackground(MyTextFieldAttributes.getBackgroundColor());
 	setupTextField();
 	setupDeleteButton();
-	setBorder(new EmptyBorder(0, 3, 0, 0));
+	setBorder(MyTextFieldAttributes.getBorder());
 	add(baseImplementation, BorderLayout.CENTER);
 	add(deleteButton, BorderLayout.EAST);
     }
 
     private void setupTextField() {
 	baseImplementation.setBorder(new EmptyBorder(0, 0, 0, 0));
+	baseImplementation.setFont(MyTextFieldAttributes.getFont());
 	baseImplementation.getDocument().addDocumentListener(new MyDocumentListener() {
 	    @Override
 	    public void update() {
 		deleteButton.setVisible(baseImplementation.getText().length() > 0);
 	    }
 	});
+	baseImplementation.addFocusListener(new MyFocusListener() {
+	    @Override
+	    public void focusGained(FocusEvent focusGainEvent) {
+		setBorder(MyTextFieldAttributes.getBorderWhileFocused());
+	    }
+
+	    @Override
+	    public void focusLost(FocusEvent focusLostEvent) {
+		setBorder(MyTextFieldAttributes.getBorder());
+	    }
+	});
     }
 
     private void setupDeleteButton() {
-	deleteButton.setForeground(MyTextFieldAttributes.getXButtonForegroundColor());
-	deleteButton.setBorder(new EmptyBorder(0, MARGIN_OF_X_BUTTON, 0, MARGIN_OF_X_BUTTON));
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);
+	deleteButton.setForegroundWhileHovered(MyTextFieldAttributes.getXButtonForegroundColorWhileHovered());
 	deleteButton.addActionListener((click) -> {
 	    baseImplementation.setText("");
 	});
-	deleteButton.addMouseListener(new MyMouseListener() {
-	    @Override
-	    public void mouseClicked(MouseEvent focusGainEvent) {
-		baseImplementation.requestFocus();
-	    }
+	deleteButton.addActionListener((click) -> {
+	    baseImplementation.requestFocus();
 	});
     }
 

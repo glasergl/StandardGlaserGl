@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
-
 import standardSwing.border.AnimatedUnderlineBorder;
 import standardSwing.settings.Colors;
 import standardSwing.settings.Fonts;
@@ -50,7 +49,7 @@ public final class MyTextFieldAttributes {
 	return xButtonForegroundColor;
     }
 
-    public static Color getxButtonForegroundColorWhileHovered() {
+    public static Color getXButtonForegroundColorWhileHovered() {
 	return xButtonForegroundColorWhileHovered;
     }
 
@@ -86,11 +85,11 @@ public final class MyTextFieldAttributes {
 	MyTextFieldAttributes.hintTextColor = hintTextColor;
     }
 
-    public static void setxForegroundButtonColor(final Color xButtonForegroundColor) {
+    public static void setXForegroundButtonColor(final Color xButtonForegroundColor) {
 	MyTextFieldAttributes.xButtonForegroundColor = xButtonForegroundColor;
     }
 
-    public static void setxButtonForegroundColorWhileHovered(final Color xButtonForegroundColorWhileHovered) {
+    public static void setXButtonForegroundColorWhileHovered(final Color xButtonForegroundColorWhileHovered) {
 	MyTextFieldAttributes.xButtonForegroundColorWhileHovered = xButtonForegroundColorWhileHovered;
     }
 

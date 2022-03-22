@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 
 import standardSwing.container.test.TestFrame;
 import standardSwing.myComponent.textField_Old.MyHintTextField;
+import standardSwing.myComponent.textField_Old.MyTextField;
 
 public class TestTextField {
 
@@ -11,14 +12,10 @@ public class TestTextField {
 	SwingUtilities.invokeLater(() -> {
 	    MyHintTextField textField = new MyHintTextField("With hint", "and initial text");
 	    MyHintTextField textFieldWithoutInitialText = new MyHintTextField("With hint and no initial text");
-	    MyHintTextField textFieldWithoutAnything = new MyHintTextField();
-	    MyHintTextField textFieldWithHintAndSet = new MyHintTextField("Hint");
-	    MyHintTextField textFieldWithoutHintButSet = new MyHintTextField();
-	    
-	    textFieldWithHintAndSet.setText("Setted Text");
-	    textFieldWithoutHintButSet.setText("Setted Text");
-	    
-	    TestFrame.showFrameWithComponents(textField, textFieldWithoutInitialText, textFieldWithoutAnything, textFieldWithHintAndSet, textFieldWithoutHintButSet);
+	    MyTextField textFieldWithHintAndSet = new MyTextField("TextField without hint");
+	    MyTextField textFieldWithoutHintButSet = new MyTextField();
+
+	    TestFrame.showFrameWithComponents(textField, textFieldWithoutInitialText, textFieldWithHintAndSet, textFieldWithoutHintButSet);
 	});
     }
 
