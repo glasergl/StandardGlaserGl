@@ -59,7 +59,7 @@ public class SiblingPopUpDisplayerOnHover implements MyMouseListener {
     }
 
     public MySiblingPopUp getPopUp() {
-	if (popUp.isEmpty()) {
+	if (!popUp.isPresent()) {
 	    throw new RuntimeException("Pop Up wasn't created yet");
 	} else {
 	    return popUp.get();

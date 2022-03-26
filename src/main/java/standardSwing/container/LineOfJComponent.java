@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.Box;
@@ -11,7 +13,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import standardSwing.entity.Alignment;
 
 /**
@@ -42,7 +43,7 @@ public final class LineOfJComponent extends JPanel {
     }
 
     public LineOfJComponent(final Alignment ofTheList, final int distanceBetween) {
-	this(ofTheList, List.of(), distanceBetween);
+	this(ofTheList, Collections.emptyList(), distanceBetween);
     }
 
     public LineOfJComponent(final Alignment ofTheList) {
@@ -50,7 +51,7 @@ public final class LineOfJComponent extends JPanel {
     }
 
     public LineOfJComponent(final Alignment ofTheList, final int distanceBetween, final JComponent... toDepict) {
-	this(ofTheList, List.of(toDepict), distanceBetween);
+	this(ofTheList, Arrays.asList(toDepict), distanceBetween);
     }
 
     public LineOfJComponent(final Alignment ofTheList, final JComponent... toDepict) {

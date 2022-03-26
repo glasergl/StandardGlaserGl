@@ -41,7 +41,7 @@ public class SiblingPopUpDisplayerOnClick implements MyMouseListener {
 
     @Override
     public void mouseClicked(final MouseEvent mouseEvent) {
-	if (popUp.isEmpty()) {
+	if (!popUp.isPresent()) {
 	    final MySiblingPopUp popUp;
 	    if (relativeDirectionOfPopUp.isPresent()) {
 		popUp = new MySiblingPopUp(toShowAsPopUp, relativeDirectionOfPopUp.get(), SwingFunctions.getMyFrame(sibling), sibling);
@@ -57,7 +57,7 @@ public class SiblingPopUpDisplayerOnClick implements MyMouseListener {
     }
 
     public MySiblingPopUp getPopUp() {
-	if (popUp.isEmpty()) {
+	if (!popUp.isPresent()) {
 	    throw new RuntimeException("Pop Up wasn't created yet");
 	} else {
 	    return popUp.get();

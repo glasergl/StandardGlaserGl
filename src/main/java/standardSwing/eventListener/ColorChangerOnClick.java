@@ -33,7 +33,7 @@ public final class ColorChangerOnClick extends ColorChanger implements MyMouseLi
 
     @Override
     public void mouseClicked(final MouseEvent mouseClickEvent) {
-	if (oldColor.isEmpty()) {
+	if (!oldColor.isPresent()) {
 	    changeColor(mouseClickEvent.getComponent());
 	} else {
 	    changeColorBack(mouseClickEvent.getComponent());
