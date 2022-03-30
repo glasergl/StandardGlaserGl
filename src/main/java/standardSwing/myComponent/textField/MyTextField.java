@@ -13,6 +13,7 @@ import javax.swing.event.DocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyFocusListener;
 import standardSwing.myComponent.button.CustomTextButton;
+import standardSwing.settings.Colors;
 
 /**
  * Implementation of a TextField with a X-Button to clear the text and an
@@ -132,11 +133,13 @@ public final class MyTextField extends JPanel {
 	    @Override
 	    public void focusGained(FocusEvent focusGainEvent) {
 		setBorder(MyTextFieldAttributes.getBorderWhileFocused());
+		setBackground(Colors.getGray(0));
 	    }
 
 	    @Override
 	    public void focusLost(FocusEvent focusLostEvent) {
 		setBorder(MyTextFieldAttributes.getBorder());
+		setBackground(Color.WHITE);
 	    }
 	});
     }
