@@ -94,6 +94,7 @@ public class MySiblingPopUp extends JWindow {
 	setSize(toShowAsPopUp.getPreferredSize().width, toShowAsPopUp.getPreferredSize().height);
 	add(toShowAsPopUp);
 	owner.addComponentListener(new PopUpMoverOnMove());
+	sibling.addComponentListener(new PopUpMoverOnMove());
     }
 
     private class PopUpMoverOnMove implements MyComponentListener {
