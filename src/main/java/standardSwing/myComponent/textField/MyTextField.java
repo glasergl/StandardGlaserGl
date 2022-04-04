@@ -133,13 +133,11 @@ public final class MyTextField extends JPanel {
 	    @Override
 	    public void focusGained(FocusEvent focusGainEvent) {
 		setBorder(MyTextFieldAttributes.getBorderWhileFocused());
-		setBackground(Colors.getGray(0));
 	    }
 
 	    @Override
 	    public void focusLost(FocusEvent focusLostEvent) {
 		setBorder(MyTextFieldAttributes.getBorder());
-		setBackground(Color.WHITE);
 	    }
 	});
     }
