@@ -13,7 +13,6 @@ import javax.swing.event.DocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyDocumentListener;
 import standardSwing.eventListener.emptyImplementation.MyFocusListener;
 import standardSwing.myComponent.button.CustomTextButton;
-import standardSwing.settings.Colors;
 
 /**
  * Implementation of a TextField with a X-Button to clear the text and an
