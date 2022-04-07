@@ -3,12 +3,15 @@ package standardSwing.eventListener.test;
 import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import standardSwing.container.test.TestFrame;
 import standardSwing.entity.ColorType;
 import standardSwing.eventListener.BorderChangerOnFocus;
+import standardSwing.eventListener.BorderChangerOnHover;
 import standardSwing.eventListener.ColorChangerOnClick;
 import standardSwing.eventListener.ColorChangerOnFocus;
 import standardSwing.eventListener.ColorChangerOnHover;
@@ -35,7 +38,11 @@ public class TestChanger {
 	    JButton cursorHoverTest = new JButton("CursorHoverTest");
 	    cursorHoverTest.addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.CROSSHAIR_CURSOR)));
 
-	    TestFrame.showFrameWithComponents(colorHoverTest, colorFocusTest, colorClickTest, borderFocusTest, cursorHoverTest);
+	    JLabel borderHoverTest = new JLabel("BorderHoverTest");
+	    borderHoverTest.setBorder(new EmptyBorder(2, 2, 2, 2));
+	    borderHoverTest.addMouseListener(new BorderChangerOnHover(new LineBorder(Color.BLACK, 2)));
+
+	    TestFrame.showFrameWithComponents(colorHoverTest, colorFocusTest, colorClickTest, borderFocusTest, cursorHoverTest, borderHoverTest);
 	});
     }
 
