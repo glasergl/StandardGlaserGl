@@ -6,9 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import standardSwing.border.AnimatedUnderlineBorder;
+import de.glasergl.standard.swing.border.AnimatedUnderlineBorder;
+import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListener;
 import standardSwing.container.test.TestFrame;
-import standardSwing.eventListener.emptyImplementation.MyMouseListener;
 
 public class TestAnimatedUnderlineBorder {
 

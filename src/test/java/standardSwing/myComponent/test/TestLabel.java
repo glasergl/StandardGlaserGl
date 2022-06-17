@@ -3,8 +3,8 @@ package standardSwing.myComponent.test;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
+import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.MyLabel;
 
 public class TestLabel {
 

@@ -8,14 +8,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import de.glasergl.standard.swing.entity.ColorType;
+import de.glasergl.standard.swing.eventListener.BorderChangerOnFocus;
+import de.glasergl.standard.swing.eventListener.BorderChangerOnHover;
+import de.glasergl.standard.swing.eventListener.ColorChangerOnClick;
+import de.glasergl.standard.swing.eventListener.ColorChangerOnFocus;
+import de.glasergl.standard.swing.eventListener.ColorChangerOnHover;
+import de.glasergl.standard.swing.eventListener.CursorChangerOnHover;
 import standardSwing.container.test.TestFrame;
-import standardSwing.entity.ColorType;
-import standardSwing.eventListener.BorderChangerOnFocus;
-import standardSwing.eventListener.BorderChangerOnHover;
-import standardSwing.eventListener.ColorChangerOnClick;
-import standardSwing.eventListener.ColorChangerOnFocus;
-import standardSwing.eventListener.ColorChangerOnHover;
-import standardSwing.eventListener.CursorChangerOnHover;
 
 public class TestChanger {
 

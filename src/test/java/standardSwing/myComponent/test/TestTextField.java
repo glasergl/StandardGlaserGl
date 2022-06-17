@@ -2,9 +2,9 @@ package standardSwing.myComponent.test;
 
 import javax.swing.SwingUtilities;
 
+import de.glasergl.standard.swing.myComponent.textField.MyHintTextField;
+import de.glasergl.standard.swing.myComponent.textField.MyTextField;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.textField.MyHintTextField;
-import standardSwing.myComponent.textField.MyTextField;
 
 public class TestTextField {
 

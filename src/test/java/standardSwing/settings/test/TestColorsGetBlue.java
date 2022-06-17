@@ -2,8 +2,9 @@ package standardSwing.settings.test;
 
 import java.awt.Dimension;
 import javax.swing.JLabel;
+
+import de.glasergl.standard.swing.settings.Colors;
 import standardSwing.container.test.TestFrame;
-import standardSwing.settings.Colors;
 
 public class TestColorsGetBlue {
 

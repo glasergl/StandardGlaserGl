@@ -4,10 +4,10 @@ import java.awt.Color;
 
 import javax.swing.SwingUtilities;
 
-import standardSwing.border.PointingBorder;
+import de.glasergl.standard.swing.border.PointingBorder;
+import de.glasergl.standard.swing.entity.CelestialDirection;
+import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
-import standardSwing.entity.CelestialDirection;
-import standardSwing.myComponent.MyLabel;
 
 public class TestPointingBorder {
 

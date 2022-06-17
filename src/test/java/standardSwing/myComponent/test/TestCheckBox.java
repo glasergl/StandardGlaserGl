@@ -2,8 +2,8 @@ package standardSwing.myComponent.test;
 
 import javax.swing.SwingUtilities;
 
+import de.glasergl.standard.swing.myComponent.MyCheckBox;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.MyCheckBox;
 
 public class TestCheckBox {
 

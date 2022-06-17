@@ -3,8 +3,8 @@ package standardSwing.myComponent.test;
 import java.awt.Dimension;
 import javax.swing.SwingUtilities;
 
+import de.glasergl.standard.swing.myComponent.MyToggleSwitch;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.MyToggleSwitch;
 
 public class TestToggleSwitch {
 

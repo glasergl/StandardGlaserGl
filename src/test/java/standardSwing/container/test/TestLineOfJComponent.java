@@ -1,9 +1,10 @@
 package standardSwing.container.test;
 
 import javax.swing.SwingUtilities;
-import standardSwing.container.LineOfJComponent;
-import standardSwing.entity.Alignment;
-import standardSwing.myComponent.MyLabel;
+
+import de.glasergl.standard.swing.container.LineOfJComponent;
+import de.glasergl.standard.swing.entity.Alignment;
+import de.glasergl.standard.swing.myComponent.MyLabel;
 
 public class TestLineOfJComponent {
 

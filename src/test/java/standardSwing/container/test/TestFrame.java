@@ -6,9 +6,9 @@ import java.awt.FlowLayout;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-import standardSwing.container.MyFrame;
-import standardSwing.general.SwingFunctions;
-import standardSwing.settings.Colors;
+import de.glasergl.standard.swing.container.MyFrame;
+import de.glasergl.standard.swing.general.SwingFunctions;
+import de.glasergl.standard.swing.settings.Colors;
 
 public class TestFrame extends MyFrame {
 

@@ -3,7 +3,8 @@ package standardSwing.border.test;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-import standardSwing.border.LeftRightRoundBorder;
+
+import de.glasergl.standard.swing.border.LeftRightRoundBorder;
 import standardSwing.container.test.TestFrame;
 
 /**

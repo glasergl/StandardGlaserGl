@@ -3,8 +3,8 @@ package standardSwing.container.test;
 import java.awt.Dimension;
 import javax.swing.SwingUtilities;
 
-import standardSwing.container.RowOfJComponent;
-import standardSwing.myComponent.MyLabel;
+import de.glasergl.standard.swing.container.RowOfJComponent;
+import de.glasergl.standard.swing.myComponent.MyLabel;
 
 public class TestRowOfJComponent {
 

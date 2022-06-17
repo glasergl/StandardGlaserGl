@@ -3,9 +3,10 @@ package standardSwing.myComponent.test;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.SwingUtilities;
+
+import de.glasergl.standard.swing.myComponent.button.CustomTextButton;
+import de.glasergl.standard.swing.myComponent.button.MyJButton;
 import standardSwing.container.test.TestFrame;
-import standardSwing.myComponent.button.CustomTextButton;
-import standardSwing.myComponent.button.MyJButton;
 
 public class TestButton {
 

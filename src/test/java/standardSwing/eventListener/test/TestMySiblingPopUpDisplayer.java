@@ -1,9 +1,9 @@
 package standardSwing.eventListener.test;
 
+import de.glasergl.standard.swing.eventListener.SiblingPopUpDisplayerOnClick;
+import de.glasergl.standard.swing.eventListener.SiblingPopUpDisplayerOnHover;
+import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
-import standardSwing.eventListener.SiblingPopUpDisplayerOnClick;
-import standardSwing.eventListener.SiblingPopUpDisplayerOnHover;
-import standardSwing.myComponent.MyLabel;
 
 public class TestMySiblingPopUpDisplayer {
 

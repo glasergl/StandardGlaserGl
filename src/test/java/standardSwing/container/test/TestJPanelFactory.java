@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import standardSwing.container.JPanelFactory;
+import de.glasergl.standard.swing.container.JPanelFactory;
 
 public class TestJPanelFactory {
 
