@@ -9,6 +9,6 @@ package de.glasergl.standard.util.tests;
  */
 public final class GeneralTestUtilities {
 
-    public static final String BASE_TEST_PATH = "src\\test\\resources\\";
+    public static final String BASE_TEST_RESOURCE_PATH = "src\\test\\resources\\";
 
 }
