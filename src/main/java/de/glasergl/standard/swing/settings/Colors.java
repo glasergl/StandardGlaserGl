@@ -44,7 +44,7 @@ public final class Colors {
      * given brightness.
      * 
      * @param brightness of the returned blue (depends on darkmode or lightmode),
-     *                   has to be in [0, 2].
+     *                   has to be in [0, 10].
      * @return Blue with the given brightness.
      */
     public static Color getBlue(final int brightness) {
@@ -72,7 +72,7 @@ public final class Colors {
 	case 10:
 	    return new Color(0, 63, 214);
 	default:
-	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2}, but is " + brightness);
+	    throw new IllegalArgumentException("Brightness has to be in [0, 10], but is " + brightness);
 	}
     }
 
