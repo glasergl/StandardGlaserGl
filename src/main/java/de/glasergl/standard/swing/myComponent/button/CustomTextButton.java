@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.util.Optional;
 import javax.swing.AbstractButton;
 
+import de.glasergl.standard.swing.border.LeftRightRoundBorder;
 import de.glasergl.standard.swing.entity.ColorType;
 import de.glasergl.standard.swing.eventListener.ColorChangerOnHover;
 import de.glasergl.standard.swing.eventListener.CursorChangerOnHover;
@@ -49,6 +50,7 @@ public class CustomTextButton extends AbstractButton {
 	setBackground(background);
 	setForeground(textColor);
 	setFont(Fonts.standard());
+	setBorder(new LeftRightRoundBorder(15, 15));
 	addMouseListener(new ActionListenerNotifier());
 	addMouseListener(new CursorChangerOnHover(new Cursor(Cursor.HAND_CURSOR)));
 	if (standardBackgroundChange) {
@@ -168,6 +170,7 @@ public class CustomTextButton extends AbstractButton {
 
     @Override
     protected void paintComponent(final Graphics drawContext) {
+	super.paintComponent(drawContext);
 	SwingFunctions.setAntialiasing(drawContext, true);
 	drawContext.setColor(getBackground());
 	final Dimension size = getSize();
