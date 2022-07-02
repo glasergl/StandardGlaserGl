@@ -148,6 +148,7 @@ public final class MyTextField extends JPanel {
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);
 	deleteButton.setForegroundWhileHovered(MyTextFieldAttributes.getXButtonForegroundColorWhileHovered());
+	deleteButton.setBorder(new EmptyBorder(0, 0, 0, 0));
 	deleteButton.addActionListener((click) -> {
 	    baseImplementation.setText("");
 	});
