@@ -143,8 +143,8 @@ public final class MyTextField extends JPanel {
     }
 
     private void setupDeleteButton() {
-	final Dimension preferredSize = deleteButton.getPreferredSize();
-	deleteButton.setPreferredSize(new Dimension(preferredSize.width + 2 * MARGIN_OF_X_BUTTON, preferredSize.height));
+//	final Dimension preferredSize = deleteButton.getPreferredSize();
+	deleteButton.setPreferredSize(deleteButton.getPreferredSize());
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);
 	deleteButton.setForegroundWhileHovered(MyTextFieldAttributes.getXButtonForegroundColorWhileHovered());
