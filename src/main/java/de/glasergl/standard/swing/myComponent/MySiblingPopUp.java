@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JWindow;
 
 import de.glasergl.standard.swing.border.PointingBorder;
-import de.glasergl.standard.swing.container.MyFrame;
 import de.glasergl.standard.swing.entity.CelestialDirection;
 import de.glasergl.standard.swing.eventListener.emptyImplementation.MyComponentListener;
 
@@ -25,11 +25,11 @@ public class MySiblingPopUp extends JWindow {
     private final int xOffset;
     private final int yOffset;
 
-    private final MyFrame owner;
+    private final JFrame owner;
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;
 
-    private MySiblingPopUp(final JComponent toShowAsPopUp, final CelestialDirection relativeDirectionOfPopUp, final int xOffset, final int yOffset, final MyFrame owner, final JComponent sibling) {
+    private MySiblingPopUp(final JComponent toShowAsPopUp, final CelestialDirection relativeDirectionOfPopUp, final int xOffset, final int yOffset, final JFrame owner, final JComponent sibling) {
 	super(owner);
 	this.toShowAsPopUp = toShowAsPopUp;
 	this.relativeDirectionOfPopUp = relativeDirectionOfPopUp;
@@ -40,11 +40,11 @@ public class MySiblingPopUp extends JWindow {
 	setup();
     }
 
-    public MySiblingPopUp(final JComponent toShowAsPopUp, final CelestialDirection relativeDirectionOfPopUp, final MyFrame owner, final JComponent sibling) {
+    public MySiblingPopUp(final JComponent toShowAsPopUp, final CelestialDirection relativeDirectionOfPopUp, final JFrame owner, final JComponent sibling) {
 	this(toShowAsPopUp, relativeDirectionOfPopUp, STANDARD_X_LOCATION_OFFSET, STANDARD_Y_LOCATION_OFFSET, owner, sibling);
     }
 
-    public MySiblingPopUp(final JComponent toShowAsPopUp, final MyFrame owner, final JComponent sibling) {
+    public MySiblingPopUp(final JComponent toShowAsPopUp, final JFrame owner, final JComponent sibling) {
 	this(toShowAsPopUp, STANDARD_RELATIVE_DIRECTION_OF_POP_UP, owner, sibling);
     }
 
