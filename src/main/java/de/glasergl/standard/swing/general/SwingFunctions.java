@@ -11,10 +11,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
-import de.glasergl.standard.swing.container.MyFrame;
 
 /**
  * Class which contains functions which are generally applicable for swing
@@ -53,14 +52,14 @@ public final class SwingFunctions {
 
     /**
      * @param toGetFrameOf
-     * @return The Window casted to MyFrame of the given JComponent.
+     * @return The Window casted to JFrame of the given JComponent.
      */
-    public static MyFrame getMyFrame(final JComponent toGetFrameOf) {
+    public static JFrame getMyFrame(final JComponent toGetFrameOf) {
 	final Window window = SwingUtilities.windowForComponent(toGetFrameOf);
-	if (!(window instanceof MyFrame)) {
+	if (!(window instanceof JFrame)) {
 	    throw new RuntimeException(toGetFrameOf + " was not added to a frame yet or not added to a MyFrame");
 	} else {
-	    return (MyFrame) window;
+	    return (JFrame) window;
 	}
     }
 

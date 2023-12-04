@@ -22,10 +22,10 @@ import de.glasergl.standard.swing.myComponent.button.CustomTextButton;
  * @author Gabriel Glaser
  */
 public final class MyTextField extends JPanel {
-    private static final int MARGIN_OF_X_BUTTON = 7;
+    private static final int MARGIN_OF_X_BUTTON = 4;
 
     private final JTextField baseImplementation = new JTextField();
-    private final CustomTextButton deleteButton = new CustomTextButton("X", MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getXButtonForegroundColor(), false);
+    private final CustomTextButton deleteButton = new CustomTextButton("x", MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getXButtonForegroundColor(), false);
 
     public MyTextField(final String initialContent, final int columns) {
 	super();
@@ -109,7 +109,7 @@ public final class MyTextField extends JPanel {
     }
 
     private void setup() {
-	setLayout(new BorderLayout());
+	setLayout(new BorderLayout(MARGIN_OF_X_BUTTON, 0));
 	setBackground(MyTextFieldAttributes.getBackgroundColor());
 	setupTextField();
 	setupDeleteButton();
@@ -141,8 +141,6 @@ public final class MyTextField extends JPanel {
     }
 
     private void setupDeleteButton() {
-//	final Dimension preferredSize = deleteButton.getPreferredSize();
-	deleteButton.setPreferredSize(deleteButton.getPreferredSize());
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);
 	deleteButton.setForegroundWhileHovered(MyTextFieldAttributes.getXButtonForegroundColorWhileHovered());

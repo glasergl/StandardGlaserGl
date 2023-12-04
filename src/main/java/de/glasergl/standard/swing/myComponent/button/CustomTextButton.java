@@ -54,7 +54,6 @@ public class CustomTextButton extends AbstractButton {
 	if (standardBackgroundChange) {
 	    setDefaultBackgroundWhileHovered();
 	}
-	setPreferredSize(getDefaultPreferredSize());
     }
 
     /**
@@ -149,7 +148,8 @@ public class CustomTextButton extends AbstractButton {
     /**
      * @return The size which this needs to barely show the whole text.
      */
-    public Dimension getDefaultPreferredSize() {
+    @Override
+    public Dimension getPreferredSize() {
 	final FontMetrics fontMetrics = getFontMetrics(getFont());
 	final Insets currentInsets = getInsets();
 	final int preferredWidth = fontMetrics.stringWidth(currentText) + currentInsets.left + currentInsets.right;
