@@ -15,10 +15,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyFocusListe
  * else is the source of the event.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public class ColorChangerOnFocus extends ColorChanger implements MyFocusListener {
-
     private ColorChangerOnFocus(final Optional<Component> componentToChange, final Color colorAfterClick, final ColorType colorType) {
 	super(componentToChange, colorAfterClick, colorType);
     }
@@ -40,5 +38,4 @@ public class ColorChangerOnFocus extends ColorChanger implements MyFocusListener
     public void focusLost(final FocusEvent focusLostEvent) {
 	changeColorBack(focusLostEvent.getComponent());
     }
-
 }

@@ -15,10 +15,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
  * of the event.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public final class ColorChangerOnClick extends ColorChanger implements MyMouseListener {
-
     private ColorChangerOnClick(final Optional<Component> componentToChange, final Color colorAfterClick, final ColorType colorType) {
 	super(componentToChange, colorAfterClick, colorType);
     }

@@ -13,10 +13,8 @@ import de.glasergl.standard.swing.entity.ColorType;
  * changeColorBack() methods.
  *
  * @author Gabriel Glaser
- * @version 11.2.2021
  */
 public class ColorChanger {
-
     protected final Color changedColor;
     protected final ColorType colorType;
     protected final Optional<Component> componentToChange;

@@ -11,10 +11,8 @@ import de.glasergl.standard.swing.settings.Colors;
  * Top-Level container with standard properties to prevent boiler-plate code.
  *
  * @author Gabriel Glaser
- * @version 28.12.2021
  */
 public class MyFrame extends JFrame {
-
     private static final Image STANDARD_ICON = SwingFunctions.getImage("StandardIcon.png", MyFrame.class);
 
     public MyFrame(final String title, final Image icon) {
@@ -47,5 +45,4 @@ public class MyFrame extends JFrame {
 	setLocationRelativeTo(null);
 	setVisible(true);
     }
-
 }

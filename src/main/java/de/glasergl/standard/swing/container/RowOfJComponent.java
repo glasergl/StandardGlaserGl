@@ -18,10 +18,8 @@ import javax.swing.border.Border;
  * For example, it can be used for headers and footers.
  *
  * @author Gabriel Glaser
- * @version 29.11.2021
  */
 public class RowOfJComponent extends JPanel {
-
     private static final int STANDARD_HORIZONTAL_DISTANCE = 0;
     private static final int STANDARD_VERTICAL_DISTANCE = 0;
 

@@ -13,10 +13,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
  * exits the area.
  * 
  * @author Gabriel Glaser
- * @version 20.12.2021
  */
 public class CursorChangerOnHover implements MyMouseListener {
-
     private final Cursor whileMouseEntered;
     private Optional<Cursor> whileMouseExited = Optional.empty();
 
@@ -37,5 +35,4 @@ public class CursorChangerOnHover implements MyMouseListener {
 	final Component whichTheMouseLeft = mouseEvent.getComponent();
 	whichTheMouseLeft.setCursor(whileMouseExited.get());
     }
-
 }

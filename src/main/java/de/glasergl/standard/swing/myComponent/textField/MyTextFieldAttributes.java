@@ -18,7 +18,6 @@ import de.glasergl.standard.swing.settings.Fonts;
  * @version 30.12.2021
  */
 public final class MyTextFieldAttributes {
-
     private static Color backgroundColor = Colors.isDarkMode() ? Color.BLACK : Color.WHITE;
     private static Color foregroundColor = Colors.ofText();
     private static Color hintTextColor = new Color(127, 127, 127);
@@ -113,5 +112,4 @@ public final class MyTextFieldAttributes {
     public static void setStandardNumberOfColumns(final int standardNumberOfColumns) {
 	MyTextFieldAttributes.standardNumberOfColumns = standardNumberOfColumns;
     }
-
 }

@@ -10,11 +10,9 @@ import javax.swing.event.DocumentListener;
  * update() does nothing by default.
  *
  * @author Gabriel Glaser
- * @version 27.6.2022
  */
 @FunctionalInterface
 public interface MyDocumentListener extends DocumentListener {
-
     /**
      * Calls update().
      * 
@@ -49,5 +47,4 @@ public interface MyDocumentListener extends DocumentListener {
      * Will be called by insertUpdate, removeUpdate and changedUpdate.
      */
     public void update();
-
 }

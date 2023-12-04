@@ -12,10 +12,8 @@ import javax.swing.JOptionPane;
  * which shows the exception in a JOptionPane and stores it in a .txt-File.
  *
  * @author Gabriel Glaser
- * @version 17.06.2022
  */
 public final class DefaultErrorHandling {
-
     /**
      * Every uncaught Throwable will be visualized in a JOptionPane and logged in a
      * File.
@@ -64,5 +62,4 @@ public final class DefaultErrorHandling {
 	return calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "_" + calendar.get(Calendar.HOUR_OF_DAY) + "." + calendar.get(Calendar.MINUTE) + "." + calendar.get(Calendar.SECOND)
 		+ "." + calendar.get(Calendar.MILLISECOND);
     }
-
 }

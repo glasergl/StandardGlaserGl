@@ -5,10 +5,8 @@ package de.glasergl.standard.util;
  * type T2
  *
  * @author Gabriel Glaser
- * @version 27.06.2022
  */
 public final class Tuple<T1, T2> {
-
     private final T1 t1;
     private final T2 t2;
 
@@ -25,5 +23,4 @@ public final class Tuple<T1, T2> {
     public T2 getSecond() {
 	return t2;
     }
-
 }

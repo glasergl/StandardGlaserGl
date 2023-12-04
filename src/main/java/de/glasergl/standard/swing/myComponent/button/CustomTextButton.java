@@ -26,10 +26,8 @@ import de.glasergl.standard.swing.settings.Fonts;
  * Fully customizable button which displays text.
  *
  * @author Gabriel Glaser
- * @version 10.03.2022
  */
 public class CustomTextButton extends AbstractButton {
-
     private static final boolean STANDARD_BACKGROUND_CHANGE = true;
     private static final Color STANDARD_BACKGROUND_COLOR = Colors.getGray(0);
     private static final Color STANDARD_TEXT_COLOR = Colors.ofText();
@@ -209,5 +207,4 @@ public class CustomTextButton extends AbstractButton {
 	    }
 	}
     }
-
 }

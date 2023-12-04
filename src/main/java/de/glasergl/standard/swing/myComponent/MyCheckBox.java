@@ -27,10 +27,8 @@ import de.glasergl.standard.swing.settings.Fonts;
  * Custom CheckBox implementation which adapts to the parents background.
  *
  * @author Gabriel Glaser
- * @version 28.12.2021
  */
 public class MyCheckBox extends JPanel {
-
     private static final boolean STANDARD_IS_SELECTED = false;
     private static final int DISTANCE_BETWEEN_CHECK_AND_TEXT = 5;
     private static final Color STANDARD_COLOR_OF_CHECK = Color.BLACK;
@@ -66,28 +64,33 @@ public class MyCheckBox extends JPanel {
 
     public void setSelected(final boolean isSelected) {
 	this.isSelected = isSelected;
-	SwingFunctions.updateJComponent(check);
+	check.revalidate();
+	check.repaint();
 	notifyChangeListeners();
     }
 
     public void setColorOfCheck(final Color checkColor) {
 	this.checkColor = checkColor;
-	SwingFunctions.updateJComponent(check);
+	check.revalidate();
+	check.repaint();
     }
 
     public void setBackgroundOfCheck(final Color checkBackground) {
 	this.checkBackground = checkBackground;
-	SwingFunctions.updateJComponent(check);
+	check.revalidate();
+	check.repaint();
     }
 
     public void setBackgroundOfCheckWhileHovered(final Color checkBackgroundWhileHovered) {
 	this.checkBackgroundWhileHovered = checkBackgroundWhileHovered;
-	SwingFunctions.updateJComponent(check);
+	check.revalidate();
+	check.repaint();
     }
 
     public void setBorderColorOfCheck(final Color checkBorderColor) {
 	this.checkBorderColor = checkBorderColor;
-	SwingFunctions.updateJComponent(check);
+	check.revalidate();
+	check.repaint();
     }
 
     public void addChangeListener(final ChangeListener toAdd) {
@@ -199,5 +202,4 @@ public class MyCheckBox extends JPanel {
 	    return check;
 	}
     }
-
 }

@@ -21,10 +21,8 @@ import de.glasergl.standard.swing.container.MyFrame;
  * programs.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public final class SwingFunctions {
-
     private static final int STANDARD_SCALE_TYPE = Image.SCALE_SMOOTH;
 
     /**
@@ -92,16 +90,6 @@ public final class SwingFunctions {
     }
 
     /**
-     * revalidates and repaints the given JComponent.
-     * 
-     * @param toUpdate
-     */
-    public static void updateJComponent(final JComponent toUpdate) {
-	toUpdate.revalidate();
-	toUpdate.repaint();
-    }
-
-    /**
      * @param toScale
      * @param newWidth
      * @param newHeight
@@ -112,5 +100,4 @@ public final class SwingFunctions {
 	final Image scaled = image.getScaledInstance(newWidth, newHeight, STANDARD_SCALE_TYPE);
 	return new ImageIcon(scaled);
     }
-
 }

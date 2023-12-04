@@ -23,7 +23,6 @@ import de.glasergl.standard.swing.entity.Direction;
  * @version 7.11.2021
  */
 public class MyToggleSwitch extends JComponent {
-
     public static Color standardToggledBackground = Color.BLUE;
     public static Color standardUntoggledBackground = Color.GREEN;
     public static Color standardToggleCircle = Color.GRAY;
@@ -195,7 +194,6 @@ public class MyToggleSwitch extends JComponent {
     }
 
     private class MoveToggleCircle implements ActionListener {
-
 	private final Direction toMoveTo;
 	private final int stepWidth;
 	private int currentStep = 1;
@@ -217,7 +215,5 @@ public class MyToggleSwitch extends JComponent {
 		}
 	    }
 	}
-
     }
-
 }

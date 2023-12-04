@@ -11,7 +11,6 @@ import de.glasergl.standard.swing.general.SwingFunctions;
 import de.glasergl.standard.swing.settings.Colors;
 
 public class TestFrame extends MyFrame {
-
     public TestFrame() {
 	super("Test");
     }
@@ -36,5 +35,4 @@ public class TestFrame extends MyFrame {
 	frame.start();
 	frame.setSize(frame.getWidth(), frame.getHeight() + 50);
     }
-
 }

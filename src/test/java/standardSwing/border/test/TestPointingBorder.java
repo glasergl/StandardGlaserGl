@@ -10,7 +10,6 @@ import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
 
 public class TestPointingBorder {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyLabel north = new MyLabel("North");
@@ -24,5 +23,4 @@ public class TestPointingBorder {
 	    TestFrame.showFrameWithComponents(north, west, south, east);
 	});
     }
-
 }

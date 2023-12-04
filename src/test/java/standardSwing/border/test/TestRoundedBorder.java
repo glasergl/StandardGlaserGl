@@ -7,12 +7,7 @@ import javax.swing.SwingUtilities;
 import de.glasergl.standard.swing.border.LeftRightRoundBorder;
 import standardSwing.container.test.TestFrame;
 
-/**
- * @author Gabriel Glaser
- * @version 30.03.2022
- */
 public class TestRoundedBorder {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    JLabel label = new JLabel("round border");
@@ -22,5 +17,4 @@ public class TestRoundedBorder {
 	    TestFrame.showFrameWithComponents(label);
 	});
     }
-
 }

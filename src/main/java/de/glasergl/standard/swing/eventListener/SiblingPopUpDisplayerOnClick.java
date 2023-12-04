@@ -13,10 +13,8 @@ import de.glasergl.standard.swing.myComponent.MySiblingPopUp;
  * MouseListener which changes the visibility of the pop up on click.
  * 
  * @author Gabriel Glaser
- * @version 28.12.2021
  */
 public class SiblingPopUpDisplayerOnClick implements MyMouseListener {
-
     private final JComponent toShowAsPopUp;
     private final JComponent sibling;
     private final Optional<CelestialDirection> relativeDirectionOfPopUp;
@@ -67,5 +65,4 @@ public class SiblingPopUpDisplayerOnClick implements MyMouseListener {
     public boolean popUpHasBeenCreated() {
 	return popUp.isPresent();
     }
-
 }

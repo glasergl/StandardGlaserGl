@@ -9,7 +9,6 @@ import de.glasergl.standard.swing.myComponent.button.MyJButton;
 import standardSwing.container.test.TestFrame;
 
 public class TestButton {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyJButton myJButton = new MyJButton("click1");
@@ -31,5 +30,4 @@ public class TestButton {
 	    TestFrame.showFrameWithComponents(myJButton, customButton, withPreferredSize, withBackgroundChange, withForegroundChange);
 	});
     }
-
 }

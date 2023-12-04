@@ -7,10 +7,8 @@ import java.awt.Color;
  * supported.
  *
  * @author Gabriel Glaser
- * @version 11.2.2022
  */
 public final class Colors {
-
     public static final int NUMBER_OF_BLUE_COLORS = 11;
 
     private static boolean darkMode = false;
@@ -146,5 +144,4 @@ public final class Colors {
 	    return rgbEntry;
 	}
     }
-
 }

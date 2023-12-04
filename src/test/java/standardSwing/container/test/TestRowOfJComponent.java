@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.container.RowOfJComponent;
 import de.glasergl.standard.swing.myComponent.MyLabel;
 
 public class TestRowOfJComponent {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    RowOfJComponent row = new RowOfJComponent(5, 5);
@@ -36,5 +35,4 @@ public class TestRowOfJComponent {
 	    TestFrame.showFrameWithComponents(row);
 	});
     }
-
 }

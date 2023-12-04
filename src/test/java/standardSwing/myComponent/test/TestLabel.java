@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
 
 public class TestLabel {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyLabel labelWithText = new MyLabel("Test12312");
@@ -15,5 +14,4 @@ public class TestLabel {
 	    TestFrame.showFrameWithComponents(labelWithText, labelWithIcon);
 	});
     }
-
 }

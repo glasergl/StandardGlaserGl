@@ -7,10 +7,8 @@ import java.awt.event.MouseListener;
  * Interface extension of MouseListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public interface MyMouseListener extends MouseListener {
-
     /**
      * Does nothing.
      * 
@@ -55,5 +53,4 @@ public interface MyMouseListener extends MouseListener {
     @Override
     public default void mouseExited(final MouseEvent mouseExitEvent) {
     }
-
 }

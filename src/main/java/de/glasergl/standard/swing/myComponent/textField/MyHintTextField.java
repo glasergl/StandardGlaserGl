@@ -24,10 +24,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
  * clear the text.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public class MyHintTextField extends JPanel {
-
     protected final String hint;
     protected final MyTextField textField;
     protected final JTextField baseImplementation;
@@ -194,5 +192,4 @@ public class MyHintTextField extends JPanel {
 	final float smallerSize = MyTextFieldAttributes.getHintSizeFactor() * fontOfTextField.getSize2D();
 	return fontOfTextField.deriveFont(smallerSize);
     }
-
 }

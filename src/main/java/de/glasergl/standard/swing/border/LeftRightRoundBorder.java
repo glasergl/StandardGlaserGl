@@ -15,10 +15,8 @@ import javax.swing.border.AbstractBorder;
  * Represents a round border at the left and right edge of the component.
  *
  * @author Gabriel Glaser
- * @version 30.03.2022
  */
 public class LeftRightRoundBorder extends AbstractBorder {
-
     private static final int DEFAULT_WIDTH_OF_SIDES = 7;
     private static final int DEFAULT_ROUNDNESS = 15;
 
@@ -71,5 +69,4 @@ public class LeftRightRoundBorder extends AbstractBorder {
     public Insets getBorderInsets(Component c, Insets insets) {
 	return getBorderInsets(c);
     }
-
 }

@@ -10,7 +10,6 @@ import de.glasergl.standard.swing.settings.Colors;
 import de.glasergl.standard.swing.settings.Fonts;
 
 public class MyJButton extends JButton {
-
     private static Color defaultColorOfText = Colors.ofText();
     private static Font defaultFontOfText = Fonts.standard();
 
@@ -45,5 +44,4 @@ public class MyJButton extends JButton {
     public static void setTextFont(final Font newFontOfText) {
 	MyJButton.defaultFontOfText = newFontOfText;
     }
-
 }

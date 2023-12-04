@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.entity.Alignment;
 import de.glasergl.standard.swing.myComponent.MyLabel;
 
 public class TestLineOfJComponent {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    LineOfJComponent horizontal = new LineOfJComponent(Alignment.HORIZONTAL, 20, new MyLabel("Hee"), new MyLabel("GG"));
@@ -15,5 +14,4 @@ public class TestLineOfJComponent {
 	    TestFrame.showFrameWithComponents(horizontal, vertical);
 	});
     }
-
 }

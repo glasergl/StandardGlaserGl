@@ -8,7 +8,6 @@ import de.glasergl.standard.swing.settings.Colors;
 import de.glasergl.standard.swing.settings.Fonts;
 
 public class MyJTextField extends JTextField {
-
     private static Color defaultColorOfText = Colors.ofText();
     private static Font defaultFontOfText = Fonts.standard();
     private static int defaultColumns = 15;
@@ -59,5 +58,4 @@ public class MyJTextField extends JTextField {
     public static void setDefaultColumns(int newColumns) {
 	MyJTextField.defaultColumns = newColumns;
     }
-
 }

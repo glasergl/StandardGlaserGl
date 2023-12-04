@@ -20,10 +20,8 @@ import de.glasergl.standard.swing.myComponent.button.CustomTextButton;
  * animated Border if the TextField gets focused.
  *
  * @author Gabriel Glaser
- * @version 22.3.2022
  */
 public final class MyTextField extends JPanel {
-
     private static final int MARGIN_OF_X_BUTTON = 7;
 
     private final JTextField baseImplementation = new JTextField();
@@ -156,5 +154,4 @@ public final class MyTextField extends JPanel {
 	    baseImplementation.requestFocus();
 	});
     }
-
 }

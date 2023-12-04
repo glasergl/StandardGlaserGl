@@ -7,10 +7,8 @@ import java.awt.event.FocusListener;
  * Interface extension of FocusListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public interface MyFocusListener extends FocusListener {
-
     /**
      * Does nothing.
      * 
@@ -28,5 +26,4 @@ public interface MyFocusListener extends FocusListener {
     @Override
     public default void focusLost(final FocusEvent focusLostEvent) {
     }
-
 }

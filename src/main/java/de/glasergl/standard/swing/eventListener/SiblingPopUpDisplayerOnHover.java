@@ -14,7 +14,6 @@ import de.glasergl.standard.swing.myComponent.MySiblingPopUp;
  * component this MouseListener is added to.
  * 
  * @author Gabriel Glaser
- * @version 28.12.2021
  */
 public class SiblingPopUpDisplayerOnHover implements MyMouseListener {
 
@@ -69,5 +68,4 @@ public class SiblingPopUpDisplayerOnHover implements MyMouseListener {
     public boolean popUpHasBeenCreated() {
 	return popUp.isPresent();
     }
-
 }

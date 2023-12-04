@@ -15,10 +15,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
  * or else is the source of the event.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public class ColorChangerOnHover extends ColorChanger implements MyMouseListener {
-
     private ColorChangerOnHover(final Optional<Component> componentToChange, final Color colorAfterClick, final ColorType colorType) {
 	super(componentToChange, colorAfterClick, colorType);
     }
@@ -40,5 +38,4 @@ public class ColorChangerOnHover extends ColorChanger implements MyMouseListener
     public void mouseExited(final MouseEvent mouseExitEvent) {
 	changeColorBack(mouseExitEvent.getComponent());
     }
-
 }

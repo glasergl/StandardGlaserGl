@@ -13,10 +13,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyFocusListe
  * it back when focus is lost.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public class BorderChangerOnFocus implements MyFocusListener {
-
     private final Border borderWhileFocused;
     private final Optional<JComponent> jComponentToChange;
 
@@ -57,5 +55,4 @@ public class BorderChangerOnFocus implements MyFocusListener {
 	    return (JComponent) focusEvent.getComponent();
 	}
     }
-
 }

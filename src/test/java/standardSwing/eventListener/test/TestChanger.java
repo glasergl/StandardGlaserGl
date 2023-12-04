@@ -18,7 +18,6 @@ import de.glasergl.standard.swing.eventListener.CursorChangerOnHover;
 import standardSwing.container.test.TestFrame;
 
 public class TestChanger {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    JButton colorHoverTest = new JButton("ColorHoverTest");
@@ -45,5 +44,4 @@ public class TestChanger {
 	    TestFrame.showFrameWithComponents(colorHoverTest, colorFocusTest, colorClickTest, borderFocusTest, cursorHoverTest, borderHoverTest);
 	});
     }
-
 }

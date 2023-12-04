@@ -15,10 +15,8 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyComponentL
  * This class allows to display a component relative to an sibling.
  * 
  * @author Gabriel Glaser
- * @version 28.12.2021
  */
 public class MySiblingPopUp extends JWindow {
-
     private static final CelestialDirection STANDARD_RELATIVE_DIRECTION_OF_POP_UP = CelestialDirection.SOUTH;
     private static final int STANDARD_X_LOCATION_OFFSET = 0;
     private static final int STANDARD_Y_LOCATION_OFFSET = -3;
@@ -105,5 +103,4 @@ public class MySiblingPopUp extends JWindow {
 	    }
 	}
     }
-
 }

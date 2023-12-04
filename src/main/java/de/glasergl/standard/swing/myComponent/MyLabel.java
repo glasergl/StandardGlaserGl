@@ -13,10 +13,8 @@ import de.glasergl.standard.swing.settings.Fonts;
  * Implementation of JLabel with additional constructors and default attributes.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public class MyLabel extends JLabel {
-
     public MyLabel(final String text, final Color background, final Color foreground, final Font fontOfText) {
 	super(text);
 	setOpaque(true);
@@ -52,5 +50,4 @@ public class MyLabel extends JLabel {
     public MyLabel(final ImageIcon icon) {
 	this(icon, icon.getIconWidth(), icon.getIconHeight());
     }
-
 }

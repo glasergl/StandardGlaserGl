@@ -7,10 +7,8 @@ import java.awt.event.ComponentListener;
  * Interface extension of ComponentListener which does nothing, by default.
  *
  * @author Gabriel Glaser
- * @version 29.12.2021
  */
 public interface MyComponentListener extends ComponentListener {
-
     /**
      * Does nothing.
      * 
@@ -46,5 +44,4 @@ public interface MyComponentListener extends ComponentListener {
     @Override
     public default void componentHidden(final ComponentEvent hiddenEvent) {
     }
-
 }

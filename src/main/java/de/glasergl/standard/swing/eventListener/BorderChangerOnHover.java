@@ -14,7 +14,6 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
  * @version 29.12.2021
  */
 public class BorderChangerOnHover implements MyMouseListener {
-
     private final Border borderWhileHovered;
     private final Optional<JComponent> jComponentToChange;
 
@@ -55,5 +54,4 @@ public class BorderChangerOnHover implements MyMouseListener {
 	    return (JComponent) focusEvent.getComponent();
 	}
     }
-
 }

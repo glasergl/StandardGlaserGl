@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.myComponent.textField.MyTextField;
 import standardSwing.container.test.TestFrame;
 
 public class TestTextField {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyHintTextField textField = new MyHintTextField("With hint", "and initial text");
@@ -18,5 +17,4 @@ public class TestTextField {
 	    TestFrame.showFrameWithComponents(textField, textFieldWithoutInitialText, textFieldWithHintAndSet, textFieldWithoutHintButSet);
 	});
     }
-
 }

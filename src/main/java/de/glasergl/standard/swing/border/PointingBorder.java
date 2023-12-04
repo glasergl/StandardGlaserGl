@@ -19,10 +19,8 @@ import de.glasergl.standard.swing.general.SwingFunctions;
  * line which surrounds everything.
  * 
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public final class PointingBorder extends AbstractBorder {
-
     private static final CelestialDirection STANDARD_POINTER_DIRECTION = CelestialDirection.NORTH;
     private static final int STANDARD_POINTER_WIDTH = 25;
     private static final int STANDARD_POINTER_HEIGHT = 15;
@@ -279,5 +277,4 @@ public final class PointingBorder extends AbstractBorder {
 	    polygon.addPoint(point.x, point.y);
 	}
     }
-
 }

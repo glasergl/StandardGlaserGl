@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.myComponent.MyToggleSwitch;
 import standardSwing.container.test.TestFrame;
 
 public class TestToggleSwitch {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    MyToggleSwitch tsUntoggled = new MyToggleSwitch();
@@ -17,5 +16,4 @@ public class TestToggleSwitch {
 	    TestFrame.showFrameWithComponents(tsUntoggled, tsToggled);
 	});
     }
-
 }

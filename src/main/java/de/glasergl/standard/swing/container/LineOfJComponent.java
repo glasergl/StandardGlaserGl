@@ -21,10 +21,8 @@ import de.glasergl.standard.swing.entity.Alignment;
  * right or from top to bottom.
  * 
  * @author Gabriel Glaser
- * @version 20.12.2021
  */
 public final class LineOfJComponent extends JPanel {
-
     private static final int STANDARD_DISTANCE_BETWEEN = 0;
 
     private final Alignment alignment;
@@ -109,5 +107,4 @@ public final class LineOfJComponent extends JPanel {
     public void forEachChildDo(final Consumer<? super Component> consumer) {
 	toDepict.forEach(consumer);
     }
-
 }

@@ -7,7 +7,6 @@ import de.glasergl.standard.swing.settings.Colors;
 import standardSwing.container.test.TestFrame;
 
 public class TestColorsGetBlue {
-
     public static void main(String[] args) {
 	JLabel[] labelsWithBlueColors = new JLabel[Colors.NUMBER_OF_BLUE_COLORS];
 	for (int i = 0; i < Colors.NUMBER_OF_BLUE_COLORS; i++) {
@@ -19,5 +18,4 @@ public class TestColorsGetBlue {
 	}
 	TestFrame.showFrameWithComponents(labelsWithBlueColors);
     }
-
 }

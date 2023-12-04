@@ -7,10 +7,8 @@ import javax.swing.plaf.FontUIResource;
  * Consists all standard Fonts of different sizes.
  *
  * @author Gabriel Glaser
- * @version 20.12.2021
  */
 public final class Fonts {
-
     public static Font standard() {
 	return new FontUIResource(Font.SANS_SERIF, Font.PLAIN, 20);
     }
@@ -38,5 +36,4 @@ public final class Fonts {
     public static Font bold() {
 	return standard().deriveFont(Font.BOLD);
     }
-
 }

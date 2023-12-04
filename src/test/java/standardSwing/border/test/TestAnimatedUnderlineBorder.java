@@ -11,7 +11,6 @@ import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListe
 import standardSwing.container.test.TestFrame;
 
 public class TestAnimatedUnderlineBorder {
-
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    JLabel label = new JLabel("Click me to see Border");
@@ -27,5 +26,4 @@ public class TestAnimatedUnderlineBorder {
 	    TestFrame.showFrameWithComponents(label);
 	});
     }
-
 }

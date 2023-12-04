@@ -13,10 +13,8 @@ import javax.swing.border.AbstractBorder;
  * underline is built up as an animation.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public final class AnimatedUnderlineBorder extends AbstractBorder {
-
     private static final int STANDARD_THICKNESS = 2;
     private static final Color STANDARD_BACKGROUND = new Color(0, 0, 0, 0);
 
@@ -106,5 +104,4 @@ public final class AnimatedUnderlineBorder extends AbstractBorder {
 	insets.set(correctInsets.top, correctInsets.left, correctInsets.bottom, correctInsets.right);
 	return insets;
     }
-
 }

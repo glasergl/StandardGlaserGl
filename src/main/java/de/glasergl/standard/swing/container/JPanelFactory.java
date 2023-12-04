@@ -14,10 +14,8 @@ import de.glasergl.standard.swing.settings.Colors;
  * easier.
  *
  * @author Gabriel Glaser
- * @version 30.12.2021
  */
 public final class JPanelFactory {
-
     private static final Color STANDARD_BACKGROUND = Colors.getGray(0);
     private static final LayoutManager STANDARD_LAYOUT_MANAGER = new FlowLayout(FlowLayout.LEFT, 5, 5);
 
@@ -73,5 +71,4 @@ public final class JPanelFactory {
     public static JPanel create(final JComponent... jComponents) {
 	return create(STANDARD_LAYOUT_MANAGER, jComponents);
     }
-
 }
