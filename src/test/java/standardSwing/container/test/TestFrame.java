@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 public class TestFrame {
-    public static void showFrameWithComponents(final JComponent... components) {
+    public static JFrame showFrameWithComponents(final JComponent... components) {
 	final JFrame frame = new JFrame("Test");
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	final Container contentPane = frame.getContentPane();
@@ -20,5 +20,6 @@ public class TestFrame {
 	frame.setSize(frame.getWidth(), frame.getHeight() + 50);
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);
+	return frame;
     }
 }

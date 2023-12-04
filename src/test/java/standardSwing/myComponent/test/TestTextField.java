@@ -1,5 +1,8 @@
 package standardSwing.myComponent.test;
 
+import java.awt.Color;
+
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import de.glasergl.standard.swing.myComponent.textField.MyHintTextField;
@@ -14,7 +17,8 @@ public class TestTextField {
 	    MyTextField textFieldWithHintAndSet = new MyTextField("TextField without hint");
 	    MyTextField textFieldWithoutHintButSet = new MyTextField();
 
-	    TestFrame.showFrameWithComponents(textField, textFieldWithoutInitialText, textFieldWithHintAndSet, textFieldWithoutHintButSet);
+	    JFrame f = TestFrame.showFrameWithComponents(textField, textFieldWithoutInitialText, textFieldWithHintAndSet, textFieldWithoutHintButSet);
+	    f.getContentPane().setBackground(Color.GRAY);
 	});
     }
 }

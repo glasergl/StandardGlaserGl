@@ -4,15 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.event.DocumentListener;
 
+import de.glasergl.standard.swing.eventListener.BorderChangerOnFocus;
 import de.glasergl.standard.swing.eventListener.emptyImplementation.MyDocumentListener;
-import de.glasergl.standard.swing.eventListener.emptyImplementation.MyFocusListener;
 import de.glasergl.standard.swing.myComponent.button.CustomTextButton;
 
 /**
@@ -26,9 +26,11 @@ public final class MyTextField extends JPanel {
 
     private final JTextField baseImplementation = new JTextField();
     private final CustomTextButton deleteButton = new CustomTextButton("x", MyTextFieldAttributes.getBackgroundColor(), MyTextFieldAttributes.getXButtonForegroundColor(), false);
+    private final BorderChangerOnFocus borderChangerOnFocus;
 
     public MyTextField(final String initialContent, final int columns) {
 	super();
+	this.borderChangerOnFocus = new BorderChangerOnFocus(this, MyTextFieldAttributes.getBorderWhileFocused());
 	setup();
 	baseImplementation.setText(initialContent);
 	baseImplementation.setColumns(columns);
@@ -112,8 +114,8 @@ public final class MyTextField extends JPanel {
 	setLayout(new BorderLayout(MARGIN_OF_X_BUTTON, 0));
 	setBackground(MyTextFieldAttributes.getBackgroundColor());
 	setupTextField();
+	setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 	setupDeleteButton();
-	setBorder(MyTextFieldAttributes.getBorder());
 	add(baseImplementation, BorderLayout.CENTER);
 	add(deleteButton, BorderLayout.EAST);
     }
@@ -127,24 +129,14 @@ public final class MyTextField extends JPanel {
 		deleteButton.setVisible(baseImplementation.getText().length() > 0);
 	    }
 	});
-	baseImplementation.addFocusListener(new MyFocusListener() {
-	    @Override
-	    public void focusGained(FocusEvent focusGainEvent) {
-		setBorder(MyTextFieldAttributes.getBorderWhileFocused());
-	    }
-
-	    @Override
-	    public void focusLost(FocusEvent focusLostEvent) {
-		setBorder(MyTextFieldAttributes.getBorder());
-	    }
-	});
+	baseImplementation.addFocusListener(borderChangerOnFocus);
     }
 
     private void setupDeleteButton() {
 	deleteButton.setVisible(false);
 	deleteButton.setFocusable(false);
 	deleteButton.setForegroundWhileHovered(MyTextFieldAttributes.getXButtonForegroundColorWhileHovered());
-	deleteButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+	deleteButton.setBorder(new EmptyBorder(0, 0, 0, MARGIN_OF_X_BUTTON));
 	deleteButton.addActionListener((click) -> {
 	    baseImplementation.setText("");
 	});

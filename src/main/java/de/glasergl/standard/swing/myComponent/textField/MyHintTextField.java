@@ -12,9 +12,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 
-import de.glasergl.standard.swing.eventListener.BorderChangerOnFocus;
 import de.glasergl.standard.swing.eventListener.CursorChangerOnHover;
 import de.glasergl.standard.swing.eventListener.emptyImplementation.MyFocusListener;
 import de.glasergl.standard.swing.eventListener.emptyImplementation.MyMouseListener;
@@ -66,11 +66,9 @@ public class MyHintTextField extends JPanel {
 	if (newText.length() > 0) {
 	    textField.setVisible(true);
 	    hintDisplay.setFont(getReducedHintFont());
-	    setBorder(MyTextFieldAttributes.getBorder());
 	} else {
 	    textField.setVisible(false);
 	    hintDisplay.setFont(getFont());
-	    setBorder(MyTextFieldAttributes.getBorder());
 	}
     }
 
@@ -143,7 +141,6 @@ public class MyHintTextField extends JPanel {
 	setForeground(MyTextFieldAttributes.getForegroundColor());
 	setFont(MyTextFieldAttributes.getFont());
 	setBorder(MyTextFieldAttributes.getBorder());
-	baseImplementation.addFocusListener(new BorderChangerOnFocus(this, MyTextFieldAttributes.getBorderWhileFocused()));
 
 	setupHintDisplay();
 	setupTextField();
@@ -173,7 +170,13 @@ public class MyHintTextField extends JPanel {
 		    textField.setVisible(false);
 		    hintDisplay.setFont(getFont());
 		    setBorder(MyTextFieldAttributes.getBorder());
+		} else {
+		    setBorder(new EmptyBorder(0, 0, 0, 0));
 		}
+	    }
+
+	    public void focusGained(FocusEvent focusEvent) {
+		setBorder(new EmptyBorder(0, 0, 0, 0));
 	    }
 	});
     }
