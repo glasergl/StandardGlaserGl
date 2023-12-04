@@ -31,7 +31,7 @@ public final class Colors {
      */
     public static Color getGray(final int brightness) {
 	if (brightness < 0 || brightness > 10) {
-	    throw new IllegalArgumentException("Brightness has to be in {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, but is " + brightness);
+	    throw new IllegalArgumentException("Brightness has to be in [0, 10], but is " + brightness);
 	}
 	final int rgbEntry = darkMode ? 35 + brightness * 20 : 255 - 20 - 15 * brightness;
 	return new Color(rgbEntry, rgbEntry, rgbEntry);
@@ -87,7 +87,7 @@ public final class Colors {
     }
 
     /**
-     * Calculates a color which will stand out in relation to the given color.
+     * Calculates a color which will stand out in comparison to the given color.
      * 
      * @param color
      * @return A relative color which will stand out in contact with the given
@@ -125,7 +125,7 @@ public final class Colors {
      * @return Average value of the rgb-entries.
      */
     public static int averageOf(final Color color) {
-	return (int) ((color.getRed() + color.getGreen() + color.getBlue()) / 3.0f);
+	return (color.getRed() + color.getGreen() + color.getBlue()) / 3;
     }
 
     /**

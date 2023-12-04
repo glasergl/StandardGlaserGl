@@ -23,7 +23,7 @@ import de.glasergl.standard.swing.settings.Colors;
 import de.glasergl.standard.swing.settings.Fonts;
 
 /**
- * Fully customizable button which displays text.
+ * Customizable button which displays text.
  *
  * @author Gabriel Glaser
  */
@@ -34,7 +34,8 @@ public class CustomTextButton extends AbstractButton {
 
     private String currentText;
     private Optional<ColorChangerOnHover> currentBackgroundChanger = Optional.empty();
-    private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();;
+    private Optional<ColorChangerOnHover> currentForegroundChanger = Optional.empty();
+    private Optional<Dimension> customPreferredSizeWrapper = Optional.empty();
 
     /**
      * @param initialText
@@ -150,15 +151,29 @@ public class CustomTextButton extends AbstractButton {
      */
     @Override
     public Dimension getPreferredSize() {
-	final FontMetrics fontMetrics = getFontMetrics(getFont());
-	final Insets currentInsets = getInsets();
-	final int preferredWidth = fontMetrics.stringWidth(currentText) + currentInsets.left + currentInsets.right;
-	final int preferredHeight = fontMetrics.getHeight() + currentInsets.top + currentInsets.bottom;
-	return new Dimension(preferredWidth, preferredHeight);
+	if (customPreferredSizeWrapper.isEmpty()) {
+	    final FontMetrics fontMetrics = getFontMetrics(getFont());
+	    final Insets currentInsets = getInsets();
+	    final int preferredWidth = fontMetrics.stringWidth(currentText) + currentInsets.left + currentInsets.right;
+	    final int preferredHeight = fontMetrics.getHeight() + currentInsets.top + currentInsets.bottom;
+	    return new Dimension(preferredWidth, preferredHeight);
+	} else {
+	    return customPreferredSizeWrapper.get();
+	}
+    }
+
+    @Override
+    public void setPreferredSize(final Dimension preferredSize) {
+	if (preferredSize != null) {
+	    this.customPreferredSizeWrapper = Optional.of(preferredSize);
+	} else {
+	    this.customPreferredSizeWrapper = Optional.empty();
+	}
     }
 
     public void setText(final String newText) {
 	currentText = newText;
+	revalidate();
 	repaint();
     }
 
@@ -196,7 +211,6 @@ public class CustomTextButton extends AbstractButton {
      * MouseListener which notifies all added ActionListeners that a click occurred.
      *
      * @author Gabriel Glaser
-     * @version 12.02.2022
      */
     private final class ActionListenerNotifier implements MyMouseListener {
 	@Override

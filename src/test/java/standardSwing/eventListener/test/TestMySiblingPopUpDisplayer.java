@@ -1,17 +1,18 @@
 package standardSwing.eventListener.test;
 
+import javax.swing.JLabel;
+
 import de.glasergl.standard.swing.eventListener.SiblingPopUpDisplayerOnClick;
 import de.glasergl.standard.swing.eventListener.SiblingPopUpDisplayerOnHover;
-import de.glasergl.standard.swing.myComponent.MyLabel;
 import standardSwing.container.test.TestFrame;
 
 public class TestMySiblingPopUpDisplayer {
     public static void main(String[] args) {
-	MyLabel hoverTest = new MyLabel("hover");
-	MyLabel clickTest = new MyLabel("click");
+	JLabel hoverTest = new JLabel("hover");
+	JLabel clickTest = new JLabel("click");
 
-	MyLabel hoverPopUp = new MyLabel("hovered");
-	MyLabel clickPopUp = new MyLabel("clicked");
+	JLabel hoverPopUp = new JLabel("hovered");
+	JLabel clickPopUp = new JLabel("clicked");
 
 	new SiblingPopUpDisplayerOnHover(hoverPopUp, hoverTest);
 	new SiblingPopUpDisplayerOnClick(clickPopUp, clickTest);

@@ -20,7 +20,6 @@ import de.glasergl.standard.swing.entity.Direction;
  * Visual Toggle Switch.
  * 
  * @author Gabriel Glaser
- * @version 7.11.2021
  */
 public class MyToggleSwitch extends JComponent {
     public static Color standardToggledBackground = Color.BLUE;

@@ -31,8 +31,8 @@ public final class DefaultErrorHandling {
      * @param exception
      */
     private static void showAndLogUnexpectedExceptionAndExitProgram(final Throwable exception) {
-	final String title = "Unerwarteter Fehler.";
-	final String message = "Es wurde eine Datei \"error.txt\" erstellt.\nBitte senden Sie mir sie bitte zu.\nDas Programm wird nun beendet.";
+	final String title = "Unexpected Error";
+	final String message = "The file \"error.txt\" shows the stacktrace of methods which led to the error.";
 	JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
 	logException(exception);
 	System.exit(1);
@@ -48,8 +48,8 @@ public final class DefaultErrorHandling {
 	    final File errorOutput = new File("error_" + getCurrentDateAndTime() + ".txt");
 	    exception.printStackTrace(new PrintStream(errorOutput));
 	} catch (final IOException e) {
-	    final String title = "Fehler beim Fehler.";
-	    final String message = "Der Fehler konnte leider nicht protokolliert werden.";
+	    final String title = "Error with the Error.";
+	    final String message = "The error couldn't be stored in a file.";
 	    JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
 	}
     }

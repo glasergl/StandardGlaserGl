@@ -1,7 +1,6 @@
 package de.glasergl.standard.swing.settings;
 
 import java.awt.Font;
-import javax.swing.plaf.FontUIResource;
 
 /**
  * Consists all standard Fonts of different sizes.
@@ -10,7 +9,7 @@ import javax.swing.plaf.FontUIResource;
  */
 public final class Fonts {
     public static Font standard() {
-	return new FontUIResource(Font.SANS_SERIF, Font.PLAIN, 20);
+	return new Font(Font.SANS_SERIF, Font.PLAIN, 20);
     }
 
     public static Font resizedStandard(final float newSize) {

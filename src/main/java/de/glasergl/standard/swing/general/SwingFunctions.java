@@ -41,7 +41,7 @@ public final class SwingFunctions {
      * @param imageFileName
      * @return The desired Image.
      */
-    public static <T> Image getImage(final String imageFileName, final Class<T> relative) {
+    public static <T> Image getImage(final String imageFileName, final Class<?> relative) {
 	try {
 	    return ImageIO.read(relative.getClassLoader().getResourceAsStream(imageFileName));
 	} catch (IOException e) {
@@ -51,13 +51,13 @@ public final class SwingFunctions {
     }
 
     /**
-     * @param toGetFrameOf
+     * @param jComponent
      * @return The Window casted to JFrame of the given JComponent.
      */
-    public static JFrame getMyFrame(final JComponent toGetFrameOf) {
-	final Window window = SwingUtilities.windowForComponent(toGetFrameOf);
+    public static JFrame getJFrame(final JComponent jComponent) {
+	final Window window = SwingUtilities.windowForComponent(jComponent);
 	if (!(window instanceof JFrame)) {
-	    throw new RuntimeException(toGetFrameOf + " was not added to a frame yet or not added to a MyFrame");
+	    throw new RuntimeException(jComponent + " was not added to a frame yet or not added to a MyFrame");
 	} else {
 	    return (JFrame) window;
 	}

@@ -1,24 +1,25 @@
 package standardSwing.container.test;
 
 import java.awt.Dimension;
+
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import de.glasergl.standard.swing.container.RowOfJComponent;
-import de.glasergl.standard.swing.myComponent.MyLabel;
 
 public class TestRowOfJComponent {
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(() -> {
 	    RowOfJComponent row = new RowOfJComponent(5, 5);
-	    MyLabel left1 = new MyLabel("left1");
-	    MyLabel left2 = new MyLabel("left2");
-	    MyLabel left3 = new MyLabel("left3");
+	    JLabel left1 = new JLabel("left1");
+	    JLabel left2 = new JLabel("left2");
+	    JLabel left3 = new JLabel("left3");
 
-	    MyLabel middle1 = new MyLabel("middle1");
-	    MyLabel middle2 = new MyLabel("middle2");
+	    JLabel middle1 = new JLabel("middle1");
+	    JLabel middle2 = new JLabel("middle2");
 
-	    MyLabel right1 = new MyLabel("right1");
-	    MyLabel right2 = new MyLabel("right2");
+	    JLabel right1 = new JLabel("right1");
+	    JLabel right2 = new JLabel("right2");
 
 	    row.addToLeft(left1);
 	    row.addToLeft(left2);

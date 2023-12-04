@@ -43,9 +43,9 @@ public class SiblingPopUpDisplayerOnHover implements MyMouseListener {
     public void mouseEntered(MouseEvent e) {
 	final MySiblingPopUp popUp;
 	if (relativeDirectionOfPopUp.isPresent()) {
-	    popUp = new MySiblingPopUp(toShowAsPopUp, relativeDirectionOfPopUp.get(), SwingFunctions.getMyFrame(sibling), sibling);
+	    popUp = new MySiblingPopUp(toShowAsPopUp, relativeDirectionOfPopUp.get(), SwingFunctions.getJFrame(sibling), sibling);
 	} else {
-	    popUp = new MySiblingPopUp(toShowAsPopUp, SwingFunctions.getMyFrame(sibling), sibling);
+	    popUp = new MySiblingPopUp(toShowAsPopUp, SwingFunctions.getJFrame(sibling), sibling);
 	}
 	this.popUp = Optional.of(popUp);
 	popUp.setVisible(true);
