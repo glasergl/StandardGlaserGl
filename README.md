@@ -3,10 +3,11 @@ A project with some generally applicable Java functions and classes (mainly abou
 
 I use it for some of my Java applications. However, I am not satisfied with its current state and thus, I do not recommend using it. Nevertheless, I think some classes (e.g., custom JComponents) are interesting to look into and maybe get some inspiration.
 
-## Usage
-First, install this Java application via Maven, i.e., run `mvn install` in a console opened in the cloned repositoy.
+## Installation
+Install via maven, i.e., run `mvn install`in a console opened in the cloned repositoy.
 
-Then, add the dependency
+## Usage
+Add the dependency
 ```xml
 <dependency>
 	<groupId>glasergl</groupId>
